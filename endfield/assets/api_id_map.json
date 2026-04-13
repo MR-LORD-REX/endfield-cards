@@ -1,0 +1,126 @@
+{
+  "phy_spell_up": {
+    "id": 87,
+    "tag": "PhysicalAndSpellInflictionEnhance_base"
+  },
+  "skill_dmg_up": {
+    "id": -101,
+    "tag": "AllSkillDamageIncrease"
+  },
+  "spell_dmg_up": {
+    "id": 87,
+    "tag": "PhysicalAndSpellInflictionEnhance_base"
+  },
+  "crit_up": {
+    "id": 9,
+    "tag": "CriticalRate_base"
+  },
+  "atk_up": {
+    "id": 2,
+    "tag": "Atk_base"
+  },
+  "hp_up": {
+    "id": 1,
+    "tag": "MaxHp_base"
+  },
+  "agi_up": {
+    "id": 40,
+    "tag": "Agi_base"
+  },
+  "will_up": {
+    "id": 42,
+    "tag": "Will_base"
+  },
+  "wisd_up": {
+    "id": 41,
+    "tag": "Wisd_base"
+  },
+  "str_up": {
+    "id": 39,
+    "tag": "Str_base"
+  },
+  "heal_up": {
+    "id": 29,
+    "tag": "HealOutputIncrease_base"
+  },
+  "dmg_up": {
+    "id": -101,
+    "tag": "AllSkillDamageIncrease"
+  },
+  "poise_up": {
+    "id": 26,
+    "tag": "PoiseDamageOutputScalar_base"
+  },
+  "phy_dmg_up": {
+    "id": 50,
+    "tag": "PhysicalDamageIncrease_base"
+  },
+  "ultimate_gain_up": {
+    "id": 44,
+    "tag": "UltimateSpGainScalar_base"
+  },
+  "fire_dmg_up": {
+    "id": 51,
+    "tag": "FireDamageIncrease_base"
+  },
+  "nature_dmg_up": {
+    "id": 54,
+    "tag": "NaturalDamageIncrease_base"
+  },
+  "cryst_dmg_up": {
+    "id": 53,
+    "tag": "CrystDamageIncrease_base"
+  },
+  "pulse_dmg_up": {
+    "id": 52,
+    "tag": "PulseDamageIncrease_base"
+  },
+  "wisd": {
+    "id": 41,
+    "tag": "Wisd_base"
+  },
+  "agi": {
+    "id": 40,
+    "tag": "Agi_base"
+  },
+  "str": {
+    "id": 39,
+    "tag": "Str_base"
+  },
+  "str_val": {
+    "id": 39,
+    "tag": "Str_base"
+  },
+  "will": {
+    "id": 42,
+    "tag": "Will_base"
+  },
+  "atk": {
+    "id": 2,
+    "tag": "Atk_base"
+  },
+  "crirate": {
+    "id": 9,
+    "tag": "CriticalRate_base"
+  },
+  "usgs": {
+    "id": 44,
+    "tag": "UltimateSpGainScalar_base"
+  },
+  "hp": {
+    "id": 1,
+    "tag": "MaxHp_base"
+  },
+  "phys_dmg_up": {
+    "id": 50,
+    "tag": "PhysicalDamageIncrease_base"
+  },
+  "ether_dmg_up": {
+    "id": 55,
+    "tag": "EtherDamageIncrease_base"
+  },
+  "heal": {
+    "id": 29,
+    "tag": "HealOutputIncrease_base"
+  }
+}

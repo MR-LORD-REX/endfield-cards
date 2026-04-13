@@ -1,0 +1,7850 @@
+{
+    "2946": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_edc_03.png",
+      "slug": "item_equip_t4_suit_fire_natr01_edc_03",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    },
+    "3068": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_edc_01.png",
+      "slug": "item_equip_t4_suit_fire_natr01_edc_01",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    },
+    "3016": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_str01_hand_02.png",
+      "slug": "item_equip_t3_suit_str01_hand_02",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.245,
+            0.245,
+            0.245,
+            0.245
+          ]
+        }
+      ]
+    },
+    "2915": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_wisd01_edc_02.png",
+      "slug": "item_equip_t2_suit_wisd01_edc_02",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.11666666666666667,
+            0.11666666666666667,
+            0.11666666666666667,
+            0.11666666666666667
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.11666666666666667,
+            0.11666666666666667,
+            0.11666666666666667,
+            0.11666666666666667
+          ]
+        }
+      ]
+    },
+    "2953": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_body_01.png",
+      "slug": "item_equip_t4_suit_atk02_body_01",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        }
+      ]
+    },
+    "2814": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_hand_02.png",
+      "slug": "item_equip_t4_suit_criti01_hand_02",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 17,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        }
+      ]
+    },
+    "3007": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_body_02.png",
+      "slug": "item_equip_t4_suit_phy01_body_02",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            20.7,
+            22.77,
+            24.84,
+            26.91
+          ]
+        }
+      ]
+    },
+    "3075": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_will01_hand_01.png",
+      "slug": "item_equip_t3_suit_will01_hand_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.1225,
+            0.1225,
+            0.1225,
+            0.1225
+          ]
+        }
+      ]
+    },
+    "2885": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_body_03.png",
+      "slug": "item_equip_t3_suit_atk01_body_03",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.0875,
+            0.0875,
+            0.0875,
+            0.0875
+          ]
+        }
+      ]
+    },
+    "3044": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_hand_01.png",
+      "slug": "item_equip_t3_suit_atk01_hand_01",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 61,
+          "formula": "BaseAddition",
+          "values": [
+            0.245,
+            0.245,
+            0.245,
+            0.245
+          ]
+        }
+      ]
+    },
+    "3259": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_body_05.png",
+      "slug": "item_equip_t4_suit_attri01_body_05",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        }
+      ]
+    },
+    "3060": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_hand_01.png",
+      "slug": "item_equip_t4_suit_atk02_hand_01",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.345,
+            0.3795,
+            0.414,
+            0.44849999999999995
+          ]
+        }
+      ]
+    },
+    "2864": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_edc_05.png",
+      "slug": "item_equip_t4_suit_atk02_edc_05",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.27599999999999997,
+            0.3036,
+            0.33119999999999994,
+            0.35879999999999995
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.27599999999999997,
+            0.3036,
+            0.33119999999999994,
+            0.35879999999999995
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.27599999999999997,
+            0.3036,
+            0.33119999999999994,
+            0.35879999999999995
+          ]
+        }
+      ]
+    },
+    "2819": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_burst01_edc_02.png",
+      "slug": "item_equip_t4_suit_burst01_edc_02",
+      "suit_id": "suit_burst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 17,
+          "formula": "BaseAddition",
+          "values": [
+            0.27599999999999997,
+            0.3036,
+            0.33119999999999994,
+            0.35879999999999995
+          ]
+        }
+      ]
+    },
+    "3004": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_edc_04.png",
+      "slug": "item_equip_t4_suit_atk02_edc_04",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2821": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_edc_03.png",
+      "slug": "item_equip_t4_suit_atk02_edc_03",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3101": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_edc_02.png",
+      "slug": "item_equip_t4_suit_atk02_edc_02",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.5175,
+            0.56925,
+            0.6209999999999999,
+            0.67275
+          ]
+        }
+      ]
+    },
+    "3166": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_burst01_edc_01.png",
+      "slug": "item_equip_t4_suit_burst01_edc_01",
+      "suit_id": "suit_burst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "2846": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_edc_01.png",
+      "slug": "item_equip_t4_suit_atk02_edc_01",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3077": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_hand_02.png",
+      "slug": "item_equip_t4_suit_attri01_hand_02",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "3171": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_body_02.png",
+      "slug": "item_equip_t4_suit_atb01_body_02",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 10001,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.1035089175054887,
+            0.11385980925603757,
+            0.12421070100658643,
+            0.1345615927571353
+          ]
+        }
+      ]
+    },
+    "3003": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_hand_02.png",
+      "slug": "item_equip_t4_suit_atb01_hand_02",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        }
+      ]
+    },
+    "3105": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_body_02.png",
+      "slug": "item_equip_t4_suit_attri01_body_02",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "3014": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_body_01.png",
+      "slug": "item_equip_t4_suit_criti01_body_01",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            20.7,
+            22.77,
+            24.84,
+            26.91
+          ]
+        }
+      ]
+    },
+    "2841": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_body_04.png",
+      "slug": "item_equip_t3_suit_atk01_body_04",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "2950": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_stragi01_body_01.png",
+      "slug": "item_equip_t1_suit_stragi01_body_01",
+      "suit_id": "suit_stragi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            22.400000000000002,
+            22.400000000000002,
+            22.400000000000002,
+            22.400000000000002
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431,
+            0.9610764055742431
+          ]
+        }
+      ]
+    },
+    "2826": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_agi01_body_01.png",
+      "slug": "item_equip_t2_suit_agi01_body_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            28.8,
+            28.8,
+            28.8,
+            28.8
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            44.0,
+            44.0,
+            44.0,
+            44.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            29.0,
+            29.0,
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseFinalAddition",
+          "values": [
+            16.187704477740866,
+            16.187704477740866,
+            16.187704477740866,
+            16.187704477740866
+          ]
+        }
+      ]
+    },
+    "3082": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_hand_02.png",
+      "slug": "item_equip_t4_suit_poise01_hand_02",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.23,
+            0.25300000000000006,
+            0.276,
+            0.29900000000000004
+          ]
+        }
+      ]
+    },
+    "3059": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_wisd01_hand_01.png",
+      "slug": "item_equip_t3_suit_wisd01_hand_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.1225,
+            0.1225,
+            0.1225,
+            0.1225
+          ]
+        }
+      ]
+    },
+    "3106": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_str01_hand_01.png",
+      "slug": "item_equip_t2_suit_str01_hand_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            33.0,
+            33.0,
+            33.0,
+            33.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            22.0,
+            22.0,
+            22.0,
+            22.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576,
+            0.9195402298850576
+          ]
+        }
+      ]
+    },
+    "2957": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_hand_03.png",
+      "slug": "item_equip_t4_suit_fire_natr01_hand_03",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "3148": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_str01_body_01.png",
+      "slug": "item_equip_t3_suit_str01_body_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3011": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_edc_02.png",
+      "slug": "item_equip_t4_suit_heal01_edc_02",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3176": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_hand_01.png",
+      "slug": "item_equip_t3_suit_usp01_hand_01",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            24.5,
+            24.5,
+            24.5,
+            24.5
+          ]
+        }
+      ]
+    },
+    "2817": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_edc_04.png",
+      "slug": "item_equip_t4_suit_poise01_edc_04",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2884": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_body_03.png",
+      "slug": "item_equip_t4_suit_criti01_body_03",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.05175,
+            0.056925,
+            0.062099999999999995,
+            0.067275
+          ]
+        }
+      ]
+    },
+    "3130": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_edc_03.png",
+      "slug": "item_equip_t4_suit_poise01_edc_03",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3096": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_edc_02.png",
+      "slug": "item_equip_t4_suit_poise01_edc_02",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    },
+    "2921": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_edc_01.png",
+      "slug": "item_equip_t4_suit_poise01_edc_01",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3072": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_hand_01.png",
+      "slug": "item_equip_t4_suit_usp02_hand_01",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.20535714285714285,
+            0.22589285714285715,
+            0.2464285714285714,
+            0.2669642857142857
+          ]
+        }
+      ]
+    },
+    "2930": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_burst01_hand_01.png",
+      "slug": "item_equip_t4_suit_burst01_hand_01",
+      "suit_id": "suit_burst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "2900": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_body_04.png",
+      "slug": "item_equip_t4_suit_atb01_body_04",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2869": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_hand_01.png",
+      "slug": "item_equip_t4_suit_fire_natr01_hand_01",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            34.5,
+            37.95,
+            41.4,
+            44.85
+          ]
+        }
+      ]
+    },
+    "2944": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_body_01.png",
+      "slug": "item_equip_t4_suit_usp02_body_01",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            20.7,
+            22.77,
+            24.84,
+            26.91
+          ]
+        }
+      ]
+    },
+    "2902": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_stragi01_edc_01.png",
+      "slug": "item_equip_t1_suit_stragi01_edc_01",
+      "suit_id": "suit_stragi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            8.4,
+            8.4,
+            8.4,
+            8.4
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            16.0,
+            16.0,
+            16.0,
+            16.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        }
+      ]
+    },
+    "3185": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_body_01.png",
+      "slug": "item_equip_t3_suit_atk01_body_01",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999
+          ]
+        }
+      ]
+    },
+    "2906": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_stragi01_edc_02.png",
+      "slug": "item_equip_t1_suit_stragi01_edc_02",
+      "suit_id": "suit_stragi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            8.4,
+            8.4,
+            8.4,
+            8.4
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            16.0,
+            16.0,
+            16.0,
+            16.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153,
+            0.9250693802035153
+          ]
+        }
+      ]
+    },
+    "3046": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_will01_edc_02.png",
+      "slug": "item_equip_t3_suit_will01_edc_02",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "2844": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_hand_01.png",
+      "slug": "item_equip_t4_suit_attri01_hand_01",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "2994": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_wisdwill01_body_01.png",
+      "slug": "item_equip_t1_suit_wisdwill01_body_01",
+      "suit_id": "suit_wisdwill01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            22.400000000000002,
+            22.400000000000002,
+            22.400000000000002,
+            22.400000000000002
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.081,
+            0.081,
+            0.081,
+            0.081
+          ]
+        }
+      ]
+    },
+    "2834": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_edc_03.png",
+      "slug": "item_equip_t3_suit_usp01_edc_03",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            29.4,
+            29.4,
+            29.4,
+            29.4
+          ]
+        }
+      ]
+    },
+    "3066": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_body_01.png",
+      "slug": "item_equip_t4_suit_atb01_body_01",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.25875,
+            0.284625,
+            0.31049999999999994,
+            0.336375
+          ]
+        }
+      ]
+    },
+    "2883": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_edc_02.png",
+      "slug": "item_equip_t3_suit_usp01_edc_02",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 10001,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.14701266544257816,
+            0.14701266544257816,
+            0.14701266544257816,
+            0.14701266544257816
+          ]
+        }
+      ]
+    },
+    "3092": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_hand_01.png",
+      "slug": "item_equip_t4_suit_usp02_hand_01",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.20535714285714285,
+            0.22589285714285715,
+            0.2464285714285714,
+            0.2669642857142857
+          ]
+        }
+      ]
+    },
+    "3052": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_edc_02.png",
+      "slug": "item_equip_t3_suit_usp01_edc_02",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.3675,
+            0.3675,
+            0.3675,
+            0.3675
+          ]
+        }
+      ]
+    },
+    "2937": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_edc_01.png",
+      "slug": "item_equip_t4_suit_atb01_edc_01",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2951": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_hand_01.png",
+      "slug": "item_equip_t4_suit_atb01_hand_01",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.345,
+            0.3795,
+            0.414,
+            0.44849999999999995
+          ]
+        }
+      ]
+    },
+    "3081": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_body_01.png",
+      "slug": "item_equip_t4_suit_poise01_body_01",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 61,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2871": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_edc_02.png",
+      "slug": "item_equip_t4_suit_atb01_edc_02",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3064": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_edc_03.png",
+      "slug": "item_equip_t4_suit_atb01_edc_03",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.5175,
+            0.56925,
+            0.6209999999999999,
+            0.67275
+          ]
+        }
+      ]
+    },
+    "3067": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_body_04.png",
+      "slug": "item_equip_t4_suit_criti01_body_04",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "3095": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_edc_04.png",
+      "slug": "item_equip_t4_suit_atb01_edc_04",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 10001,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.2070178350109774,
+            0.22771961851207514,
+            0.24842140201317287,
+            0.2691231855142706
+          ]
+        }
+      ]
+    },
+    "3109": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_body_02.png",
+      "slug": "item_equip_t4_suit_criti01_body_02",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 17,
+          "formula": "BaseAddition",
+          "values": [
+            0.13799999999999998,
+            0.1518,
+            0.16559999999999997,
+            0.17939999999999998
+          ]
+        }
+      ]
+    },
+    "2983": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_body_01.png",
+      "slug": "item_equip_t4_suit_phy01_body_01",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2854": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_edc_05.png",
+      "slug": "item_equip_t4_suit_atb01_edc_05",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3129": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_body_01.png",
+      "slug": "item_equip_t4_suit_attri01_body_01",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2916": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_edc_01.png",
+      "slug": "item_equip_t4_suit_heal01_edc_01",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.828500414250207,
+            0.8145312372729494,
+            0.8010253123998718,
+            0.7879599716334411
+          ]
+        }
+      ]
+    },
+    "2853": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_wisd01_body_01.png",
+      "slug": "item_equip_t2_suit_wisd01_body_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            28.8,
+            28.8,
+            28.8,
+            28.8
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            44.0,
+            44.0,
+            44.0,
+            44.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            29.0,
+            29.0,
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseFinalAddition",
+          "values": [
+            16.187704477740866,
+            16.187704477740866,
+            16.187704477740866,
+            16.187704477740866
+          ]
+        }
+      ]
+    },
+    "2927": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_body_03.png",
+      "slug": "item_equip_t4_suit_atb01_body_03",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2839": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_01.png",
+      "slug": "item_equip_t3_suit_atk01_edc_01",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998,
+            0.19599999999999998
+          ]
+        }
+      ]
+    },
+    "2879": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_02.png",
+      "slug": "item_equip_t3_suit_atk01_edc_02",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 61,
+          "formula": "BaseAddition",
+          "values": [
+            0.294,
+            0.294,
+            0.294,
+            0.294
+          ]
+        }
+      ]
+    },
+    "3104": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_wisd01_body_01.png",
+      "slug": "item_equip_t3_suit_wisd01_body_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 17,
+          "formula": "BaseAddition",
+          "values": [
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999,
+            0.09799999999999999
+          ]
+        }
+      ]
+    },
+    "3258": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_body_06.png",
+      "slug": "item_equip_t4_suit_criti01_body_06",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2838": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_03.png",
+      "slug": "item_equip_t3_suit_atk01_edc_03",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.294,
+            0.294,
+            0.294,
+            0.294
+          ]
+        }
+      ]
+    },
+    "3100": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_04.png",
+      "slug": "item_equip_t3_suit_atk01_edc_04",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.175,
+            0.175,
+            0.175,
+            0.175
+          ]
+        }
+      ]
+    },
+    "2861": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_body_04.png",
+      "slug": "item_equip_t4_suit_attri01_body_04",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2973": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_05.png",
+      "slug": "item_equip_t3_suit_atk01_edc_05",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.294,
+            0.294,
+            0.294,
+            0.294
+          ]
+        }
+      ]
+    },
+    "3076": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_wisd01_body_02.png",
+      "slug": "item_equip_t3_suit_wisd01_body_02",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3122": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_edc_06.png",
+      "slug": "item_equip_t4_suit_attri01_edc_06",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3009": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_edc_03.png",
+      "slug": "item_equip_t4_suit_heal01_edc_03",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        }
+      ]
+    },
+    "3121": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_agi01_hand_01.png",
+      "slug": "item_equip_t3_suit_agi01_hand_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.1225,
+            0.1225,
+            0.1225,
+            0.1225
+          ]
+        }
+      ]
+    },
+    "2956": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_edc_06.png",
+      "slug": "item_equip_t3_suit_atk01_edc_06",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.294,
+            0.294,
+            0.294,
+            0.294
+          ]
+        }
+      ]
+    },
+    "3080": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atb01_body_05.png",
+      "slug": "item_equip_t4_suit_atb01_body_05",
+      "suit_id": "suit_atb01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "3190": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_edc_06.png",
+      "slug": "item_equip_t4_suit_attri01_edc_06",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3252": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_edc_07.png",
+      "slug": "item_equip_t4_suit_attri01_edc_07",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2848": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_edc_04.png",
+      "slug": "item_equip_t4_suit_attri01_edc_04",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 61,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3191": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_edc_05.png",
+      "slug": "item_equip_t4_suit_attri01_edc_05",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.1035,
+            0.11385,
+            0.12419999999999999,
+            0.13455
+          ]
+        }
+      ]
+    },
+    "3124": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_hand_02.png",
+      "slug": "item_equip_t4_suit_fire_natr01_hand_02",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "2928": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_wisd01_edc_01.png",
+      "slug": "item_equip_t2_suit_wisd01_edc_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "3164": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_will01_edc_01.png",
+      "slug": "item_equip_t2_suit_will01_edc_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "3057": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_will01_edc_01.png",
+      "slug": "item_equip_t3_suit_will01_edc_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "2910": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_str01_edc_01.png",
+      "slug": "item_equip_t3_suit_str01_edc_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3138": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_stragi01_hand_01.png",
+      "slug": "item_equip_t1_suit_stragi01_hand_01",
+      "suit_id": "suit_stragi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            16.8,
+            16.8,
+            16.8,
+            16.8
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 4,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        },
+        {
+          "attr_type": 5,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        },
+        {
+          "attr_type": 6,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        },
+        {
+          "attr_type": 7,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        },
+        {
+          "attr_type": 48,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        },
+        {
+          "attr_type": 60,
+          "formula": "BaseFinalMultiplier",
+          "values": [
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904,
+            0.936768149882904
+          ]
+        }
+      ]
+    },
+    "2971": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_str01_edc_02.png",
+      "slug": "item_equip_t3_suit_str01_edc_02",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.0735,
+            0.0735,
+            0.0735,
+            0.0735
+          ]
+        }
+      ]
+    },
+    "3119": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_str01_edc_01.png",
+      "slug": "item_equip_t2_suit_str01_edc_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "3053": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_hand_03.png",
+      "slug": "item_equip_t4_suit_criti01_hand_03",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.08625,
+            0.094875,
+            0.1035,
+            0.11212499999999999
+          ]
+        }
+      ]
+    },
+    "2863": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_str01_edc_02.png",
+      "slug": "item_equip_t2_suit_str01_edc_02",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.21,
+            0.21,
+            0.21,
+            0.21
+          ]
+        }
+      ]
+    },
+    "3099": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_wisd01_edc_01.png",
+      "slug": "item_equip_t3_suit_wisd01_edc_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3250": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_hand_04.png",
+      "slug": "item_equip_t4_suit_criti01_hand_04",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.43125,
+            0.47437500000000005,
+            0.5175,
+            0.560625
+          ]
+        }
+      ]
+    },
+    "2880": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_wisd01_edc_03.png",
+      "slug": "item_equip_t2_suit_wisd01_edc_03",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.0525,
+            0.0525,
+            0.0525,
+            0.0525
+          ]
+        }
+      ]
+    },
+    "2908": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_str01_hand_01.png",
+      "slug": "item_equip_t3_suit_str01_hand_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            46.0,
+            46.0,
+            46.0,
+            46.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            30.0,
+            30.0,
+            30.0,
+            30.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.1225,
+            0.1225,
+            0.1225,
+            0.1225
+          ]
+        }
+      ]
+    },
+    "2991": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_hand_01.png",
+      "slug": "item_equip_t4_suit_atk02_hand_01",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.345,
+            0.3795,
+            0.414,
+            0.44849999999999995
+          ]
+        }
+      ]
+    },
+    "2931": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_atk01_body_02.png",
+      "slug": "item_equip_t3_suit_atk01_body_02",
+      "suit_id": "suit_atk01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "2981": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_attri01_body_04.png",
+      "slug": "item_equip_t4_suit_attri01_body_04",
+      "suit_id": "suit_attri01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2925": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_wisdwill01_edc_01.png",
+      "slug": "item_equip_t1_suit_wisdwill01_edc_01",
+      "suit_id": "suit_wisdwill01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            8.4,
+            8.4,
+            8.4,
+            8.4
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            16.0,
+            16.0,
+            16.0,
+            16.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.162,
+            0.162,
+            0.162,
+            0.162
+          ]
+        }
+      ]
+    },
+    "3061": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_body_02.png",
+      "slug": "item_equip_t4_suit_fire_natr01_body_02",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        }
+      ]
+    },
+    "3126": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_edc_03.png",
+      "slug": "item_equip_t4_suit_usp02_edc_03",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.2464285714285714,
+            0.2710714285714286,
+            0.2957142857142857,
+            0.32035714285714284
+          ]
+        }
+      ]
+    },
+    "3012": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_hand_01.png",
+      "slug": "item_equip_t4_suit_phy01_hand_01",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "3037": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_edc_02.png",
+      "slug": "item_equip_t4_suit_usp02_edc_02",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "3145": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_usp02_edc_01.png",
+      "slug": "item_equip_t4_suit_usp02_edc_01",
+      "suit_id": "suit_usp02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.2464285714285714,
+            0.2710714285714286,
+            0.2957142857142857,
+            0.32035714285714284
+          ]
+        }
+      ]
+    },
+    "2876": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_str01_body_01.png",
+      "slug": "item_equip_t2_suit_str01_body_01",
+      "suit_id": "suit_str01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            28.8,
+            28.8,
+            28.8,
+            28.8
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            44.0,
+            44.0,
+            44.0,
+            44.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            29.0,
+            29.0,
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "2979": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_will01_body_01.png",
+      "slug": "item_equip_t2_suit_will01_body_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            28.8,
+            28.8,
+            28.8,
+            28.8
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            44.0,
+            44.0,
+            44.0,
+            44.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            29.0,
+            29.0,
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "3024": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_body_02.png",
+      "slug": "item_equip_t3_suit_usp01_body_02",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.0875,
+            0.0875,
+            0.0875,
+            0.0875
+          ]
+        }
+      ]
+    },
+    "2929": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_body_02.png",
+      "slug": "item_equip_t4_suit_atk02_body_02",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2914": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_will01_body_01.png",
+      "slug": "item_equip_t3_suit_will01_body_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3155": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_body_01.png",
+      "slug": "item_equip_t4_suit_heal01_body_01",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.1035,
+            0.11385,
+            0.12419999999999999,
+            0.13455
+          ]
+        }
+      ]
+    },
+    "3179": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_will01_edc_02.png",
+      "slug": "item_equip_t2_suit_will01_edc_02",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "2893": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_body_02.png",
+      "slug": "item_equip_t4_suit_heal01_body_02",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.1035,
+            0.11385,
+            0.12419999999999999,
+            0.13455
+          ]
+        }
+      ]
+    },
+    "3187": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_pulse_cryst01_edc_01.png",
+      "slug": "item_equip_t4_suit_pulse_cryst01_edc_01",
+      "suit_id": "suit_pulse_cryst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    },
+    "2855": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_pulse_cryst01_edc_02.png",
+      "slug": "item_equip_t4_suit_pulse_cryst01_edc_02",
+      "suit_id": "suit_pulse_cryst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    },
+    "2832": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_will01_hand_01.png",
+      "slug": "item_equip_t2_suit_will01_hand_01",
+      "suit_id": "suit_will01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            33.0,
+            33.0,
+            33.0,
+            33.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            22.0,
+            22.0,
+            22.0,
+            22.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.0875,
+            0.0875,
+            0.0875,
+            0.0875
+          ]
+        }
+      ]
+    },
+    "2870": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_edc_04.png",
+      "slug": "item_equip_t4_suit_heal01_edc_04",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2845": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_pulse_cryst01_edc_03.png",
+      "slug": "item_equip_t4_suit_pulse_cryst01_edc_03",
+      "suit_id": "suit_pulse_cryst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.5175,
+            0.56925,
+            0.6209999999999999,
+            0.67275
+          ]
+        }
+      ]
+    },
+    "2849": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_body_04.png",
+      "slug": "item_equip_t4_suit_atk02_body_04",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.13799999999999998,
+            0.1518,
+            0.16559999999999997,
+            0.17939999999999998
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.13799999999999998,
+            0.1518,
+            0.16559999999999997,
+            0.17939999999999998
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.13799999999999998,
+            0.1518,
+            0.16559999999999997,
+            0.17939999999999998
+          ]
+        }
+      ]
+    },
+    "3108": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_wisd01_edc_02.png",
+      "slug": "item_equip_t3_suit_wisd01_edc_02",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            29.0,
+            29.0,
+            29.0,
+            29.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.175,
+            0.175,
+            0.175,
+            0.175
+          ]
+        }
+      ]
+    },
+    "2985": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_hand_01.png",
+      "slug": "item_equip_t4_suit_criti01_hand_01",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.345,
+            0.3795,
+            0.414,
+            0.44849999999999995
+          ]
+        }
+      ]
+    },
+    "3023": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_burst01_body_01.png",
+      "slug": "item_equip_t4_suit_burst01_body_01",
+      "suit_id": "suit_burst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.1232142857142857,
+            0.1355357142857143,
+            0.14785714285714285,
+            0.16017857142857142
+          ]
+        }
+      ]
+    },
+    "2968": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_wisdwill01_edc_02.png",
+      "slug": "item_equip_t1_suit_wisdwill01_edc_02",
+      "suit_id": "suit_wisdwill01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            8.4,
+            8.4,
+            8.4,
+            8.4
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            16.0,
+            16.0,
+            16.0,
+            16.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.162,
+            0.162,
+            0.162,
+            0.162
+          ]
+        }
+      ]
+    },
+    "3123": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_02.png",
+      "slug": "item_equip_t4_suit_criti01_edc_02",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2943": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_03.png",
+      "slug": "item_equip_t4_suit_criti01_edc_03",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.1035,
+            0.11385,
+            0.12419999999999999,
+            0.13455
+          ]
+        }
+      ]
+    },
+    "3150": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_agi01_edc_01.png",
+      "slug": "item_equip_t2_suit_agi01_edc_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.105,
+            0.105,
+            0.105,
+            0.105
+          ]
+        }
+      ]
+    },
+    "3167": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_01.png",
+      "slug": "item_equip_t4_suit_criti01_edc_01",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3255": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_06.png",
+      "slug": "item_equip_t4_suit_criti01_edc_06",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 9,
+          "formula": "BaseAddition",
+          "values": [
+            0.1035,
+            0.11385,
+            0.12419999999999999,
+            0.13455
+          ]
+        }
+      ]
+    },
+    "2887": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_body_01.png",
+      "slug": "item_equip_t4_suit_fire_natr01_body_01",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.11499999999999999,
+            0.1265,
+            0.13799999999999998,
+            0.1495
+          ]
+        }
+      ]
+    },
+    "3056": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_agi01_edc_02.png",
+      "slug": "item_equip_t2_suit_agi01_edc_02",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999,
+            10.799999999999999
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.21,
+            0.21,
+            0.21,
+            0.21
+          ]
+        }
+      ]
+    },
+    "2972": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_04.png",
+      "slug": "item_equip_t4_suit_criti01_edc_04",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3093": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_criti01_edc_05.png",
+      "slug": "item_equip_t4_suit_criti01_edc_05",
+      "suit_id": "suit_criti01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3029": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_atk02_body_03.png",
+      "slug": "item_equip_t4_suit_atk02_body_03",
+      "suit_id": "suit_atk02",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.207,
+            0.2277,
+            0.24839999999999998,
+            0.2691
+          ]
+        }
+      ]
+    },
+    "2942": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_wisd01_hand_01.png",
+      "slug": "item_equip_t2_suit_wisd01_hand_01",
+      "suit_id": "suit_wisd01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            33.0,
+            33.0,
+            33.0,
+            33.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            22.0,
+            22.0,
+            22.0,
+            22.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473
+          ]
+        },
+        {
+          "attr_type": 51,
+          "formula": "BaseAddition",
+          "values": [
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473
+          ]
+        },
+        {
+          "attr_type": 54,
+          "formula": "BaseAddition",
+          "values": [
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473,
+            0.09210526315789473
+          ]
+        }
+      ]
+    },
+    "2978": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_hand_02.png",
+      "slug": "item_equip_t4_suit_heal01_hand_02",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 29,
+          "formula": "BaseAddition",
+          "values": [
+            0.1725,
+            0.18975,
+            0.207,
+            0.22424999999999998
+          ]
+        }
+      ]
+    },
+    "2895": {
+      "rarity": 3,
+      "icon": "/ui/ef/itemicon/item_equip_t2_suit_agi01_hand_01.png",
+      "slug": "item_equip_t2_suit_agi01_hand_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998,
+            21.599999999999998
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            33.0,
+            33.0,
+            33.0,
+            33.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            22.0,
+            22.0,
+            22.0,
+            22.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.09722222222222222,
+            0.09722222222222222,
+            0.09722222222222222,
+            0.09722222222222222
+          ]
+        }
+      ]
+    },
+    "3133": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_usp01_body_01.png",
+      "slug": "item_equip_t3_suit_usp01_body_01",
+      "suit_id": "suit_usp01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.18375,
+            0.18375,
+            0.18375,
+            0.18375
+          ]
+        }
+      ]
+    },
+    "3243": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_edc_01.png",
+      "slug": "item_equip_t4_suit_heal01_edc_01",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "3181": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_heal01_hand_01.png",
+      "slug": "item_equip_t4_suit_heal01_hand_01",
+      "suit_id": "suit_heal01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 44,
+          "formula": "BaseAddition",
+          "values": [
+            0.20535714285714285,
+            0.22589285714285715,
+            0.2464285714285714,
+            0.2669642857142857
+          ]
+        }
+      ]
+    },
+    "2918": {
+      "rarity": 2,
+      "icon": "/ui/ef/itemicon/item_equip_t1_suit_wisdwill01_hand_01.png",
+      "slug": "item_equip_t1_suit_wisdwill01_hand_01",
+      "suit_id": "suit_wisdwill01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            16.8,
+            16.8,
+            16.8,
+            16.8
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.135,
+            0.135,
+            0.135,
+            0.135
+          ]
+        }
+      ]
+    },
+    "2986": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_pulse_cryst01_hand_01.png",
+      "slug": "item_equip_t4_suit_pulse_cryst01_hand_01",
+      "suit_id": "suit_pulse_cryst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 53,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        },
+        {
+          "attr_type": 52,
+          "formula": "BaseAddition",
+          "values": [
+            0.19166666666666668,
+            0.21083333333333337,
+            0.23,
+            0.2491666666666667
+          ]
+        }
+      ]
+    },
+    "3019": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_agi01_body_01.png",
+      "slug": "item_equip_t3_suit_agi01_body_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            61.0,
+            61.0,
+            61.0,
+            61.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            41.0,
+            41.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 1,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "2889": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_agi01_edc_01.png",
+      "slug": "item_equip_t3_suit_agi01_edc_01",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 33,
+          "formula": "BaseAddition",
+          "values": [
+            0.294,
+            0.294,
+            0.294,
+            0.294
+          ]
+        }
+      ]
+    },
+    "3180": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_agi01_edc_02.png",
+      "slug": "item_equip_t3_suit_agi01_edc_02",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 28,
+          "formula": "BaseAddition",
+          "values": [
+            0.3675,
+            0.3675,
+            0.3675,
+            0.3675
+          ]
+        }
+      ]
+    },
+    "3041": {
+      "rarity": 4,
+      "icon": "/ui/ef/itemicon/item_equip_t3_suit_agi01_edc_03.png",
+      "slug": "item_equip_t3_suit_agi01_edc_03",
+      "suit_id": "suit_agi01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            23.0,
+            23.0,
+            23.0,
+            23.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            15.0,
+            15.0,
+            15.0,
+            15.0
+          ]
+        },
+        {
+          "attr_type": 2,
+          "formula": "BaseMultiplier",
+          "values": [
+            0.147,
+            0.147,
+            0.147,
+            0.147
+          ]
+        }
+      ]
+    },
+    "3097": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_pulse_cryst01_body_01.png",
+      "slug": "item_equip_t4_suit_pulse_cryst01_body_01",
+      "suit_id": "suit_pulse_cryst01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            56.0,
+            56.0,
+            56.0,
+            56.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            87.0,
+            95.0,
+            104.0,
+            113.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            58.0,
+            63.0,
+            69.0,
+            75.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            20.7,
+            22.77,
+            24.84,
+            26.91
+          ]
+        }
+      ]
+    },
+    "3078": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_poise01_hand_01.png",
+      "slug": "item_equip_t4_suit_poise01_hand_01",
+      "suit_id": "suit_poise01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            42.0,
+            42.0,
+            42.0,
+            42.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            65.0,
+            71.0,
+            78.0,
+            84.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            43.0,
+            47.0,
+            51.0,
+            55.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            34.5,
+            37.95,
+            41.4,
+            44.85
+          ]
+        }
+      ]
+    },
+    "2954": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_edc_03.png",
+      "slug": "item_equip_t4_suit_phy01_edc_03",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 40,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3151": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_edc_02.png",
+      "slug": "item_equip_t4_suit_phy01_edc_02",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            32.0,
+            35.0,
+            38.0,
+            41.0
+          ]
+        },
+        {
+          "attr_type": 42,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            23.0,
+            25.0,
+            27.0
+          ]
+        },
+        {
+          "attr_type": 50,
+          "formula": "BaseAddition",
+          "values": [
+            0.22999999999999998,
+            0.253,
+            0.27599999999999997,
+            0.299
+          ]
+        }
+      ]
+    },
+    "3116": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_edc_02.png",
+      "slug": "item_equip_t4_suit_fire_natr01_edc_02",
+      "suit_id": "suit_fire_natr01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 41,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 32,
+          "formula": "BaseAddition",
+          "values": [
+            0.414,
+            0.4554,
+            0.49679999999999996,
+            0.5382
+          ]
+        }
+      ]
+    },
+    "2843": {
+      "rarity": 5,
+      "icon": "/ui/ef/itemicon/item_equip_t4_suit_phy01_edc_01.png",
+      "slug": "item_equip_t4_suit_phy01_edc_01",
+      "suit_id": "suit_phy01",
+      "attr_modifiers": [
+        {
+          "attr_type": 3,
+          "formula": "BaseAddition",
+          "values": [
+            21.0,
+            21.0,
+            21.0,
+            21.0
+          ]
+        },
+        {
+          "attr_type": 39,
+          "formula": "BaseAddition",
+          "values": [
+            41.0,
+            45.0,
+            49.0,
+            53.0
+          ]
+        },
+        {
+          "attr_type": 87,
+          "formula": "BaseAddition",
+          "values": [
+            41.4,
+            45.54,
+            49.68,
+            53.82
+          ]
+        }
+      ]
+    }
+  }

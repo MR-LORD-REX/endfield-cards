@@ -1,0 +1,85 @@
+{
+  "suitId": "suit_usp02",
+  "suitNameI18nId": "-3082031696843561092",
+  "engName": "Eternal Xiranite",
+  "suitLogoName": "icon_pack_wuling_suit_usp02",
+  "iconItemId": "item_equip_t4_suit_usp02_body_01",
+  "equipList": [
+    "item_equip_t4_suit_usp02_body_01",
+    "item_equip_t4_suit_usp02_hand_01",
+    "item_equip_t4_suit_usp02_hand_02",
+    "item_equip_t4_suit_usp02_edc_01",
+    "item_equip_t4_suit_usp02_edc_02",
+    "item_equip_t4_suit_usp02_edc_03"
+  ],
+  "tier": 4,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 6,
+  "setEffects": [
+    {
+      "equipCnt": 3,
+      "skillID": "passive_equipsuit_usp_02",
+      "skillLv": 1,
+      "suitID": "suit_usp02",
+      "suitLogoName": "icon_pack_wuling_suit_usp02",
+      "suitName": {
+        "id": "-3082031696843561092",
+        "text": ""
+      },
+      "skillData": {
+        "SkillPatchDataBundle": [
+          {
+            "blackboard": [
+              {
+                "key": "hp_up",
+                "value": 1000,
+                "valueStr": ""
+              },
+              {
+                "key": "dmg_up",
+                "value": 0.16,
+                "valueStr": ""
+              },
+              {
+                "key": "duration",
+                "value": 15,
+                "valueStr": ""
+              }
+            ],
+            "coolDown": 0,
+            "costType": 0,
+            "costValue": 0,
+            "description": {
+              "id": "-5624251805235185289",
+              "text": ""
+            },
+            "iconBgType": 0,
+            "iconId": "",
+            "level": 1,
+            "maxChargeTime": 1,
+            "skillId": "passive_equipsuit_usp_02",
+            "skillName": {
+              "id": "0",
+              "text": ""
+            },
+            "subDescList": [],
+            "subDescNameList": [],
+            "tagId": ""
+          }
+        ]
+      },
+      "descriptionI18nId": "-5624251805235185289",
+      "blackboardValues": {
+        "hp_up": 1000,
+        "dmg_up": 0.16,
+        "duration": 15
+      },
+      "statBlackboardValues": {
+        "hp_up": 1000
+      }
+    }
+  ],
+  "slug": "eternal-xiranite"
+}

@@ -1,0 +1,1824 @@
+{
+  "weaponId": "wpn_funnel_0006",
+  "engName": {
+    "id": "1551839587735379560",
+    "text": "Opus: Etch Figure"
+  },
+  "weaponType": 2,
+  "rarity": 6,
+  "maxLv": 90,
+  "weaponDesc": {
+    "id": "805602204242969852",
+    "text": ""
+  },
+  "weaponSkillList": [
+    "wpn_attr_will_high",
+    "wpn_sp_attr_naturaldam_high",
+    "sk_wpn_funnel_0006"
+  ],
+  "breakthroughTemplateId": "weapon_breakthrough_456star_D_2",
+  "levelTemplateId": "weapon_upgrade_curve_6star_0.98",
+  "talentTemplateId": "wpn_potential_456star",
+  "nameI18nId": "1551839587735379560",
+  "descI18nId": "-132542204808007434",
+  "slug": "opus-etch-figure",
+  "skills": {
+    "wpn_attr_will_high": {
+      "SkillPatchDataBundle": [
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 20,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 1,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 36,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 2,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 52,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 3,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 68,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 4,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 84,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 5,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 100,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 6,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 116,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 7,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 132,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 8,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "will",
+              "value": 156,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1239625911132208535",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 9,
+          "maxChargeTime": 1,
+          "skillId": "wpn_attr_will_high",
+          "skillName": {
+            "id": "-3871253929185066151",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_will"
+        }
+      ]
+    },
+    "wpn_sp_attr_naturaldam_high": {
+      "SkillPatchDataBundle": [
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.055555556,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 1,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.1,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 2,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.14444445,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 3,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.18888889,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 4,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.23333333,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 5,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.2777778,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 6,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.32222223,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 7,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.36666667,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 8,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "naturaldam",
+              "value": 0.43333334,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1177391921777104042",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 9,
+          "maxChargeTime": 1,
+          "skillId": "wpn_sp_attr_naturaldam_high",
+          "skillName": {
+            "id": "-1330504373084336426",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "attr_naturaldam"
+        }
+      ]
+    },
+    "sk_wpn_funnel_0006": {
+      "SkillPatchDataBundle": [
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.07,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.05,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.02,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 1,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.084,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.06,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.024,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 2,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.098,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.07,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.028,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 3,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.112,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.08,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.032,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 4,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.126,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.09,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.036,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 5,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.14,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.1,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.04,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 6,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.154,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.11,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.044,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 7,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.168,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.12,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.048,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 8,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        },
+        {
+          "blackboard": [
+            {
+              "key": "atk_up",
+              "value": 0.196,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up",
+              "value": 0.14,
+              "valueStr": ""
+            },
+            {
+              "key": "spell_dmg_up2",
+              "value": 0.056,
+              "valueStr": ""
+            },
+            {
+              "key": "duration",
+              "value": 15,
+              "valueStr": ""
+            },
+            {
+              "key": "max_stack",
+              "value": 3,
+              "valueStr": ""
+            }
+          ],
+          "coolDown": 0,
+          "costType": 0,
+          "costValue": 0,
+          "description": {
+            "id": "-1092019586476780850",
+            "text": ""
+          },
+          "iconBgType": 0,
+          "iconId": "",
+          "level": 9,
+          "maxChargeTime": 1,
+          "skillId": "sk_wpn_funnel_0006",
+          "skillName": {
+            "id": "-2127049062427940173",
+            "text": ""
+          },
+          "subDescList": [],
+          "subDescNameList": [],
+          "tagId": "tactic"
+        }
+      ]
+    }
+  },
+  "weaponSkillTags": [
+    "attr_will",
+    "attr_naturaldam",
+    "tactic"
+  ],
+  "baseStats": [
+    {
+      "skillId": "wpn_attr_will_high",
+      "attrType": 42,
+      "attrKey": "will",
+      "value": 156,
+      "isPercentage": false,
+      "level": 9,
+      "skillNameId": "-3871253929185066151",
+      "descriptionId": "-1239625911132208535",
+      "tagId": "attr_will"
+    },
+    {
+      "skillId": "wpn_sp_attr_naturaldam_high",
+      "attrType": "naturaldam",
+      "attrKey": "naturaldam",
+      "value": 0.43333334,
+      "isPercentage": true,
+      "level": 9,
+      "skillNameId": "-1330504373084336426",
+      "descriptionId": "-1177391921777104042",
+      "tagId": "attr_naturaldam"
+    }
+  ],
+  "passiveSkills": [
+    {
+      "skillId": "sk_wpn_funnel_0006",
+      "skillNameId": "-2127049062427940173",
+      "descriptionId": "-1092019586476780850",
+      "level": 9,
+      "blackboard": [
+        {
+          "key": "atk_up",
+          "value": 0.196,
+          "valueStr": ""
+        },
+        {
+          "key": "spell_dmg_up",
+          "value": 0.14,
+          "valueStr": ""
+        },
+        {
+          "key": "spell_dmg_up2",
+          "value": 0.056,
+          "valueStr": ""
+        },
+        {
+          "key": "duration",
+          "value": 15,
+          "valueStr": ""
+        },
+        {
+          "key": "max_stack",
+          "value": 3,
+          "valueStr": ""
+        }
+      ],
+      "tagId": "tactic"
+    }
+  ],
+  "progression": {
+    "breakthrough": {
+      "list": [
+        {
+          "breakItemList": [
+            {
+              "count": 0,
+              "id": "item_weapon_break_low"
+            }
+          ],
+          "breakthroughGold": 0,
+          "breakthroughLv": 1,
+          "breakthroughShowLv": 0,
+          "skillLevelBounds": [
+            {
+              "lowerBound": 1,
+              "upperBound": 3
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 3
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            }
+          ]
+        },
+        {
+          "breakItemList": [
+            {
+              "count": 5,
+              "id": "item_weapon_break_low"
+            },
+            {
+              "count": 3,
+              "id": "item_plant_spcstone_1_1"
+            }
+          ],
+          "breakthroughGold": 2200,
+          "breakthroughLv": 20,
+          "breakthroughShowLv": 1,
+          "skillLevelBounds": [
+            {
+              "lowerBound": 2,
+              "upperBound": 5
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            }
+          ]
+        },
+        {
+          "breakItemList": [
+            {
+              "count": 18,
+              "id": "item_weapon_break_low"
+            },
+            {
+              "count": 5,
+              "id": "item_plant_spcstone_1_2"
+            }
+          ],
+          "breakthroughGold": 8500,
+          "breakthroughLv": 40,
+          "breakthroughShowLv": 2,
+          "skillLevelBounds": [
+            {
+              "lowerBound": 2,
+              "upperBound": 6
+            },
+            {
+              "lowerBound": 2,
+              "upperBound": 6
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            }
+          ]
+        },
+        {
+          "breakItemList": [
+            {
+              "count": 20,
+              "id": "item_weapon_break_high"
+            },
+            {
+              "count": 5,
+              "id": "item_plant_spcstone_1_3"
+            }
+          ],
+          "breakthroughGold": 25000,
+          "breakthroughLv": 60,
+          "breakthroughShowLv": 3,
+          "skillLevelBounds": [
+            {
+              "lowerBound": 3,
+              "upperBound": 8
+            },
+            {
+              "lowerBound": 2,
+              "upperBound": 7
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            }
+          ]
+        },
+        {
+          "breakItemList": [
+            {
+              "count": 30,
+              "id": "item_weapon_break_high"
+            },
+            {
+              "count": 16,
+              "id": "item_char_skill_specialize_4"
+            },
+            {
+              "count": 8,
+              "id": "item_plant_spcstone_2_2"
+            }
+          ],
+          "breakthroughGold": 90000,
+          "breakthroughLv": 80,
+          "breakthroughShowLv": 4,
+          "skillLevelBounds": [
+            {
+              "lowerBound": 3,
+              "upperBound": 9
+            },
+            {
+              "lowerBound": 3,
+              "upperBound": 9
+            },
+            {
+              "lowerBound": 1,
+              "upperBound": 4
+            }
+          ]
+        }
+      ]
+    },
+    "upgrade": {
+      "list": [
+        {
+          "baseAtk": 49,
+          "lvUpExp": 10,
+          "lvUpGold": 0,
+          "weaponLv": 1
+        },
+        {
+          "baseAtk": 54,
+          "lvUpExp": 10,
+          "lvUpGold": 0,
+          "weaponLv": 2
+        },
+        {
+          "baseAtk": 59,
+          "lvUpExp": 10,
+          "lvUpGold": 0,
+          "weaponLv": 3
+        },
+        {
+          "baseAtk": 64,
+          "lvUpExp": 20,
+          "lvUpGold": 0,
+          "weaponLv": 4
+        },
+        {
+          "baseAtk": 69,
+          "lvUpExp": 40,
+          "lvUpGold": 0,
+          "weaponLv": 5
+        },
+        {
+          "baseAtk": 74,
+          "lvUpExp": 50,
+          "lvUpGold": 0,
+          "weaponLv": 6
+        },
+        {
+          "baseAtk": 78,
+          "lvUpExp": 80,
+          "lvUpGold": 0,
+          "weaponLv": 7
+        },
+        {
+          "baseAtk": 83,
+          "lvUpExp": 110,
+          "lvUpGold": 0,
+          "weaponLv": 8
+        },
+        {
+          "baseAtk": 88,
+          "lvUpExp": 150,
+          "lvUpGold": 0,
+          "weaponLv": 9
+        },
+        {
+          "baseAtk": 93,
+          "lvUpExp": 200,
+          "lvUpGold": 10,
+          "weaponLv": 10
+        },
+        {
+          "baseAtk": 98,
+          "lvUpExp": 270,
+          "lvUpGold": 10,
+          "weaponLv": 11
+        },
+        {
+          "baseAtk": 103,
+          "lvUpExp": 370,
+          "lvUpGold": 10,
+          "weaponLv": 12
+        },
+        {
+          "baseAtk": 108,
+          "lvUpExp": 480,
+          "lvUpGold": 20,
+          "weaponLv": 13
+        },
+        {
+          "baseAtk": 113,
+          "lvUpExp": 620,
+          "lvUpGold": 30,
+          "weaponLv": 14
+        },
+        {
+          "baseAtk": 118,
+          "lvUpExp": 780,
+          "lvUpGold": 50,
+          "weaponLv": 15
+        },
+        {
+          "baseAtk": 123,
+          "lvUpExp": 990,
+          "lvUpGold": 70,
+          "weaponLv": 16
+        },
+        {
+          "baseAtk": 127,
+          "lvUpExp": 1250,
+          "lvUpGold": 100,
+          "weaponLv": 17
+        },
+        {
+          "baseAtk": 132,
+          "lvUpExp": 1550,
+          "lvUpGold": 140,
+          "weaponLv": 18
+        },
+        {
+          "baseAtk": 137,
+          "lvUpExp": 1900,
+          "lvUpGold": 200,
+          "weaponLv": 19
+        },
+        {
+          "baseAtk": 142,
+          "lvUpExp": 2360,
+          "lvUpGold": 240,
+          "weaponLv": 20
+        },
+        {
+          "baseAtk": 147,
+          "lvUpExp": 2960,
+          "lvUpGold": 300,
+          "weaponLv": 21
+        },
+        {
+          "baseAtk": 152,
+          "lvUpExp": 3280,
+          "lvUpGold": 330,
+          "weaponLv": 22
+        },
+        {
+          "baseAtk": 157,
+          "lvUpExp": 3580,
+          "lvUpGold": 360,
+          "weaponLv": 23
+        },
+        {
+          "baseAtk": 162,
+          "lvUpExp": 3850,
+          "lvUpGold": 390,
+          "weaponLv": 24
+        },
+        {
+          "baseAtk": 167,
+          "lvUpExp": 4090,
+          "lvUpGold": 410,
+          "weaponLv": 25
+        },
+        {
+          "baseAtk": 172,
+          "lvUpExp": 4300,
+          "lvUpGold": 430,
+          "weaponLv": 26
+        },
+        {
+          "baseAtk": 176,
+          "lvUpExp": 4600,
+          "lvUpGold": 460,
+          "weaponLv": 27
+        },
+        {
+          "baseAtk": 181,
+          "lvUpExp": 4810,
+          "lvUpGold": 490,
+          "weaponLv": 28
+        },
+        {
+          "baseAtk": 186,
+          "lvUpExp": 4940,
+          "lvUpGold": 500,
+          "weaponLv": 29
+        },
+        {
+          "baseAtk": 191,
+          "lvUpExp": 5090,
+          "lvUpGold": 510,
+          "weaponLv": 30
+        },
+        {
+          "baseAtk": 196,
+          "lvUpExp": 5250,
+          "lvUpGold": 530,
+          "weaponLv": 31
+        },
+        {
+          "baseAtk": 201,
+          "lvUpExp": 5480,
+          "lvUpGold": 550,
+          "weaponLv": 32
+        },
+        {
+          "baseAtk": 206,
+          "lvUpExp": 5670,
+          "lvUpGold": 570,
+          "weaponLv": 33
+        },
+        {
+          "baseAtk": 211,
+          "lvUpExp": 5820,
+          "lvUpGold": 590,
+          "weaponLv": 34
+        },
+        {
+          "baseAtk": 216,
+          "lvUpExp": 5910,
+          "lvUpGold": 600,
+          "weaponLv": 35
+        },
+        {
+          "baseAtk": 221,
+          "lvUpExp": 6010,
+          "lvUpGold": 610,
+          "weaponLv": 36
+        },
+        {
+          "baseAtk": 225,
+          "lvUpExp": 6110,
+          "lvUpGold": 620,
+          "weaponLv": 37
+        },
+        {
+          "baseAtk": 230,
+          "lvUpExp": 6220,
+          "lvUpGold": 630,
+          "weaponLv": 38
+        },
+        {
+          "baseAtk": 235,
+          "lvUpExp": 6320,
+          "lvUpGold": 640,
+          "weaponLv": 39
+        },
+        {
+          "baseAtk": 240,
+          "lvUpExp": 6430,
+          "lvUpGold": 650,
+          "weaponLv": 40
+        },
+        {
+          "baseAtk": 245,
+          "lvUpExp": 6620,
+          "lvUpGold": 670,
+          "weaponLv": 41
+        },
+        {
+          "baseAtk": 250,
+          "lvUpExp": 6810,
+          "lvUpGold": 690,
+          "weaponLv": 42
+        },
+        {
+          "baseAtk": 255,
+          "lvUpExp": 7010,
+          "lvUpGold": 710,
+          "weaponLv": 43
+        },
+        {
+          "baseAtk": 260,
+          "lvUpExp": 7220,
+          "lvUpGold": 730,
+          "weaponLv": 44
+        },
+        {
+          "baseAtk": 265,
+          "lvUpExp": 7410,
+          "lvUpGold": 750,
+          "weaponLv": 45
+        },
+        {
+          "baseAtk": 270,
+          "lvUpExp": 7690,
+          "lvUpGold": 770,
+          "weaponLv": 46
+        },
+        {
+          "baseAtk": 274,
+          "lvUpExp": 7960,
+          "lvUpGold": 800,
+          "weaponLv": 47
+        },
+        {
+          "baseAtk": 279,
+          "lvUpExp": 8260,
+          "lvUpGold": 830,
+          "weaponLv": 48
+        },
+        {
+          "baseAtk": 284,
+          "lvUpExp": 8580,
+          "lvUpGold": 860,
+          "weaponLv": 49
+        },
+        {
+          "baseAtk": 289,
+          "lvUpExp": 8940,
+          "lvUpGold": 900,
+          "weaponLv": 50
+        },
+        {
+          "baseAtk": 294,
+          "lvUpExp": 9320,
+          "lvUpGold": 940,
+          "weaponLv": 51
+        },
+        {
+          "baseAtk": 299,
+          "lvUpExp": 9740,
+          "lvUpGold": 980,
+          "weaponLv": 52
+        },
+        {
+          "baseAtk": 304,
+          "lvUpExp": 10190,
+          "lvUpGold": 1020,
+          "weaponLv": 53
+        },
+        {
+          "baseAtk": 309,
+          "lvUpExp": 10680,
+          "lvUpGold": 1070,
+          "weaponLv": 54
+        },
+        {
+          "baseAtk": 314,
+          "lvUpExp": 11210,
+          "lvUpGold": 1130,
+          "weaponLv": 55
+        },
+        {
+          "baseAtk": 319,
+          "lvUpExp": 11770,
+          "lvUpGold": 1180,
+          "weaponLv": 56
+        },
+        {
+          "baseAtk": 323,
+          "lvUpExp": 12380,
+          "lvUpGold": 1240,
+          "weaponLv": 57
+        },
+        {
+          "baseAtk": 328,
+          "lvUpExp": 13040,
+          "lvUpGold": 1310,
+          "weaponLv": 58
+        },
+        {
+          "baseAtk": 333,
+          "lvUpExp": 13740,
+          "lvUpGold": 1380,
+          "weaponLv": 59
+        },
+        {
+          "baseAtk": 338,
+          "lvUpExp": 14110,
+          "lvUpGold": 1420,
+          "weaponLv": 60
+        },
+        {
+          "baseAtk": 343,
+          "lvUpExp": 15870,
+          "lvUpGold": 1540,
+          "weaponLv": 61
+        },
+        {
+          "baseAtk": 348,
+          "lvUpExp": 17690,
+          "lvUpGold": 1670,
+          "weaponLv": 62
+        },
+        {
+          "baseAtk": 353,
+          "lvUpExp": 19480,
+          "lvUpGold": 1800,
+          "weaponLv": 63
+        },
+        {
+          "baseAtk": 358,
+          "lvUpExp": 21670,
+          "lvUpGold": 1960,
+          "weaponLv": 64
+        },
+        {
+          "baseAtk": 363,
+          "lvUpExp": 24220,
+          "lvUpGold": 2160,
+          "weaponLv": 65
+        },
+        {
+          "baseAtk": 368,
+          "lvUpExp": 27210,
+          "lvUpGold": 2390,
+          "weaponLv": 66
+        },
+        {
+          "baseAtk": 372,
+          "lvUpExp": 30700,
+          "lvUpGold": 2680,
+          "weaponLv": 67
+        },
+        {
+          "baseAtk": 377,
+          "lvUpExp": 34780,
+          "lvUpGold": 3010,
+          "weaponLv": 68
+        },
+        {
+          "baseAtk": 382,
+          "lvUpExp": 39510,
+          "lvUpGold": 3400,
+          "weaponLv": 69
+        },
+        {
+          "baseAtk": 387,
+          "lvUpExp": 44990,
+          "lvUpGold": 3860,
+          "weaponLv": 70
+        },
+        {
+          "baseAtk": 392,
+          "lvUpExp": 48870,
+          "lvUpGold": 4400,
+          "weaponLv": 71
+        },
+        {
+          "baseAtk": 397,
+          "lvUpExp": 53240,
+          "lvUpGold": 5020,
+          "weaponLv": 72
+        },
+        {
+          "baseAtk": 402,
+          "lvUpExp": 58140,
+          "lvUpGold": 5730,
+          "weaponLv": 73
+        },
+        {
+          "baseAtk": 407,
+          "lvUpExp": 63580,
+          "lvUpGold": 6560,
+          "weaponLv": 74
+        },
+        {
+          "baseAtk": 412,
+          "lvUpExp": 69600,
+          "lvUpGold": 7500,
+          "weaponLv": 75
+        },
+        {
+          "baseAtk": 417,
+          "lvUpExp": 74420,
+          "lvUpGold": 8380,
+          "weaponLv": 76
+        },
+        {
+          "baseAtk": 421,
+          "lvUpExp": 79530,
+          "lvUpGold": 9350,
+          "weaponLv": 77
+        },
+        {
+          "baseAtk": 426,
+          "lvUpExp": 84940,
+          "lvUpGold": 10420,
+          "weaponLv": 78
+        },
+        {
+          "baseAtk": 431,
+          "lvUpExp": 90620,
+          "lvUpGold": 11590,
+          "weaponLv": 79
+        },
+        {
+          "baseAtk": 436,
+          "lvUpExp": 96570,
+          "lvUpGold": 12880,
+          "weaponLv": 80
+        },
+        {
+          "baseAtk": 441,
+          "lvUpExp": 103570,
+          "lvUpGold": 14400,
+          "weaponLv": 81
+        },
+        {
+          "baseAtk": 446,
+          "lvUpExp": 110930,
+          "lvUpGold": 16070,
+          "weaponLv": 82
+        },
+        {
+          "baseAtk": 451,
+          "lvUpExp": 118620,
+          "lvUpGold": 17900,
+          "weaponLv": 83
+        },
+        {
+          "baseAtk": 456,
+          "lvUpExp": 126650,
+          "lvUpGold": 19910,
+          "weaponLv": 84
+        },
+        {
+          "baseAtk": 461,
+          "lvUpExp": 134990,
+          "lvUpGold": 22090,
+          "weaponLv": 85
+        },
+        {
+          "baseAtk": 466,
+          "lvUpExp": 143620,
+          "lvUpGold": 24470,
+          "weaponLv": 86
+        },
+        {
+          "baseAtk": 470,
+          "lvUpExp": 152540,
+          "lvUpGold": 27060,
+          "weaponLv": 87
+        },
+        {
+          "baseAtk": 475,
+          "lvUpExp": 161720,
+          "lvUpGold": 29860,
+          "weaponLv": 88
+        },
+        {
+          "baseAtk": 480,
+          "lvUpExp": 171160,
+          "lvUpGold": 32900,
+          "weaponLv": 89
+        },
+        {
+          "baseAtk": 485,
+          "lvUpExp": 0,
+          "lvUpGold": 0,
+          "weaponLv": 90
+        }
+      ]
+    }
+  },
+  "talents": {
+    "list": [
+      {
+        "skillLevelExtraBounds": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 1,
+            "upperBound": 1
+          }
+        ],
+        "talentLv": 1
+      },
+      {
+        "skillLevelExtraBounds": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 2,
+            "upperBound": 2
+          }
+        ],
+        "talentLv": 2
+      },
+      {
+        "skillLevelExtraBounds": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 3,
+            "upperBound": 3
+          }
+        ],
+        "talentLv": 3
+      },
+      {
+        "skillLevelExtraBounds": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 4,
+            "upperBound": 4
+          }
+        ],
+        "talentLv": 4
+      },
+      {
+        "skillLevelExtraBounds": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 0,
+            "upperBound": 0
+          },
+          {
+            "lowerBound": 5,
+            "upperBound": 5
+          }
+        ],
+        "talentLv": 5
+      }
+    ]
+  }
+}

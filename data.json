@@ -1,0 +1,1052 @@
+{
+    "type": "data",
+    "nodes": [
+    {
+    "type": "skip"
+    },
+    {
+    "type": "data",
+    "data": [
+    {
+    "playerInfo": 1,
+    "uid": 14,
+    "ttl": 312,
+    "_title": 313,
+    "_debug": 49
+    },
+    {
+    "businessCard": 2,
+    "charData": 76
+    },
+    {
+    "name": 3,
+    "shortId": 4,
+    "gender": 5,
+    "businessCardTopicId": 6,
+    "signature": 7,
+    "userAvatarId": 8,
+    "userAvatarFrameId": 9,
+    "adventureLevel": 10,
+    "worldLevel": 11,
+    "mainMissionId": 12,
+    "createTime": 13,
+    "platformRoleId": 14,
+    "domainDev": 15,
+    "achievement": 23,
+    "statistic": 60,
+    "charList": 64,
+    "businessCardExpandFlag": 52
+    },
+    "Nova",
+    "6440",
+    2,
+    5,
+    "",
+    23,
+    6,
+    57,
+    7,
+    "c27m3",
+    1769049297,
+    "4225399080",
+    {
+    "domains": 16
+    },
+    [
+    17,
+    20
+    ],
+    {
+    "domainId": 18,
+    "level": 19
+    },
+    "domain_2",
+    9,
+    {
+    "domainId": 21,
+    "level": 22
+    },
+    "domain_1",
+    12,
+    {
+    "display": 24,
+    "infoList": 47
+    },
+    [
+    25,
+    27,
+    30,
+    33,
+    36,
+    38,
+    39,
+    40,
+    42,
+    44
+    ],
+    {
+    "key": 9,
+    "value": 26
+    },
+    25,
+    {
+    "key": 28,
+    "value": 29
+    },
+    3,
+    42,
+    {
+    "key": 31,
+    "value": 32
+    },
+    10,
+    34,
+    {
+    "key": 34,
+    "value": 35
+    },
+    1,
+    41,
+    {
+    "key": 5,
+    "value": 37
+    },
+    13,
+    {
+    "key": 6,
+    "value": 8
+    },
+    {
+    "key": 19,
+    "value": 31
+    },
+    {
+    "key": 11,
+    "value": 41
+    },
+    19,
+    {
+    "key": 43,
+    "value": 22
+    },
+    8,
+    {
+    "key": 45,
+    "value": 46
+    },
+    4,
+    60,
+    [
+    48,
+    50,
+    51,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59
+    ],
+    {
+    "achieveNumId": 29,
+    "level": 28,
+    "isPlated": 49
+    },
+    false,
+    {
+    "achieveNumId": 31,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 26,
+    "level": 5,
+    "isPlated": 52
+    },
+    true,
+    {
+    "achieveNumId": 8,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 41,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 37,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 22,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 46,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 32,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "achieveNumId": 35,
+    "level": 28,
+    "isPlated": 49
+    },
+    {
+    "charNum": 61,
+    "weaponNum": 62,
+    "docNum": 63
+    },
+    22,
+    49,
+    112,
+    [
+    65,
+    69,
+    72,
+    74
+    ],
+    {
+    "templateId": 66,
+    "level": 67,
+    "potentialLevel": 68
+    },
+    "chr_0016_laevat",
+    90,
+    0,
+    {
+    "templateId": 70,
+    "level": 71,
+    "potentialLevel": 68
+    },
+    "chr_0026_lastrite",
+    80,
+    {
+    "templateId": 73,
+    "level": 71,
+    "potentialLevel": 68
+    },
+    "chr_0013_aglina",
+    {
+    "templateId": 75,
+    "level": 71,
+    "potentialLevel": 68
+    },
+    "chr_0017_yvonne",
+    [
+    77,
+    175,
+    210,
+    258
+    ],
+    {
+    "templateId": 8,
+    "level": 67,
+    "exp": 68,
+    "potentialLevel": 68,
+    "equip": 78,
+    "weapon": 140,
+    "skillInfo": 151,
+    "equipMedicineId": 160,
+    "talent": 161,
+    "potentialCg": 174
+    },
+    [
+    79,
+    93,
+    107,
+    121
+    ],
+    {
+    "key": 68,
+    "value": 80
+    },
+    {
+    "templateid": 81,
+    "enhance": 82,
+    "equipEnhanceData": 85
+    },
+    2957,
+    [
+    83,
+    84
+    ],
+    {
+    "key": 28,
+    "value": 28
+    },
+    {
+    "key": 5,
+    "value": 28
+    },
+    {
+    "enhanceFailedDataByAttrIndex": 86
+    },
+    [
+    87,
+    90
+    ],
+    {
+    "key": 28,
+    "value": 88
+    },
+    {
+    "enhanceFailedTimesByLevel": 89
+    },
+    [],
+    {
+    "key": 5,
+    "value": 91
+    },
+    {
+    "enhanceFailedTimesByLevel": 92
+    },
+    [],
+    {
+    "key": 5,
+    "value": 94
+    },
+    {
+    "templateid": 95,
+    "enhance": 96,
+    "equipEnhanceData": 99
+    },
+    3116,
+    [
+    97,
+    98
+    ],
+    {
+    "key": 34,
+    "value": 34
+    },
+    {
+    "key": 5,
+    "value": 5
+    },
+    {
+    "enhanceFailedDataByAttrIndex": 100
+    },
+    [
+    101,
+    104
+    ],
+    {
+    "key": 5,
+    "value": 102
+    },
+    {
+    "enhanceFailedTimesByLevel": 103
+    },
+    [],
+    {
+    "key": 34,
+    "value": 105
+    },
+    {
+    "enhanceFailedTimesByLevel": 106
+    },
+    [],
+    {
+    "key": 28,
+    "value": 108
+    },
+    {
+    "templateid": 95,
+    "enhance": 109,
+    "equipEnhanceData": 112
+    },
+    [
+    110,
+    111
+    ],
+    {
+    "key": 34,
+    "value": 34
+    },
+    {
+    "key": 5,
+    "value": 28
+    },
+    {
+    "enhanceFailedDataByAttrIndex": 113
+    },
+    [
+    114,
+    118
+    ],
+    {
+    "key": 34,
+    "value": 115
+    },
+    {
+    "enhanceFailedTimesByLevel": 116
+    },
+    [
+    117
+    ],
+    {
+    "key": 5,
+    "value": 28
+    },
+    {
+    "key": 5,
+    "value": 119
+    },
+    {
+    "enhanceFailedTimesByLevel": 120
+    },
+    [],
+    {
+    "key": 34,
+    "value": 122
+    },
+    {
+    "templateid": 123,
+    "enhance": 124,
+    "equipEnhanceData": 128
+    },
+    3023,
+    [
+    125,
+    126,
+    127
+    ],
+    {
+    "key": 5,
+    "value": 5
+    },
+    {
+    "key": 28,
+    "value": 28
+    },
+    {
+    "key": 34,
+    "value": 28
+    },
+    {
+    "enhanceFailedDataByAttrIndex": 129
+    },
+    [
+    130,
+    133,
+    136
+    ],
+    {
+    "key": 34,
+    "value": 131
+    },
+    {
+    "enhanceFailedTimesByLevel": 132
+    },
+    [],
+    {
+    "key": 28,
+    "value": 134
+    },
+    {
+    "enhanceFailedTimesByLevel": 135
+    },
+    [],
+    {
+    "key": 5,
+    "value": 137
+    },
+    {
+    "enhanceFailedTimesByLevel": 138
+    },
+    [
+    139
+    ],
+    {
+    "key": 28,
+    "value": 9
+    },
+    {
+    "templateId": 141,
+    "exp": 142,
+    "weaponLv": 67,
+    "refineLv": 68,
+    "breakthroughLv": 45,
+    "attachedGem": 143
+    },
+    1797,
+    9420,
+    {
+    "templateId": 144,
+    "totalCost": 68,
+    "terms": 145,
+    "domainId": 5
+    },
+    1070,
+    [
+    146,
+    148,
+    149
+    ],
+    {
+    "termNumId": 147,
+    "cost": 6
+    },
+    68,
+    {
+    "termNumId": 62,
+    "cost": 6
+    },
+    {
+    "termNumId": 150,
+    "cost": 28
+    },
+    70,
+    {
+    "levelInfo": 152,
+    "normalSkill": 158,
+    "ultimateSkill": 35,
+    "comboSkill": 62,
+    "dispNormalAttackSkill": 156
+    },
+    [
+    153,
+    154,
+    155,
+    157
+    ],
+    {
+    "skillId": 35,
+    "skillLevel": 31,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 31
+    },
+    {
+    "skillId": 62,
+    "skillLevel": 19,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 19
+    },
+    {
+    "skillId": 156,
+    "skillLevel": 19,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 19
+    },
+    39,
+    {
+    "skillId": 158,
+    "skillLevel": 159,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 159
+    },
+    40,
+    11,
+    310,
+    {
+    "latestBreakNode": 162,
+    "attrNodes": 163,
+    "latestPassiveSkillNodes": 168,
+    "latestFactorySkillNodes": 171
+    },
+    "charBreak70",
+    [
+    164,
+    165,
+    166,
+    167
+    ],
+    "chr_0016_laevat_1",
+    "chr_0016_laevat_3",
+    "chr_0016_laevat_5",
+    "chr_0016_laevat_7",
+    [
+    169,
+    170
+    ],
+    "chr_0016_laevat_passive_skill_0_3",
+    "chr_0016_laevat_passive_skill_1_2",
+    [
+    172,
+    173
+    ],
+    "fac_chr_0016_laevat_0_2",
+    "fac_chr_0016_laevat_1_2",
+    [],
+    {
+    "templateId": 29,
+    "level": 71,
+    "exp": 68,
+    "potentialLevel": 68,
+    "equip": 176,
+    "weapon": 177,
+    "skillInfo": 186,
+    "equipMedicineId": 196,
+    "talent": 197,
+    "potentialCg": 209
+    },
+    [],
+    {
+    "templateId": 178,
+    "exp": 68,
+    "weaponLv": 158,
+    "refineLv": 5,
+    "breakthroughLv": 34,
+    "attachedGem": 179
+    },
+    1799,
+    {
+    "templateId": 144,
+    "totalCost": 68,
+    "terms": 180,
+    "domainId": 34
+    },
+    [
+    181,
+    183,
+    184
+    ],
+    {
+    "termNumId": 182,
+    "cost": 34
+    },
+    44,
+    {
+    "termNumId": 62,
+    "cost": 34
+    },
+    {
+    "termNumId": 185,
+    "cost": 34
+    },
+    72,
+    {
+    "levelInfo": 187,
+    "normalSkill": 191,
+    "ultimateSkill": 193,
+    "comboSkill": 195,
+    "dispNormalAttackSkill": 189
+    },
+    [
+    188,
+    190,
+    192,
+    194
+    ],
+    {
+    "skillId": 189,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    93,
+    {
+    "skillId": 191,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    94,
+    {
+    "skillId": 193,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    95,
+    {
+    "skillId": 195,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    96,
+    1361,
+    {
+    "latestBreakNode": 198,
+    "attrNodes": 199,
+    "latestPassiveSkillNodes": 203,
+    "latestFactorySkillNodes": 206
+    },
+    "equipBreakT4",
+    [
+    200,
+    201,
+    202
+    ],
+    "chr_0026_lastrite_1",
+    "chr_0026_lastrite_3",
+    "chr_0026_lastrite_5",
+    [
+    204,
+    205
+    ],
+    "chr_0026_lastrite_passive_skill_0_2",
+    "chr_0026_lastrite_passive_skill_1_2",
+    [
+    207,
+    208
+    ],
+    "fac_chr_0026_lastrite_0_2",
+    "fac_chr_0026_lastrite_1_1",
+    [],
+    {
+    "templateId": 22,
+    "level": 71,
+    "exp": 68,
+    "potentialLevel": 68,
+    "equip": 211,
+    "weapon": 227,
+    "skillInfo": 237,
+    "equipMedicineId": 160,
+    "talent": 248,
+    "potentialCg": 257
+    },
+    [
+    212,
+    216,
+    220,
+    223
+    ],
+    {
+    "key": 34,
+    "value": 213
+    },
+    {
+    "templateid": 214,
+    "enhance": 215
+    },
+    2981,
+    [],
+    {
+    "key": 28,
+    "value": 217
+    },
+    {
+    "templateid": 218,
+    "enhance": 219
+    },
+    3126,
+    [],
+    {
+    "key": 5,
+    "value": 221
+    },
+    {
+    "templateid": 218,
+    "enhance": 222
+    },
+    [],
+    {
+    "key": 68,
+    "value": 224
+    },
+    {
+    "templateid": 225,
+    "enhance": 226
+    },
+    3072,
+    [],
+    {
+    "templateId": 228,
+    "exp": 68,
+    "weaponLv": 71,
+    "refineLv": 68,
+    "breakthroughLv": 28,
+    "attachedGem": 229
+    },
+    3264,
+    {
+    "templateId": 144,
+    "totalCost": 68,
+    "terms": 230,
+    "domainId": 34
+    },
+    [
+    231,
+    233,
+    235
+    ],
+    {
+    "termNumId": 232,
+    "cost": 45
+    },
+    51,
+    {
+    "termNumId": 234,
+    "cost": 45
+    },
+    79,
+    {
+    "termNumId": 236,
+    "cost": 5
+    },
+    81,
+    {
+    "levelInfo": 238,
+    "normalSkill": 240,
+    "ultimateSkill": 242,
+    "comboSkill": 244,
+    "dispNormalAttackSkill": 37
+    },
+    [
+    239,
+    241,
+    243,
+    245,
+    247
+    ],
+    {
+    "skillId": 240,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    14,
+    {
+    "skillId": 242,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    15,
+    {
+    "skillId": 244,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    16,
+    {
+    "skillId": 246,
+    "skillLevel": 34,
+    "skillMaxLevel": 34,
+    "skillEnhancedLevel": 34
+    },
+    649,
+    {
+    "skillId": 37,
+    "skillLevel": 34,
+    "skillMaxLevel": 19,
+    "skillEnhancedLevel": 34
+    },
+    {
+    "latestBreakNode": 198,
+    "attrNodes": 249,
+    "latestPassiveSkillNodes": 251,
+    "latestFactorySkillNodes": 254
+    },
+    [
+    250
+    ],
+    "chr_0013_aglina_1",
+    [
+    252,
+    253
+    ],
+    "chr_0013_aglina_passive_skill_0_2",
+    "chr_0013_aglina_passive_skill_1_2",
+    [
+    255,
+    256
+    ],
+    "fac_chr_0013_aglina_0_2",
+    "fac_chr_0013_aglina_1_1",
+    [],
+    {
+    "templateId": 259,
+    "level": 71,
+    "exp": 68,
+    "potentialLevel": 68,
+    "equip": 260,
+    "weapon": 276,
+    "skillInfo": 285,
+    "equipMedicineId": 160,
+    "talent": 299,
+    "potentialCg": 311
+    },
+    27,
+    [
+    261,
+    265,
+    269,
+    273
+    ],
+    {
+    "key": 28,
+    "value": 262
+    },
+    {
+    "templateid": 263,
+    "enhance": 264
+    },
+    2943,
+    [],
+    {
+    "key": 68,
+    "value": 266
+    },
+    {
+    "templateid": 267,
+    "enhance": 268
+    },
+    2986,
+    [],
+    {
+    "key": 34,
+    "value": 270
+    },
+    {
+    "templateid": 271,
+    "enhance": 272
+    },
+    3109,
+    [],
+    {
+    "key": 5,
+    "value": 274
+    },
+    {
+    "templateid": 263,
+    "enhance": 275
+    },
+    [],
+    {
+    "templateId": 277,
+    "exp": 68,
+    "weaponLv": 71,
+    "refineLv": 68,
+    "breakthroughLv": 28,
+    "attachedGem": 278
+    },
+    3265,
+    {
+    "templateId": 144,
+    "totalCost": 68,
+    "terms": 279,
+    "domainId": 5
+    },
+    [
+    280,
+    281,
+    283
+    ],
+    {
+    "termNumId": 147,
+    "cost": 45
+    },
+    {
+    "termNumId": 282,
+    "cost": 6
+    },
+    50,
+    {
+    "termNumId": 284,
+    "cost": 28
+    },
+    73,
+    {
+    "levelInfo": 286,
+    "normalSkill": 290,
+    "ultimateSkill": 292,
+    "comboSkill": 294,
+    "dispNormalAttackSkill": 288
+    },
+    [
+    287,
+    289,
+    291,
+    293,
+    295,
+    297
+    ],
+    {
+    "skillId": 288,
+    "skillLevel": 11,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 11
+    },
+    61,
+    {
+    "skillId": 290,
+    "skillLevel": 28,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 28
+    },
+    62,
+    {
+    "skillId": 292,
+    "skillLevel": 19,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 19
+    },
+    63,
+    {
+    "skillId": 294,
+    "skillLevel": 28,
+    "skillMaxLevel": 22,
+    "skillEnhancedLevel": 28
+    },
+    64,
+    {
+    "skillId": 296,
+    "skillLevel": 34,
+    "skillMaxLevel": 34,
+    "skillEnhancedLevel": 34
+    },
+    1370,
+    {
+    "skillId": 298,
+    "skillLevel": 34,
+    "skillMaxLevel": 34,
+    "skillEnhancedLevel": 34
+    },
+    1369,
+    {
+    "latestBreakNode": 162,
+    "attrNodes": 300,
+    "latestPassiveSkillNodes": 305,
+    "latestFactorySkillNodes": 308
+    },
+    [
+    301,
+    302,
+    303,
+    304
+    ],
+    "chr_0017_yvonne_1",
+    "chr_0017_yvonne_3",
+    "chr_0017_yvonne_5",
+    "chr_0017_yvonne_7",
+    [
+    306,
+    307
+    ],
+    "chr_0017_yvonne_passive_skill_0_2",
+    "chr_0017_yvonne_passive_skill_1_2",
+    [
+    309,
+    310
+    ],
+    "fac_chr_0017_yvonne_0_2",
+    "fac_chr_0017_yvonne_1_2",
+    [],
+    33,
+    {
+    "nickname": 3
+    }
+    ],
+    "uses": {
+    "params": [
+    "uid"
+    ],
+    "parent": 1,
+    "url": 1
+    }
+    }
+    ]
+    }

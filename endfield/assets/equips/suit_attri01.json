@@ -1,0 +1,91 @@
+{
+  "suitId": "suit_attri01",
+  "suitNameI18nId": "-5935672926878943329",
+  "engName": "Bonekrusha",
+  "suitLogoName": "icon_pack_wuling_suit_attri01",
+  "iconItemId": "item_equip_t4_suit_attri01_body_01",
+  "equipList": [
+    "item_equip_t4_suit_attri01_body_01",
+    "item_equip_t4_suit_attri01_body_02",
+    "item_equip_t4_suit_attri01_body_03",
+    "item_equip_t4_suit_attri01_body_04",
+    "item_equip_t4_suit_attri01_hand_01",
+    "item_equip_t4_suit_attri01_hand_02",
+    "item_equip_t4_suit_attri01_edc_03",
+    "item_equip_t4_suit_attri01_edc_04",
+    "item_equip_t4_suit_attri01_edc_05",
+    "item_equip_t4_suit_attri01_edc_06",
+    "item_equip_t4_suit_attri01_edc_07",
+    "item_equip_t4_suit_attri01_body_05"
+  ],
+  "tier": 4,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 12,
+  "setEffects": [
+    {
+      "equipCnt": 3,
+      "skillID": "passive_equipsuit_attrisuit_01",
+      "skillLv": 1,
+      "suitID": "suit_attri01",
+      "suitLogoName": "icon_pack_wuling_suit_attri01",
+      "suitName": {
+        "id": "-5935672926878943329",
+        "text": ""
+      },
+      "skillData": {
+        "SkillPatchDataBundle": [
+          {
+            "blackboard": [
+              {
+                "key": "atk_up",
+                "value": 0.15,
+                "valueStr": ""
+              },
+              {
+                "key": "dmg_up",
+                "value": 0.3,
+                "valueStr": ""
+              },
+              {
+                "key": "max_stack",
+                "value": 2,
+                "valueStr": ""
+              }
+            ],
+            "coolDown": 0,
+            "costType": 0,
+            "costValue": 0,
+            "description": {
+              "id": "-1115847808811921581",
+              "text": ""
+            },
+            "iconBgType": 0,
+            "iconId": "",
+            "level": 1,
+            "maxChargeTime": 1,
+            "skillId": "passive_equipsuit_attrisuit_01",
+            "skillName": {
+              "id": "0",
+              "text": ""
+            },
+            "subDescList": [],
+            "subDescNameList": [],
+            "tagId": ""
+          }
+        ]
+      },
+      "descriptionI18nId": "-1115847808811921581",
+      "blackboardValues": {
+        "atk_up": 0.15,
+        "dmg_up": 0.3,
+        "max_stack": 2
+      },
+      "statBlackboardValues": {
+        "atk_up": 0.15
+      }
+    }
+  ],
+  "slug": "bonekrusha"
+}

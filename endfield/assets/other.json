@@ -1,0 +1,16 @@
+{
+    "break_to_ascension": {
+        "charBreak20": 1,
+        "equipBreakT2": 1,
+        "charBreak40": 2,
+        "equipBreakT3": 2,
+        "charBreak60": 3,
+        "equipBreakT4": 3,
+        "charBreak70": 4
+      },
+      "formula_suffix": {
+        "BaseAddition": "_base",
+        "BaseMultiplier": "_ratio",
+        "BaseFinalMultiplier": "_delta"
+      }
+}

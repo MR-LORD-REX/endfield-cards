@@ -1,0 +1,89 @@
+{
+  "suitId": "suit_burst01",
+  "suitNameI18nId": "8727527172877146838",
+  "engName": "Tide Surge",
+  "suitLogoName": "icon_pack_wuling_suit_burst01",
+  "iconItemId": "item_equip_t4_suit_burst01_body_01",
+  "equipList": [
+    "item_equip_t4_suit_burst01_body_01",
+    "item_equip_t4_suit_burst01_hand_01",
+    "item_equip_t4_suit_burst01_edc_01",
+    "item_equip_t4_suit_burst01_edc_02"
+  ],
+  "tier": 4,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 4,
+  "setEffects": [
+    {
+      "equipCnt": 3,
+      "skillID": "passive_equipsuit_burst_01",
+      "skillLv": 1,
+      "suitID": "suit_burst01",
+      "suitLogoName": "icon_pack_wuling_suit_burst01",
+      "suitName": {
+        "id": "8727527172877146838",
+        "text": ""
+      },
+      "skillData": {
+        "SkillPatchDataBundle": [
+          {
+            "blackboard": [
+              {
+                "key": "skill_dmg_up",
+                "value": 0.2,
+                "valueStr": ""
+              },
+              {
+                "key": "stack_cond",
+                "value": 2,
+                "valueStr": ""
+              },
+              {
+                "key": "spell_dmg_up",
+                "value": 0.35,
+                "valueStr": ""
+              },
+              {
+                "key": "duration",
+                "value": 15,
+                "valueStr": ""
+              }
+            ],
+            "coolDown": 0,
+            "costType": 0,
+            "costValue": 0,
+            "description": {
+              "id": "7212674853831170884",
+              "text": ""
+            },
+            "iconBgType": 0,
+            "iconId": "",
+            "level": 1,
+            "maxChargeTime": 1,
+            "skillId": "passive_equipsuit_burst_01",
+            "skillName": {
+              "id": "0",
+              "text": ""
+            },
+            "subDescList": [],
+            "subDescNameList": [],
+            "tagId": ""
+          }
+        ]
+      },
+      "descriptionI18nId": "7212674853831170884",
+      "blackboardValues": {
+        "skill_dmg_up": 0.2,
+        "stack_cond": 2,
+        "spell_dmg_up": 0.35,
+        "duration": 15
+      },
+      "statBlackboardValues": {
+        "skill_dmg_up": 0.2
+      }
+    }
+  ],
+  "slug": "tide-surge"
+}
