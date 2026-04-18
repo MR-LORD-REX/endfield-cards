@@ -1,0 +1,20 @@
+{
+  "suitId": "suit_wisdwill01",
+  "suitNameI18nId": "7450612431920625701",
+  "engName": "Wisdom Will Set",
+  "suitLogoName": "tundra_suit_wisdwill01",
+  "iconItemId": "item_equip_t1_suit_wisdwill01_body_01",
+  "equipList": [
+    "item_equip_t1_suit_wisdwill01_body_01",
+    "item_equip_t1_suit_wisdwill01_edc_01",
+    "item_equip_t1_suit_wisdwill01_edc_02",
+    "item_equip_t1_suit_wisdwill01_hand_01"
+  ],
+  "tier": 2,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 4,
+  "setEffects": [],
+  "slug": "wisdwill-set"
+}

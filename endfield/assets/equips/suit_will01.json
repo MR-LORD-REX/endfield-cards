@@ -1,0 +1,24 @@
+{
+  "suitId": "suit_will01",
+  "suitNameI18nId": "-921493216370650704",
+  "engName": "Will Set",
+  "suitLogoName": "tundra_suit_will01",
+  "iconItemId": "item_equip_t3_suit_will01_hand_01",
+  "equipList": [
+    "item_equip_t3_suit_will01_hand_01",
+    "item_equip_t3_suit_will01_edc_02",
+    "item_equip_t2_suit_will01_edc_01",
+    "item_equip_t3_suit_will01_edc_01",
+    "item_equip_t2_suit_will01_body_01",
+    "item_equip_t3_suit_will01_body_01",
+    "item_equip_t2_suit_will01_edc_02",
+    "item_equip_t2_suit_will01_hand_01"
+  ],
+  "tier": 3,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 8,
+  "setEffects": [],
+  "slug": "will-set"
+}

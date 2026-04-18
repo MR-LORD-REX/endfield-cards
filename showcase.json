@@ -4,19 +4,19 @@
     "name": "yawn",
     "short_id": "4702",
     "signature": "Slept",
-    "adventure_level": 59,
+    "adventure_level": 60,
     "world_level": 7,
-    "char_count": 23,
-    "weapon_count": 45,
-    "doc_count": 175,
+    "char_count": 24,
+    "weapon_count": 46,
+    "doc_count": 193,
     "domain_progress": [
-      {
-        "domain_id": "domain_2",
-        "level": 9
-      },
       {
         "domain_id": "domain_1",
         "level": 12
+      },
+      {
+        "domain_id": "domain_2",
+        "level": 11
       }
     ],
     "characters": [
@@ -60,7 +60,7 @@
         "template_id": 12,
         "str_id": "chr_0013_aglina",
         "name": "Gilberta",
-        "level": 81,
+        "level": 82,
         "potential_level": 0,
         "rarity": 6,
         "element": "Natural",
@@ -69,7 +69,7 @@
         "round_icon_url": "https://enka.network/ui/ef/charroundicon/icon_round_chr_0013_aglina.png"
       }
     ],
-    "ttl": 4
+    "ttl": 1
   },
   "characters": [
     {
@@ -88,7 +88,7 @@
       "weapon": {
         "template_id": 1813,
         "weapon_id": "wpn_pistol_0008",
-        "name": "Wedge",
+        "name": "",
         "rarity": 6,
         "weapon_type": "Pistol",
         "level": 90,
@@ -175,7 +175,7 @@
           ]
         },
         {
-          "slot_id": 1,
+          "slot_id": 0,
           "template_id": 2814,
           "rarity": 5,
           "suit_id": "suit_criti01",
@@ -216,7 +216,7 @@
           ]
         },
         {
-          "slot_id": 2,
+          "slot_id": 0,
           "template_id": 2943,
           "rarity": 5,
           "suit_id": "suit_criti01",
@@ -257,7 +257,7 @@
           ]
         },
         {
-          "slot_id": 3,
+          "slot_id": 0,
           "template_id": 3109,
           "rarity": 5,
           "suit_id": "suit_criti01",
@@ -400,9 +400,9 @@
         "hp": 5905,
         "atk": 3316,
         "defense": 140,
-        "crit_rate": 30.9,
+        "crit_rate": 35.9,
         "crit_dmg": 50.0,
-        "arts_intensity": 0.0,
+        "arts_intensity": 0.32,
         "healing_received_bonus": 10.5,
         "ultimate_gain_efficiency": 100.0,
         "element_dmg_bonus": null,
@@ -426,7 +426,7 @@
       "weapon": {
         "template_id": 1797,
         "weapon_id": "wpn_sword_0006",
-        "name": "The Fifth Heirloom",
+        "name": "",
         "rarity": 6,
         "weapon_type": "Sword",
         "level": 90,
@@ -482,80 +482,6 @@
       "equips": [
         {
           "slot_id": 0,
-          "template_id": 3023,
-          "rarity": 5,
-          "suit_id": "suit_burst01",
-          "icon_url": "https://enka.network/ui/ef/itemicon/item_equip_t4_suit_burst01_body_01.png",
-          "attr_modifiers": [
-            {
-              "index": 0,
-              "attr_type": 3,
-              "attr_name": "Def_base",
-              "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 56.0
-            },
-            {
-              "index": 1,
-              "attr_type": 41,
-              "attr_name": "Wisd_base",
-              "formula": "BaseAddition",
-              "enhance_level": 2,
-              "value": 104.0
-            },
-            {
-              "index": 2,
-              "attr_type": 39,
-              "attr_name": "Str_base",
-              "formula": "BaseAddition",
-              "enhance_level": 1,
-              "value": 63.0
-            },
-            {
-              "index": 3,
-              "attr_type": 44,
-              "attr_name": "UltimateSpGainScalar_base",
-              "formula": "BaseAddition",
-              "enhance_level": 2,
-              "value": 0.14785714285714285
-            }
-          ]
-        },
-        {
-          "slot_id": 1,
-          "template_id": 3116,
-          "rarity": 5,
-          "suit_id": "suit_fire_natr01",
-          "icon_url": "https://enka.network/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_edc_02.png",
-          "attr_modifiers": [
-            {
-              "index": 0,
-              "attr_type": 3,
-              "attr_name": "Def_base",
-              "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 21.0
-            },
-            {
-              "index": 1,
-              "attr_type": 41,
-              "attr_name": "Wisd_base",
-              "formula": "BaseAddition",
-              "enhance_level": 2,
-              "value": 49.0
-            },
-            {
-              "index": 2,
-              "attr_type": 32,
-              "attr_name": "NormalSkillDamageIncrease_base",
-              "formula": "BaseAddition",
-              "enhance_level": 2,
-              "value": 0.49679999999999996
-            }
-          ]
-        },
-        {
-          "slot_id": 2,
           "template_id": 3116,
           "rarity": 5,
           "suit_id": "suit_fire_natr01",
@@ -588,7 +514,7 @@
           ]
         },
         {
-          "slot_id": 3,
+          "slot_id": 0,
           "template_id": 3124,
           "rarity": 5,
           "suit_id": "suit_fire_natr01",
@@ -635,17 +561,83 @@
               "value": 0.19166666666666668
             }
           ]
+        },
+        {
+          "slot_id": 0,
+          "template_id": 3023,
+          "rarity": 5,
+          "suit_id": "suit_burst01",
+          "icon_url": "https://enka.network/ui/ef/itemicon/item_equip_t4_suit_burst01_body_01.png",
+          "attr_modifiers": [
+            {
+              "index": 0,
+              "attr_type": 3,
+              "attr_name": "Def_base",
+              "formula": "BaseAddition",
+              "enhance_level": 0,
+              "value": 56.0
+            },
+            {
+              "index": 1,
+              "attr_type": 41,
+              "attr_name": "Wisd_base",
+              "formula": "BaseAddition",
+              "enhance_level": 2,
+              "value": 104.0
+            },
+            {
+              "index": 2,
+              "attr_type": 39,
+              "attr_name": "Str_base",
+              "formula": "BaseAddition",
+              "enhance_level": 1,
+              "value": 63.0
+            },
+            {
+              "index": 3,
+              "attr_type": 44,
+              "attr_name": "UltimateSpGainScalar_base",
+              "formula": "BaseAddition",
+              "enhance_level": 2,
+              "value": 0.14785714285714285
+            }
+          ]
+        },
+        {
+          "slot_id": 0,
+          "template_id": 3116,
+          "rarity": 5,
+          "suit_id": "suit_fire_natr01",
+          "icon_url": "https://enka.network/ui/ef/itemicon/item_equip_t4_suit_fire_natr01_edc_02.png",
+          "attr_modifiers": [
+            {
+              "index": 0,
+              "attr_type": 3,
+              "attr_name": "Def_base",
+              "formula": "BaseAddition",
+              "enhance_level": 0,
+              "value": 21.0
+            },
+            {
+              "index": 1,
+              "attr_type": 41,
+              "attr_name": "Wisd_base",
+              "formula": "BaseAddition",
+              "enhance_level": 2,
+              "value": 49.0
+            },
+            {
+              "index": 2,
+              "attr_type": 32,
+              "attr_name": "NormalSkillDamageIncrease_base",
+              "formula": "BaseAddition",
+              "enhance_level": 2,
+              "value": 0.49679999999999996
+            }
+          ]
         }
       ],
       "suit_sets": {
-        "suit_burst01": {
-          "suit_id": "suit_burst01",
-          "name": "Tide Surge",
-          "icon_url": "https://enka.network/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_burst01.png",
-          "pieces_equipped": 1,
-          "is_active": false,
-          "active_bonus": null
-        },
         "suit_fire_natr01": {
           "suit_id": "suit_fire_natr01",
           "name": "Hot Work",
@@ -665,6 +657,14 @@
               "phy_spell_up": 30.0
             }
           }
+        },
+        "suit_burst01": {
+          "suit_id": "suit_burst01",
+          "name": "Tide Surge",
+          "icon_url": "https://enka.network/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_burst01.png",
+          "pieces_equipped": 1,
+          "is_active": false,
+          "active_bonus": null
         }
       },
       "skills": {
@@ -773,7 +773,7 @@
       "weapon": {
         "template_id": 3269,
         "weapon_id": "wpn_funnel_0013",
-        "name": "wpn_funnel_0013",
+        "name": "",
         "rarity": 6,
         "weapon_type": "Wand",
         "level": 60,
@@ -853,11 +853,19 @@
               "formula": "BaseAddition",
               "enhance_level": 0,
               "value": 21.0
+            },
+            {
+              "index": 3,
+              "attr_type": 10000,
+              "attr_name": "prop_10000.0",
+              "formula": "BaseMultiplier",
+              "enhance_level": 0,
+              "value": 0.2070178350109774
             }
           ]
         },
         {
-          "slot_id": 1,
+          "slot_id": 0,
           "template_id": 2893,
           "rarity": 5,
           "suit_id": "suit_heal01",
@@ -898,7 +906,7 @@
           ]
         },
         {
-          "slot_id": 2,
+          "slot_id": 0,
           "template_id": 2870,
           "rarity": 5,
           "suit_id": "suit_heal01",
@@ -931,7 +939,7 @@
           ]
         },
         {
-          "slot_id": 3,
+          "slot_id": 0,
           "template_id": 3181,
           "rarity": 5,
           "suit_id": "suit_heal01",
@@ -1088,7 +1096,7 @@
       "element": "Natural",
       "profession": "SUPPORTER",
       "weapon_type": "Wand",
-      "level": 81,
+      "level": 82,
       "potential_level": 0,
       "splash_url": "https://enka.network/ui/a/ef/splash/chr_0013_aglina.webp",
       "bg_url": "https://enka.network/ui/ef/charinfo/bg_charinfo_chr_0013_aglina.png",
@@ -1096,13 +1104,13 @@
       "weapon": {
         "template_id": 3264,
         "weapon_id": "wpn_funnel_0011",
-        "name": "wpn_funnel_0011",
+        "name": "",
         "rarity": 6,
         "weapon_type": "Wand",
-        "level": 80,
+        "level": 90,
         "refine_lv": 0,
         "breakthrough_lv": 4,
-        "base_atk": 449.0,
+        "base_atk": 500.0,
         "skill_levels": [
           7,
           9,
@@ -1192,7 +1200,7 @@
           ]
         },
         {
-          "slot_id": 1,
+          "slot_id": 0,
           "template_id": 3092,
           "rarity": 5,
           "suit_id": "suit_usp02",
@@ -1233,7 +1241,7 @@
           ]
         },
         {
-          "slot_id": 2,
+          "slot_id": 0,
           "template_id": 2944,
           "rarity": 5,
           "suit_id": "suit_usp02",
@@ -1252,29 +1260,29 @@
               "attr_type": 42,
               "attr_name": "Will_base",
               "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 87.0
+              "enhance_level": 3,
+              "value": 113.0
             },
             {
               "index": 2,
               "attr_type": 41,
               "attr_name": "Wisd_base",
               "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 58.0
+              "enhance_level": 3,
+              "value": 75.0
             },
             {
               "index": 3,
               "attr_type": 87,
               "attr_name": "PhysicalAndSpellInflictionEnhance_base",
               "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 20.7
+              "enhance_level": 3,
+              "value": 26.91
             }
           ]
         },
         {
-          "slot_id": 3,
+          "slot_id": 0,
           "template_id": 2946,
           "rarity": 5,
           "suit_id": "suit_fire_natr01",
@@ -1293,8 +1301,8 @@
               "attr_type": 42,
               "attr_name": "Will_base",
               "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 32.0
+              "enhance_level": 2,
+              "value": 38.0
             },
             {
               "index": 2,
@@ -1309,8 +1317,8 @@
               "attr_type": 87,
               "attr_name": "PhysicalAndSpellInflictionEnhance_base",
               "formula": "BaseAddition",
-              "enhance_level": 0,
-              "value": 41.4
+              "enhance_level": 2,
+              "value": 49.68
             }
           ]
         }
@@ -1348,9 +1356,9 @@
           "skill_id": 14,
           "icon_url": "https://enka.network/ui/ef/skillicon/icon_skill_aglina_01.png",
           "element": "Natural",
-          "level": 8,
+          "level": 9,
           "max_level": 12,
-          "enhanced_level": 8
+          "enhanced_level": 9
         },
         "ultimate": {
           "skill_id": 15,
@@ -1364,9 +1372,9 @@
           "skill_id": 16,
           "icon_url": "https://enka.network/ui/ef/skillicon/icon_combo_skill_aglina_01.png",
           "element": "Natural",
-          "level": 8,
+          "level": 9,
           "max_level": 12,
-          "enhanced_level": 8
+          "enhanced_level": 9
         },
         "attack": {
           "skill_id": 13,
@@ -1413,17 +1421,17 @@
         ]
       },
       "stats": {
-        "str_val": 81,
-        "agi": 84,
-        "wisd": 280,
-        "will": 476,
-        "hp": 5395,
-        "atk": 2947,
+        "str_val": 82,
+        "agi": 85,
+        "wisd": 299,
+        "will": 510,
+        "hp": 6456,
+        "atk": 3326,
         "defense": 140,
         "crit_rate": 5.0,
         "crit_dmg": 50.0,
-        "arts_intensity": 62.099999999999994,
-        "healing_received_bonus": 47.6,
+        "arts_intensity": 76.838,
+        "healing_received_bonus": 51.0,
         "ultimate_gain_efficiency": 158.7,
         "element_dmg_bonus": 25.6,
         "element_dmg_type": "Natural",

@@ -1,0 +1,530 @@
+{
+    "1802": {
+      "rarity": 4,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0009.png",
+      "slug": "wpn_claym_0009",
+      "name": "Oathborn",
+      "name_hash": "-4609112903594886248"
+    },
+    "1801": {
+      "rarity": 4,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0003.png",
+      "slug": "wpn_funnel_0003",
+      "name": "Florescent Roc",
+      "name_hash": "6678494521303129225"
+    },
+    "1812": {
+      "rarity": 4,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0002.png",
+      "slug": "wpn_pistol_0002",
+      "name": "Howling Guard",
+      "name_hash": "44802552962745243"
+    },
+    "3267": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0019.png",
+      "slug": "wpn_sword_0019",
+      "name": "wpn_sword_0019",
+      "name_hash": "-1329975551577260521"
+    },
+    "1776": {
+      "rarity": 4,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0003.png",
+      "slug": "wpn_pistol_0003",
+      "name": "Long Road",
+      "name_hash": "783077045341572465"
+    },
+    "897": {
+      "rarity": 4,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0001.png",
+      "slug": "wpn_funnel_0001",
+      "name": "Hypernova Auto",
+      "name_hash": "-2019552733507290551"
+    },
+    "1819": {
+      "rarity": 6,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0011.png",
+      "slug": "wpn_lance_0011",
+      "name": "JET",
+      "name_hash": "-8678598177954940370"
+    },
+    "1810": {
+      "rarity": 5,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0004.png",
+      "slug": "wpn_pistol_0004",
+      "name": "Rational Farewell",
+      "name_hash": "-1726384258128348482"
+    },
+    "1798": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0005.png",
+      "slug": "wpn_pistol_0005",
+      "name": "Sculptor of Time",
+      "name_hash": "-4688376393957009563"
+    },
+    "1778": {
+      "rarity": 5,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0006.png",
+      "slug": "wpn_pistol_0006",
+      "name": "Opus: Stress",
+      "name_hash": "2184740646294663472"
+    },
+    "1793": {
+      "rarity": 4,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0003.png",
+      "slug": "wpn_lance_0003",
+      "name": "Pathfinder's Beacon",
+      "name_hash": "-6068143146164217015"
+    },
+    "1804": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0007.png",
+      "slug": "wpn_pistol_0007",
+      "name": "Home Longing",
+      "name_hash": "-2984635888785852228"
+    },
+    "3270": {
+      "rarity": 5,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0013.png",
+      "slug": "wpn_lance_0013",
+      "name": "wpn_lance_0013",
+      "name_hash": "-7517728112529886151"
+    },
+    "1813": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0008.png",
+      "slug": "wpn_pistol_0008",
+      "name": "Wedge",
+      "name_hash": "-5318664704038443001"
+    },
+    "2025": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0009.png",
+      "slug": "wpn_pistol_0009",
+      "name": "Clannibal",
+      "name_hash": "237536856779192000"
+    },
+    "3525": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0017.png",
+      "slug": "wpn_sword_0017",
+      "name": "wpn_sword_0017",
+      "name_hash": "-5072318978327197490"
+    },
+    "1780": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0007.png",
+      "slug": "wpn_sword_0007",
+      "name": "Fortmaker",
+      "name_hash": "-1170822565033827697"
+    },
+    "1809": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0010.png",
+      "slug": "wpn_sword_0010",
+      "name": "Umbral Torch",
+      "name_hash": "2231982712360458780"
+    },
+    "1783": {
+      "rarity": 4,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0008.png",
+      "slug": "wpn_lance_0008",
+      "name": "Aggeloslayer",
+      "name_hash": "8822408314463642803"
+    },
+    "3275": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0020.png",
+      "slug": "wpn_sword_0020",
+      "name": "wpn_sword_0020",
+      "name_hash": "-5682583205340247027"
+    },
+    "3262": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0015.png",
+      "slug": "wpn_sword_0015",
+      "name": "wpn_sword_0015",
+      "name_hash": "8145093674632378709"
+    },
+    "1779": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0005.png",
+      "slug": "wpn_sword_0005",
+      "name": "Sundering Steel",
+      "name_hash": "4071437936762064420"
+    },
+    "1818": {
+      "rarity": 4,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0003.png",
+      "slug": "wpn_claym_0003",
+      "name": "Industry 0.1",
+      "name_hash": "-5195668008198752422"
+    },
+    "1792": {
+      "rarity": 5,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0012.png",
+      "slug": "wpn_claym_0012",
+      "name": "Finishing Call",
+      "name_hash": "-7724333490536579654"
+    },
+    "3266": {
+      "rarity": 6,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0013.png",
+      "slug": "wpn_claym_0013",
+      "name": "wpn_claym_0013",
+      "name_hash": "5032726464451891463"
+    },
+    "3271": {
+      "rarity": 5,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0014.png",
+      "slug": "wpn_claym_0014",
+      "name": "wpn_claym_0014",
+      "name_hash": "642574601603060940"
+    },
+    "1814": {
+      "rarity": 6,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0004.png",
+      "slug": "wpn_claym_0004",
+      "name": "Exemplar",
+      "name_hash": "-3001687498852588460"
+    },
+    "1799": {
+      "rarity": 5,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0011.png",
+      "slug": "wpn_claym_0011",
+      "name": "Never Dull",
+      "name_hash": "-507430032526329009"
+    },
+    "1787": {
+      "rarity": 3,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0009.png",
+      "slug": "wpn_lance_0009",
+      "name": "Opero 77",
+      "name_hash": "-1905022870455162201"
+    },
+    "3273": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0021.png",
+      "slug": "wpn_sword_0021",
+      "name": "wpn_sword_0021",
+      "name_hash": "-7554233460720679627"
+    },
+    "1797": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0006.png",
+      "slug": "wpn_sword_0006",
+      "name": "The Fifth Heirloom",
+      "name_hash": "-1109747167756492602"
+    },
+    "1817": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0011.png",
+      "slug": "wpn_sword_0011",
+      "name": "Cerulean Resonance",
+      "name_hash": "1973066223536924127"
+    },
+    "3272": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0016.png",
+      "slug": "wpn_sword_0016",
+      "name": "wpn_sword_0016",
+      "name_hash": "8384767218372355757"
+    },
+    "3263": {
+      "rarity": 5,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0014.png",
+      "slug": "wpn_funnel_0014",
+      "name": "wpn_funnel_0014",
+      "name_hash": "-7091197217007239969"
+    },
+    "3261": {
+      "rarity": 5,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0012.png",
+      "slug": "wpn_funnel_0012",
+      "name": "wpn_funnel_0012",
+      "name_hash": "-7362843078327416024"
+    },
+    "1794": {
+      "rarity": 5,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0004.png",
+      "slug": "wpn_lance_0004",
+      "name": "Chimeric Justice",
+      "name_hash": "1260800784666033234"
+    },
+    "1803": {
+      "rarity": 4,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0008.png",
+      "slug": "wpn_sword_0008",
+      "name": "Contingent Measure",
+      "name_hash": "-5056931015556203329"
+    },
+    "3269": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0013.png",
+      "slug": "wpn_funnel_0013",
+      "name": "wpn_funnel_0013",
+      "name_hash": "-1537494103470220508"
+    },
+    "3260": {
+      "rarity": 5,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0018.png",
+      "slug": "wpn_sword_0018",
+      "name": "wpn_sword_0018",
+      "name_hash": "-5095478813001721221"
+    },
+    "1815": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0008.png",
+      "slug": "wpn_funnel_0008",
+      "name": "Chivalric Virtues",
+      "name_hash": "5227351883257320024"
+    },
+    "3264": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0011.png",
+      "slug": "wpn_funnel_0011",
+      "name": "wpn_funnel_0011",
+      "name_hash": "-8469995341331243725"
+    },
+    "1790": {
+      "rarity": 6,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0010.png",
+      "slug": "wpn_lance_0010",
+      "name": "Valiant",
+      "name_hash": "-4436135919595349462"
+    },
+    "2012": {
+      "rarity": 6,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0012.png",
+      "slug": "wpn_lance_0012",
+      "name": "Mountain Bearer",
+      "name_hash": "-8631404038748537017"
+    },
+    "3265": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0010.png",
+      "slug": "wpn_pistol_0010",
+      "name": "wpn_pistol_0010",
+      "name_hash": "8266882546363894424"
+    },
+    "3527": {
+      "rarity": 6,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0011.png",
+      "slug": "wpn_pistol_0011",
+      "name": "wpn_pistol_0011",
+      "name_hash": "67896441498939713"
+    },
+    "1789": {
+      "rarity": 6,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0008.png",
+      "slug": "wpn_claym_0008",
+      "name": "Abraxas",
+      "name_hash": "-8252975117473196252"
+    },
+    "3274": {
+      "rarity": 5,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0012.png",
+      "slug": "wpn_pistol_0012",
+      "name": "wpn_pistol_0012",
+      "name_hash": "3039561516477140105"
+    },
+    "1785": {
+      "rarity": 6,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0006.png",
+      "slug": "wpn_claym_0006",
+      "name": "Former Finery",
+      "name_hash": "7771444582359825028"
+    },
+    "1782": {
+      "rarity": 5,
+      "weapon_type": "Lance",
+      "icon": "/ui/ef/wpn_lance_0006.png",
+      "slug": "wpn_lance_0006",
+      "name": "Vortex of Talos",
+      "name_hash": "3791256304442110299"
+    },
+    "1788": {
+      "rarity": 3,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0003.png",
+      "slug": "wpn_sword_0003",
+      "name": "Tarr 11",
+      "name_hash": "-8977995465513072192"
+    },
+    "1816": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0014.png",
+      "slug": "wpn_sword_0014",
+      "name": "Heart's Content",
+      "name_hash": "-5486601487616328263"
+    },
+    "1811": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0013.png",
+      "slug": "wpn_sword_0013",
+      "name": "Torrent",
+      "name_hash": "-5040565645012012350"
+    },
+    "3524": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0022.png",
+      "slug": "wpn_sword_0022",
+      "name": "wpn_sword_0022",
+      "name_hash": "180869350560216944"
+    },
+    "1808": {
+      "rarity": 6,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0012.png",
+      "slug": "wpn_sword_0012",
+      "name": "Thermite Cutter",
+      "name_hash": "504161328765825530"
+    },
+    "3268": {
+      "rarity": 5,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0015.png",
+      "slug": "wpn_claym_0015",
+      "name": "wpn_claym_0015",
+      "name_hash": "-4096224548721604136"
+    },
+    "1806": {
+      "rarity": 3,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0010.png",
+      "slug": "wpn_claym_0010",
+      "name": "Darhoff 7",
+      "name_hash": "7777877059457266142"
+    },
+    "1796": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0010.png",
+      "slug": "wpn_funnel_0010",
+      "name": "Detonation Unit",
+      "name_hash": "-7407708142202564701"
+    },
+    "1791": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0009.png",
+      "slug": "wpn_funnel_0009",
+      "name": "Oblivion",
+      "name_hash": "5958661335505510863"
+    },
+    "1800": {
+      "rarity": 6,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0006.png",
+      "slug": "wpn_funnel_0006",
+      "name": "Opus: Etch Figure",
+      "name_hash": "1551839587735379560"
+    },
+    "1784": {
+      "rarity": 6,
+      "weapon_type": "Claymores",
+      "icon": "/ui/ef/wpn_claym_0007.png",
+      "slug": "wpn_claym_0007",
+      "name": "Thunderberge",
+      "name_hash": "-6946349366864208445"
+    },
+    "1786": {
+      "rarity": 5,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0007.png",
+      "slug": "wpn_funnel_0007",
+      "name": "Monaihe",
+      "name_hash": "-7538706656137713848"
+    },
+    "1777": {
+      "rarity": 5,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0004.png",
+      "slug": "wpn_funnel_0004",
+      "name": "Wild Wanderer",
+      "name_hash": "-5407485926004336253"
+    },
+    "1781": {
+      "rarity": 5,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0005.png",
+      "slug": "wpn_funnel_0005",
+      "name": "Stanza of Memorials",
+      "name_hash": "-6927181514487965292"
+    },
+    "1795": {
+      "rarity": 3,
+      "weapon_type": "Wand",
+      "icon": "/ui/ef/wpn_funnel_0002.png",
+      "slug": "wpn_funnel_0002",
+      "name": "Jiminy 12",
+      "name_hash": "-5357033486558439887"
+    },
+    "1608": {
+      "rarity": 3,
+      "weapon_type": "Pistol",
+      "icon": "/ui/ef/wpn_pistol_0001.png",
+      "slug": "wpn_pistol_0001",
+      "name": "Peco 5",
+      "name_hash": "7335365171316261327"
+    },
+    "1805": {
+      "rarity": 4,
+      "weapon_type": "Sword",
+      "icon": "/ui/ef/wpn_sword_0009.png",
+      "slug": "wpn_sword_0009",
+      "name": "Grand Finale",
+      "name_hash": "-8961014337499272877"
+    }
+  }

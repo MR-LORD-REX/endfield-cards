@@ -1,0 +1,26 @@
+{
+  "suitId": "suit_wisd01",
+  "suitNameI18nId": "-5097897904282876005",
+  "engName": "Wisdom Set",
+  "suitLogoName": "tundra_suit_wisd01",
+  "iconItemId": "item_equip_t2_suit_wisd01_edc_02",
+  "equipList": [
+    "item_equip_t2_suit_wisd01_edc_02",
+    "item_equip_t3_suit_wisd01_hand_01",
+    "item_equip_t2_suit_wisd01_body_01",
+    "item_equip_t3_suit_wisd01_body_01",
+    "item_equip_t3_suit_wisd01_body_02",
+    "item_equip_t2_suit_wisd01_edc_01",
+    "item_equip_t3_suit_wisd01_edc_01",
+    "item_equip_t2_suit_wisd01_edc_03",
+    "item_equip_t3_suit_wisd01_edc_02",
+    "item_equip_t2_suit_wisd01_hand_01"
+  ],
+  "tier": 3,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 10,
+  "setEffects": [],
+  "slug": "wisd-set"
+}

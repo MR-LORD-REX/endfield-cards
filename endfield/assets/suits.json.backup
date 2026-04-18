@@ -1,0 +1,107 @@
+{
+  "suit_burst01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_burst01.png",
+    "skill_id": 2073,
+    "name_hash": "8727527172877146838"
+  },
+  "suit_pulse_cryst01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_pulse_cryst01.png",
+    "skill_id": 1039,
+    "name_hash": "-8956651590176334632"
+  },
+  "suit_atk02": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_atk02.png",
+    "skill_id": 2072,
+    "name_hash": "-7630189515413167967"
+  },
+  "suit_criti01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_criti01.png",
+    "skill_id": 1068,
+    "name_hash": "1298184612084436356"
+  },
+  "suit_attri01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_attri01.png",
+    "skill_id": 1066,
+    "name_hash": "-5935672926878943329"
+  },
+  "suit_stragi01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_stragi01.png",
+    "skill_id": 1911,
+    "name_hash": "8944173534973994402"
+  },
+  "suit_atb01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_atb01.png",
+    "skill_id": 1067,
+    "name_hash": "-6465152567770222340"
+  },
+  "suit_phy01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_phy01.png",
+    "skill_id": 1069,
+    "name_hash": "2969356566561953360"
+  },
+  "suit_usp02": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_usp02.png",
+    "skill_id": 2075,
+    "name_hash": "-3082031696843561092"
+  },
+  "suit_agi01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_agi01.png",
+    "skill_id": 1082,
+    "name_hash": "-554118021033979760"
+  },
+  "suit_will01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_will01.png",
+    "skill_id": 1084,
+    "name_hash": "-921493216370650704"
+  },
+  "suit_atk01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_atk01.png",
+    "skill_id": 2071,
+    "name_hash": "2134558188647797356"
+  },
+  "suit_wisd01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_wisd01.png",
+    "skill_id": 1085,
+    "name_hash": "-5097897904282876005"
+  },
+  "suit_heal01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_heal01.png",
+    "skill_id": 1041,
+    "name_hash": "-5627439031669466608"
+  },
+  "suit_str01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_str01.png",
+    "skill_id": 1083,
+    "name_hash": "-8144875526851308493"
+  },
+  "suit_fire_natr01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_fire_natr01.png",
+    "skill_id": 1040,
+    "name_hash": "-6815447793938838187"
+  },
+  "suit_poise01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_poise01.png",
+    "skill_id": 1042,
+    "name_hash": "4652490134760473367"
+  },
+  "suit_usp01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_usp01.png",
+    "skill_id": 2074,
+    "name_hash": "-1756686334412141542"
+  },
+  "suit_wisdwill01": {
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_tundra_suit_wisdwill01.png",
+    "skill_id": 1912,
+    "name_hash": "7450612431920625701"
+  },
+  "suit_combo_cd01": {
+    "skill_id": 2846,
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_attri01.png",
+    "name_hash": "-4308353162611329431"
+  },
+  "suit_expend_spell01": {
+    "skill_id": 2847,
+    "icon": "/ui/ef/equipmentlogobigwhite/icon_pack_wuling_suit_usp02.png",
+    "name_hash": "-2034262180626135930"
+  }
+}

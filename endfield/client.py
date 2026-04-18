@@ -9,7 +9,7 @@ import aiohttp
 from .decoder import DataDecoder
 from .resolver import AssetResolver, ENKA_BASE
 from .calculator import StatCalculator
-from .errors import APIError, DecodeError, CharacterNotFoundError, WeaponNotFoundError
+from .errors import APIError, CharacterNotFoundError, WeaponNotFoundError
 from .models import (
     ShowcaseData, PlayerProfile, ProfileCharacter, DomainProgress,
     CharacterData, ComputedStats, SkillInfo, TalentInfo,
@@ -21,7 +21,6 @@ from .models import (
 logger = logging.getLogger(__name__)
 
 _ENKA_API = "https://enka.network/ef/{uid}/__data.json?x-sveltekit-invalidated=01"
-_SKILL_KEYS = ("normal", "ultimate", "combo", "attack")
 
 
 class Endfield:
@@ -30,7 +29,7 @@ class Endfield:
 
     Usage::
 
-        async with Endfield(assets_path="assets") as ef:
+        async with Endfield(assets_path="assets", debug=True) as ef:
             data = await ef.get_showcase(4225399080)
     """
 
@@ -40,19 +39,17 @@ class Endfield:
         session: Optional[aiohttp.ClientSession] = None,
         debug: bool = False,
     ) -> None:
-        self._assets_path = Path(assets_path)
+        self._assets_path = Path(__file__).parent / "assets"
         self._external_session = session
         self._session: Optional[aiohttp.ClientSession] = None
         self._resolver: Optional[AssetResolver] = None
-        self._debug = debug
-        
-        if debug:
-            logging.basicConfig(
-                level=logging.DEBUG,
-                format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-            )
-            logger.setLevel(logging.DEBUG)
-            logger.debug("DEBUG mode enabled for Endfield")
+
+        log_level = logging.DEBUG if debug else logging.WARNING
+        logging.basicConfig(
+            level=log_level,
+            format="%(levelname)s [%(name)s] %(message)s",
+        )
+        logger.setLevel(log_level)
 
     async def __aenter__(self) -> "Endfield":
         await self._init_session()
@@ -62,19 +59,11 @@ class Endfield:
         await self.close()
 
     async def _init_session(self) -> None:
-        if self._debug:
-            logger.debug("Initializing session...")
         if self._external_session:
             self._session = self._external_session
-            if self._debug:
-                logger.debug("Using external session")
         else:
             self._session = aiohttp.ClientSession()
-            if self._debug:
-                logger.debug("Created new aiohttp.ClientSession")
         self._resolver = AssetResolver(self._assets_path, self._session)
-        if self._debug:
-            logger.debug(f"AssetResolver initialized with assets_path: {self._resolver.assets_path}")
 
     async def close(self) -> None:
         if self._session and not self._external_session:
@@ -85,80 +74,48 @@ class Endfield:
     # ------------------------------------------------------------------
 
     async def get_showcase(self, uid: int | str) -> ShowcaseData:
-        if self._debug:
-            logger.debug(f"get_showcase called with uid={uid}")
         if not self._session:
             await self._init_session()
-
-        if self._debug:
-            logger.debug(f"Fetching API data for uid={uid}")
         raw = await self._fetch_api(str(uid))
-        
-        if self._debug:
-            logger.debug("Decoding raw API data")
         decoded = DataDecoder(raw).decode()
-        
-        if self._debug:
-            logger.debug("Building player profile")
         profile = await self._build_profile(uid, decoded)
-        
-        if self._debug:
-            logger.debug(f"Building {len(decoded.get('playerInfo', {}).get('charData', []))} characters")
         characters = await self._build_characters(decoded)
-
-        if self._debug:
-            logger.debug(f"Showcase retrieved successfully: {len(characters)} characters")
         return ShowcaseData(profile=profile, characters=characters)
+
+    # ------------------------------------------------------------------
+    # API fetch
+    # ------------------------------------------------------------------
 
     async def _fetch_api(self, uid: str) -> dict:
         url = _ENKA_API.format(uid=uid)
-        if self._debug:
-            logger.debug(f"API Request: GET {url}")
+        logger.debug("Fetching API: %s", url)
         async with self._session.get(url, timeout=aiohttp.ClientTimeout(total=15)) as resp:
-            if self._debug:
-                logger.debug(f"API Response status: {resp.status}")
             if resp.status != 200:
-                if self._debug:
-                    logger.error(f"API Error: {resp.status} for {url}")
                 raise APIError(resp.status, url)
-            data = await resp.json(content_type=None)
-            if self._debug:
-                logger.debug(f"API JSON decoded, data keys: {list(data.keys())}")
-            return data
+            return await resp.json(content_type=None)
 
+    # ------------------------------------------------------------------
+    # Profile builder
+    # ------------------------------------------------------------------
 
     async def _build_profile(self, uid: int | str, decoded: dict) -> PlayerProfile:
-        if self._debug:
-            logger.debug(f"_build_profile: Extracting businessCard for uid={uid}")
-        # All player info lives inside playerInfo.businessCard
-        card = decoded.get("playerInfo", {}).get("businessCard", {})
-        if self._debug:
-            logger.debug(f"_build_profile: Card keys: {list(card.keys()) if card else 'EMPTY'}")
+        card  = decoded.get("playerInfo", {}).get("businessCard", {})
         stats = card.get("statistic", {})
 
         domains = [
             DomainProgress(domain_id=d.get("domainId", ""), level=d.get("level", 0))
             for d in card.get("domainDev", {}).get("domains", [])
         ]
-        if self._debug:
-            logger.debug(f"_build_profile: Found {len(domains)} domains")
-
-        # charList templateIds are str_ids (e.g. "chr_0016_laevat"), not numeric
-        char_list_raw: list[dict] = card.get("charList", [])
-        if self._debug:
-            logger.debug(f"_build_profile: charList has {len(char_list_raw)} entries")
 
         profile_chars: list[ProfileCharacter] = []
-        for entry in char_list_raw:
+        for entry in card.get("charList", []):
             str_id = entry.get("templateId", "")
-            meta = self._resolver.get_character_by_str_id(str_id)
+            meta   = self._resolver.get_character_by_str_id(str_id)
             if meta is None:
                 logger.warning("charList str_id '%s' not in characters.json", str_id)
                 continue
-
-            tid = self._resolver.get_template_id(str_id)
             profile_chars.append(ProfileCharacter(
-                template_id=tid,
+                template_id=self._resolver.get_template_id(str_id),
                 str_id=str_id,
                 name=meta.get("name", ""),
                 level=entry.get("level", 1),
@@ -185,32 +142,22 @@ class Endfield:
             ttl=decoded.get("ttl"),
         )
 
-
+    # ------------------------------------------------------------------
+    # Character builders
+    # ------------------------------------------------------------------
 
     async def _build_characters(self, decoded: dict) -> list[CharacterData]:
         char_data_raw: list[dict] = decoded.get("playerInfo", {}).get("charData", [])
-        if self._debug:
-            logger.debug(f"_build_characters: Found {len(char_data_raw)} character data entries")
         results = []
-        for idx, raw_char in enumerate(char_data_raw):
+        for raw_char in char_data_raw:
             try:
-                if self._debug:
-                    logger.debug(f"_build_characters: Processing character {idx+1}/{len(char_data_raw)}")
-                char = await self._build_character(raw_char)
-                results.append(char)
-                if self._debug:
-                    logger.debug(f"_build_characters: Successfully built character {char.name}")
+                results.append(await self._build_character(raw_char))
             except Exception as exc:
-                tid = raw_char.get("templateId", "?")
-                logger.error("Failed to build character templateId=%s: %s", tid, exc)
-                if self._debug:
-                    logger.debug(f"Exception details: {type(exc).__name__}", exc_info=True)
-        if self._debug:
-            logger.debug(f"_build_characters: Built {len(results)}/{len(char_data_raw)} characters successfully")
+                logger.error("Failed to build templateId=%s: %s", raw_char.get("templateId", "?"), exc)
         return results
 
     async def _build_character(self, raw: dict) -> CharacterData:
-        tid = raw.get("templateId")
+        tid  = raw.get("templateId")
         meta = self._resolver.get_character(tid)
         if meta is None:
             raise CharacterNotFoundError(tid)
@@ -221,31 +168,21 @@ class Endfield:
         element   = meta.get("element", "")
         assets    = meta.get("assets", {})
 
-        talent_raw  = raw.get("talent", {})
-        attr_nodes  = talent_raw.get("attrNodes", [])
-        break_node  = talent_raw.get("latestBreakNode", "")
-        ascension   = self._resolver.get_break_to_ascension().get(break_node, 0)
+        talent_raw = raw.get("talent", {})
+        attr_nodes = talent_raw.get("attrNodes", [])
+        break_node = talent_raw.get("latestBreakNode", "")
+        ascension  = self._resolver.get_break_to_ascension().get(break_node, 0)
 
-        # -- Equips --
-        equip_raw_list: list[dict] = raw.get("equip", [])
+        equip_raw_list       = raw.get("equip", [])
         equip_pairs, suit_pieces = await self._resolve_equips(equip_raw_list)
-        equip_models = self._build_equip_models(equip_raw_list, equip_pairs)
-
-
+        equip_models         = self._build_equip_models(equip_pairs)
         suit_models, suit_details = await self._build_suit_sets(suit_pieces)
 
-
-        weapon_raw    = raw.get("weapon", {})
+        weapon_raw = raw.get("weapon", {})
         weapon_model, weapon_detail, skill_levels = await self._build_weapon(weapon_raw)
 
-
-        skill_models = self._build_skills(raw.get("skillInfo", {}), meta)
-
-
-        talent_model = self._build_talents(
-            talent_raw, break_node, ascension, meta, str_id
-        )
-
+        skill_models  = self._build_skills(raw.get("skillInfo", {}), meta)
+        talent_model  = self._build_talents(talent_raw, break_node, ascension, meta)
 
         stats: Optional[ComputedStats] = None
         try:
@@ -253,7 +190,7 @@ class Endfield:
                 char_meta=meta,
                 level=level,
                 attr_nodes=attr_nodes,
-                equip_pairs=[(slot_raw, eq_meta) for slot_raw, eq_meta in equip_pairs],
+                equip_pairs=equip_pairs,
                 weapon_raw=weapon_raw,
                 weapon_detail=weapon_detail,
                 weapon_skill_levels=skill_levels,
@@ -262,12 +199,10 @@ class Endfield:
                 element=element,
                 main_attr_id=meta.get("main_attr_id", 41),
                 sub_attr_id=meta.get("sub_attr_id", 39),
-                debug=self._debug,
+                api_id_map=self._resolver.api_id_map,
             )
         except Exception as exc:
-            logger.error("Stat calculation failed for %s: %s", str_id, exc)
-            if self._debug:
-                logger.debug(f"Stat calculation exception details:", exc_info=True)
+            logger.error("Stat calc failed for %s: %s", str_id, exc)
 
         return CharacterData(
             template_id=tid,
@@ -290,38 +225,37 @@ class Endfield:
             stats=stats,
         )
 
+    # ------------------------------------------------------------------
+    # Weapon builder
+    # ------------------------------------------------------------------
 
     async def _build_weapon(
         self, raw: dict
     ) -> tuple[Optional[WeaponData], Optional[dict], list[int]]:
-        tid       = raw.get("templateId")
-        wpn_meta  = self._resolver.weapons.get(str(tid))
+        tid      = raw.get("templateId")
+        wpn_meta = self._resolver.weapons.get(str(tid))
         if wpn_meta is None:
             logger.warning("Weapon templateId %s not in weapons.json", tid)
             return None, None, []
 
-        weapon_id      = wpn_meta.get("slug", "")
-        weapon_detail  = await self._resolver.get_weapon_detail(weapon_id)
-
+        weapon_id     = wpn_meta.get("slug", "")
+        weapon_detail = await self._resolver.get_weapon_detail(weapon_id)
         if weapon_detail is None:
-            logger.warning("No detail for weapon %s; skipping skill resolution", weapon_id)
+            logger.warning("No detail found for weapon %s", weapon_id)
             return None, None, []
 
-        bt_lv      = raw.get("breakthroughLv", 0)
-        gem        = raw.get("attachedGem", {})
-        # terms is [{termNumId: ..., cost: extra_levels}, ...] ordered by skill index
-        gem_terms  = [
+        bt_lv     = raw.get("breakthroughLv", 0)
+        gem       = raw.get("attachedGem", {})
+        gem_terms = [
             {"cost": t.get("cost", 0)}
             for t in (gem.get("terms") or [])
             if isinstance(t, dict)
         ]
-        skill_levels = StatCalculator.get_weapon_skill_levels(
-            weapon_detail, bt_lv, gem_terms
-        )
+        skill_levels = StatCalculator.get_weapon_skill_levels(weapon_detail, bt_lv, gem_terms)
 
-        wpn_lv    = raw.get("weaponLv", 1)
-        base_atk  = next(
-            (e["baseAtk"] for e in
+        wpn_lv   = raw.get("weaponLv", 1)
+        base_atk = next(
+            (float(e["baseAtk"]) for e in
              weapon_detail.get("progression", {}).get("upgrade", {}).get("list", [])
              if e.get("weaponLv") == wpn_lv),
             0.0,
@@ -341,9 +275,7 @@ class Endfield:
             breakthrough_lv=bt_lv,
             base_atk=base_atk,
             skill_levels=skill_levels,
-            icon_url=self._resolver.icon_url(
-                f"/ui/ef/itemicon/{weapon_id}.png"
-            ),
+            icon_url=self._resolver.icon_url(f"/ui/ef/itemicon/{weapon_id}.png"),
             stat_bonuses=stat_bonuses,
             passive_skills=passive_skills,
         )
@@ -353,37 +285,22 @@ class Endfield:
         self, detail: dict, skill_levels: list[int]
     ) -> list[WeaponStatBonus]:
         bonuses: list[WeaponStatBonus] = []
-        skill_list: list[str] = detail.get("weaponSkillList", [])
-        skills_data: dict     = detail.get("skills", {})
-        # Support both standard and alternative key formats
-        prop_id_map = {"wisd": 41, "agi": 40, "str": 39, "str_val": 39, "will": 42, "atk": 2}
+        prop_id_map = {"wisd": 41, "agi": 40, "str": 39, "will": 42, "atk": 2}
         name_map    = {41: "Wisd_base", 40: "Agi_base", 39: "Str_base",
                        42: "Will_base",  2: "Atk_base"}
 
-        for i, skill_id in enumerate(skill_list):
-            bundle = skills_data.get(skill_id, {}).get("SkillPatchDataBundle", [])
+        for i, skill_id in enumerate(detail.get("weaponSkillList", [])):
+            bundle = detail.get("skills", {}).get(skill_id, {}).get("SkillPatchDataBundle", [])
             if not bundle or not bundle[0].get("tagId", "").startswith("attr_"):
                 continue
-
             lv = skill_levels[i] if i < len(skill_levels) else 1
-            bb = StatCalculator.get_skill_blackboard(detail, skill_id, lv)
-
-            if self._debug:
-                logger.debug(f"_build_weapon_stat_bonuses: skill_id={skill_id}, level={lv}, blackboard keys: {[e.get('key') for e in bb]}")
-
-            for entry in bb:
-                key = entry.get("key", "")
-                val = float(entry.get("value", 0.0))
+            for bb in StatCalculator.get_skill_blackboard(detail, skill_id, lv):
+                key = bb.get("key", "")
+                val = float(bb.get("value", 0.0))
                 prop_id = prop_id_map.get(key)
                 if prop_id is None:
-                    if self._debug:
-                        logger.debug(f"_build_weapon_stat_bonuses: Unknown key '{key}' with value {val}")
                     continue
-                is_pct = (key == "atk")
-                
-                if self._debug:
-                    logger.debug(f"_build_weapon_stat_bonuses: Adding bonus - key={key}, prop_id={prop_id}, value={val}, is_pct={is_pct}")
-                
+                is_pct = key == "atk"
                 bonuses.append(WeaponStatBonus(
                     prop_id=prop_id,
                     prop_name=name_map.get(prop_id, key),
@@ -392,42 +309,24 @@ class Endfield:
                     display=f"{val * 100:.1f}%" if is_pct else str(int(val)),
                     icon_url=f"{ENKA_BASE}/ui/ef/attributeicon/{key.capitalize()}.png",
                 ))
-        
-        if self._debug:
-            logger.debug(f"_build_weapon_stat_bonuses: Built {len(bonuses)} total bonuses")
-        
         return bonuses
 
     def _build_weapon_passives(
         self, detail: dict, skill_levels: list[int]
     ) -> list[WeaponPassiveSkill]:
         passives: list[WeaponPassiveSkill] = []
-        skill_list: list[str] = detail.get("weaponSkillList", [])
-        skills_data: dict     = detail.get("skills", {})
-
-        for i, skill_id in enumerate(skill_list):
-            bundle = skills_data.get(skill_id, {}).get("SkillPatchDataBundle", [])
+        for i, skill_id in enumerate(detail.get("weaponSkillList", [])):
+            bundle = detail.get("skills", {}).get(skill_id, {}).get("SkillPatchDataBundle", [])
             if not bundle or bundle[0].get("tagId", "").startswith("attr_"):
-                if self._debug:
-                    logger.debug(f"_build_weapon_passives: Skipping skill_id={skill_id} (tagged as attribute or empty)")
                 continue
-
             lv = skill_levels[i] if i < len(skill_levels) else 1
             bb = StatCalculator.get_skill_blackboard(detail, skill_id, lv)
-
-            if self._debug:
-                logger.debug(f"_build_weapon_passives: skill_id={skill_id}, tag_id={bundle[0].get('tagId', '')}, level={lv}, blackboard: {bb}")
-
             passives.append(WeaponPassiveSkill(
                 skill_id=skill_id,
                 level=lv,
                 blackboard=[BlackboardEntry(key=e["key"], value=e["value"]) for e in bb],
                 tag_id=bundle[0].get("tagId", ""),
             ))
-        
-        if self._debug:
-            logger.debug(f"_build_weapon_passives: Built {len(passives)} passive skills")
-        
         return passives
 
     # ------------------------------------------------------------------
@@ -437,36 +336,29 @@ class Endfield:
     async def _resolve_equips(
         self, equip_list: list[dict]
     ) -> tuple[list[tuple[dict, Optional[dict]]], dict[str, int]]:
-        """Return (equip_raw, equip_meta) pairs + suit piece counts.
-        Raw equip entries are {key: slot_id, value: {templateid, enhance, ...}}.
-        """
+        """Raw entries are {key: slot_id, value: {templateid, enhance, ...}}."""
         pairs: list[tuple[dict, Optional[dict]]] = []
         suit_pieces: dict[str, int] = {}
-
         for entry in equip_list:
             slot_data = entry.get("value", entry)
-            tid = slot_data.get("templateid") or slot_data.get("templateId")
+            tid  = slot_data.get("templateid") or slot_data.get("templateId")
             meta = self._resolver.get_equipment(tid)
             if meta is None:
                 logger.warning("Equipment templateId %s not in equipments.json", tid)
             else:
-                suit_id = meta.get("suit_id", "")
-                suit_pieces[suit_id] = suit_pieces.get(suit_id, 0) + 1
+                sid = meta.get("suit_id", "")
+                suit_pieces[sid] = suit_pieces.get(sid, 0) + 1
             pairs.append((slot_data, meta))
-
         return pairs, suit_pieces
 
     def _build_equip_models(
-        self,
-        raw_list: list[dict],
-        pairs: list[tuple[dict, Optional[dict]]],
+        self, pairs: list[tuple[dict, Optional[dict]]]
     ) -> list[EquipData]:
         models: list[EquipData] = []
-        for idx, (slot_raw, meta) in enumerate(pairs):
+        for slot_raw, meta in pairs:
             if meta is None:
                 continue
             tid = slot_raw.get("templateid") or slot_raw.get("templateId")
-            # enhance is [{key: attr_modifier_index, value: enhance_level}, ...]
             enhance_map = {
                 e.get("key", -1): e.get("value", 0)
                 for e in slot_raw.get("enhance", [])
@@ -474,10 +366,10 @@ class Endfield:
             }
             modifiers: list[AttrModifier] = []
             for i, mod in enumerate(meta.get("attr_modifiers", [])):
-                attr_type  = mod["attr_type"]
-                enh_lv     = enhance_map.get(i, 0)
-                values     = mod.get("values", [0.0])
-                value      = float(values[min(enh_lv, len(values) - 1)])
+                attr_type = mod["attr_type"]
+                enh_lv    = enhance_map.get(i, 0)
+                values    = mod.get("values", [0.0])
+                value     = float(values[min(enh_lv, len(values) - 1)])
                 modifiers.append(AttrModifier(
                     index=i,
                     attr_type=attr_type,
@@ -487,7 +379,7 @@ class Endfield:
                     value=value,
                 ))
             models.append(EquipData(
-                slot_id=slot_raw.get("key", idx),
+                slot_id=slot_raw.get("key", 0),
                 template_id=tid,
                 rarity=meta.get("rarity", 0),
                 suit_id=meta.get("suit_id", ""),
@@ -503,7 +395,7 @@ class Endfield:
     async def _build_suit_sets(
         self, suit_pieces: dict[str, int]
     ) -> tuple[dict[str, SuitSet], dict[str, dict]]:
-        suit_models: dict[str, SuitSet]  = {}
+        suit_models:  dict[str, SuitSet] = {}
         suit_details: dict[str, dict]    = {}
 
         for suit_id, count in suit_pieces.items():
@@ -512,9 +404,9 @@ class Endfield:
             if detail:
                 suit_details[suit_id] = detail
 
-            icon_path = basic.get("icon", "") if basic else ""
+            icon_path    = basic.get("icon", "") if basic else ""
+            is_active    = False
             active_bonus: Optional[SuitSetEffect] = None
-            is_active = False
 
             if detail:
                 for effect in detail.get("setEffects", []):
@@ -544,41 +436,30 @@ class Endfield:
     def _build_skills(
         self, skill_info: dict, char_meta: dict
     ) -> dict[str, Optional[SkillInfo]]:
-        level_list: list[dict] = skill_info.get("levelInfo", [])
-        skill_id_map = {e.get("skillId"): e for e in level_list}
+        level_map  = {e.get("skillId"): e for e in skill_info.get("levelInfo", [])}
+        icon_map   = char_meta.get("skill_info_map", {})
 
-        normal_id   = skill_info.get("normalSkill")
-        ultimate_id = skill_info.get("ultimateSkill")
-        combo_id    = skill_info.get("comboSkill")
-        disp_id     = skill_info.get("dispNormalAttackSkill")
-
-        skill_id_to_key = {
-            normal_id:   "normal",
-            ultimate_id: "ultimate",
-            combo_id:    "combo",
-            disp_id:     "attack",
+        mapping = {
+            "normal":   skill_info.get("normalSkill"),
+            "ultimate": skill_info.get("ultimateSkill"),
+            "combo":    skill_info.get("comboSkill"),
+            "attack":   skill_info.get("dispNormalAttackSkill"),
         }
-
-        icon_map: dict = char_meta.get("skill_info_map", {})
         result: dict[str, Optional[SkillInfo]] = {}
-
-        for skill_id, key in skill_id_to_key.items():
+        for key, skill_id in mapping.items():
             if skill_id is None:
                 result[key] = None
                 continue
-            entry = skill_id_map.get(skill_id)
+            entry = level_map.get(skill_id)
             meta  = icon_map.get(str(skill_id), {})
-            if entry is None:
-                result[key] = None
-                continue
             result[key] = SkillInfo(
                 skill_id=skill_id,
                 icon_url=self._resolver.icon_url(meta.get("icon", "")),
                 element=meta.get("element", ""),
-                level=entry.get("skillLevel", 1),
-                max_level=entry.get("skillMaxLevel", 1),
-                enhanced_level=entry.get("skillEnhancedLevel", 1),
-            )
+                level=entry.get("skillLevel", 1) if entry else 1,
+                max_level=entry.get("skillMaxLevel", 1) if entry else 1,
+                enhanced_level=entry.get("skillEnhancedLevel", 1) if entry else 1,
+            ) if entry else None
         return result
 
     # ------------------------------------------------------------------
@@ -591,31 +472,24 @@ class Endfield:
         break_node: str,
         ascension: int,
         char_meta: dict,
-        str_id: str,
     ) -> Optional[TalentInfo]:
         if not talent_raw:
             return None
-
-        node_map: dict = char_meta.get("node_skill_map", {})
+        node_map = char_meta.get("node_skill_map", {})
 
         passive_nodes = [
             TalentPassiveNode(
                 node_id=nid,
-                icon_url=self._resolver.icon_url(
-                    node_map.get(nid, {}).get("icon", "")
-                ),
+                icon_url=self._resolver.icon_url(node_map.get(nid, {}).get("icon", "")),
                 level=node_map.get(nid, {}).get("level", 1),
                 index=node_map.get(nid, {}).get("index", 0),
             )
             for nid in talent_raw.get("latestPassiveSkillNodes", [])
         ]
-
         factory_nodes = [
             TalentFactoryNode(
                 node_id=nid,
-                icon_url=self._resolver.icon_url(
-                    node_map.get(nid, {}).get("icon", "")
-                ),
+                icon_url=self._resolver.icon_url(node_map.get(nid, {}).get("icon", "")),
                 level=node_map.get(nid, {}).get("level", 1),
                 index=node_map.get(nid, {}).get("index", 0),
             )

@@ -122,5 +122,25 @@
   "heal": {
     "id": 29,
     "tag": "HealOutputIncrease_base"
+  },
+  "cryst_dmg_up2": {
+    "id": 53,
+    "tag": "CrystDamageIncrease_base"
+  },
+  "dmg_up2": {
+    "id": -101,
+    "tag": "AllSkillDamageIncrease"
+  },
+  "normal_atk_up": {
+    "id": 17,
+    "tag": "NormalAttackDamageIncrease_base"
+  },
+  "spell_dmg_up2": {
+    "id": 87,
+    "tag": "PhysicalAndSpellInflictionEnhance_base"
+  },
+  "crit_up2": {
+    "id": 9,
+    "tag": "CriticalRate_base"
   }
 }

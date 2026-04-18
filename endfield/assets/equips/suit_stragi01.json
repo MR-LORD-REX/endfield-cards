@@ -1,0 +1,20 @@
+{
+  "suitId": "suit_stragi01",
+  "suitNameI18nId": "8944173534973994402",
+  "engName": "Strength Agility Set",
+  "suitLogoName": "tundra_suit_stragi01",
+  "iconItemId": "item_equip_t1_suit_stragi01_body_01",
+  "equipList": [
+    "item_equip_t1_suit_stragi01_body_01",
+    "item_equip_t1_suit_stragi01_edc_01",
+    "item_equip_t1_suit_stragi01_edc_02",
+    "item_equip_t1_suit_stragi01_hand_01"
+  ],
+  "tier": 2,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 4,
+  "setEffects": [],
+  "slug": "stragi-set"
+}

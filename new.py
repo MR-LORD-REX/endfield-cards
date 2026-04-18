@@ -1,21 +1,24 @@
 from endfield import  Endfield
 import asyncio
 
-uid = 4225399080
+uid = 4371235478
 
 async def main():
     async with Endfield(debug=True) as client:
         data = await client.get_showcase(uid)
+        json_data = data.model_dump_json(indent=2)
+        with open("showcase.json", "w", encoding="utf-8") as fh:
+            fh.write(json_data)
         for char in data.characters:
             print(f"\n{'='*60}")
             print(f"Character: {char.name} ({char.str_id})")
             print(f"{'='*60}")
-            if char.stats:
-                print(f"STR: {char.stats.str_val}, AGI: {char.stats.agi}, WISD: {char.stats.wisd}, WILL: {char.stats.will}")
-                print(f"HP: {char.stats.hp}, ATK: {char.stats.atk}, DEF: {char.stats.defense}")
-                print(f"Crit Rate: {char.stats.crit_rate}%, Crit DMG: {char.stats.crit_dmg}%")
-                print(f"Ultimate Gain: {char.stats.ultimate_gain_efficiency}%")
-                print(f"Healing Received: {char.stats.healing_received_bonus}%")
-                print(f"Arts Intensity: {char.stats.arts_intensity}")
+            for stat in char.stats:
+                print(stat)
+            # for equip in char.equips:
+            #     print(f"\n{'-'*40}")
+            #     print(f"Equip: {equip.} ({equip.str_id})")
+
+            
         
 asyncio.run(main())

@@ -1,0 +1,23 @@
+{
+  "suitId": "suit_poise01",
+  "suitNameI18nId": "4652490134760473367",
+  "engName": "Poise Set",
+  "suitLogoName": "wuling_suit_poise01",
+  "iconItemId": "item_equip_t4_suit_poise01_hand_02",
+  "equipList": [
+    "item_equip_t4_suit_poise01_hand_02",
+    "item_equip_t4_suit_poise01_edc_04",
+    "item_equip_t4_suit_poise01_edc_03",
+    "item_equip_t4_suit_poise01_edc_02",
+    "item_equip_t4_suit_poise01_edc_01",
+    "item_equip_t4_suit_poise01_body_01",
+    "item_equip_t4_suit_poise01_hand_01"
+  ],
+  "tier": 5,
+  "setEffectCounts": [
+    3
+  ],
+  "totalPieces": 7,
+  "setEffects": [],
+  "slug": "poise-set"
+}
