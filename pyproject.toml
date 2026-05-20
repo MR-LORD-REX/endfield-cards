@@ -4,7 +4,7 @@ build-backend="setuptools.build_meta"
 
 [project]
 name="endfield-cards"
-version="1.0.0"
+version="1.0.1"
 description="A library for creating beautiful cards for Endfield."
 authors=[
     { name="sora", email="sahikast07@gmail.com" }
@@ -21,21 +21,13 @@ dependencies=[
 [tool.setuptools.packages.find]
 where=["src"]
 
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools]
+include-package-data=true
+
 [tool.setuptools.package-data]
 ef_cards = [
-    "assets/**/*",
-    "assets/char1/**/*",
-    "assets/char1/main/**/*",
-    "assets/char1/relics/**/*",
-    "assets/char1/skills/**/*",
-    "assets/char1/stats/**/*",
-    "assets/char1/weapon/**/*",
-    "assets/common/**/*",
-    "assets/elements/**/*",
-    "assets/fonts/**/*",
-    "assets/phases/**/*",
-    "assets/prof/**/*",
-    "assets/profile1/**/*",
-    "assets/props/**/*",
-    "assets/weap_types/**/*"
+    "assets/**/*"
 ]
