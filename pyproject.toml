@@ -1,0 +1,41 @@
+[build-system]
+requires=["setuptools>=61.0"]
+build-backend="setuptools.build_meta"
+
+[project]
+name="endfield-cards"
+version="1.0.0"
+description="A library for creating beautiful cards for Endfield."
+authors=[
+    { name="sora", email="sahikast07@gmail.com" }
+]
+readme="README.md"
+license={file="LICENSE.txt"}
+dependencies=[
+    "pydantic>=2.5",
+    "aiohttp>=3.9",
+    "endfield-py>=1.0.6",
+    "pillow>=12.2.0",
+    "numpy>=2.4.5"
+]
+[tool.setuptools.packages.find]
+where=["src"]
+
+[tool.setuptools.package-data]
+ef_cards = [
+    "assets/**/*",
+    "assets/char1/**/*",
+    "assets/char1/main/**/*",
+    "assets/char1/relics/**/*",
+    "assets/char1/skills/**/*",
+    "assets/char1/stats/**/*",
+    "assets/char1/weapon/**/*",
+    "assets/common/**/*",
+    "assets/elements/**/*",
+    "assets/fonts/**/*",
+    "assets/phases/**/*",
+    "assets/prof/**/*",
+    "assets/profile1/**/*",
+    "assets/props/**/*",
+    "assets/weap_types/**/*"
+]
