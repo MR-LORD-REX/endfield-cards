@@ -1,4 +1,4 @@
-from ef_cards import EFCard
+from endfield_cards import EFCard
 from endfield import Endfield
 
 import asyncio

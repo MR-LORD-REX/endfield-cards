@@ -46,12 +46,16 @@ async def build_skill(skill_info: SkillInfo, value: float | None = None,id:str|N
 async def build_skill_panel(skill_meta: SkillMeta,stats:ComputedStatsWithDetails|None=None) -> Image.Image:
     main_bg = Image.new("RGBA",(537,100),(0,0,0,0))
     main_bg=main_bg.copy()
-    t=[]
-    skills=skill_meta.skills
-    skills[0],skills[2]=skills[2],skills[0]
-    skills[1],skills[0]=skills[0],skills[1]
-    values=[]
+    flow=[]
+    flow.append(skill_meta.disp_normal_atk_skill)
+    flow.append(skill_meta.normal_skill)
+    flow.append(skill_meta.combo_skill)
+    flow.append(skill_meta.ultimate_skill)
     
+    map={str(_id):index for index, _id in enumerate(flow)}
+    skills=sorted(skill_meta.skills,key=lambda s: map.get(str(s.skill_id),float('inf')))
+    t=[]
+    values=[]
     values.append((stats.all[5].value,stats.all[5].stat_id))
     values.append((stats.all[9].value,stats.all[9].stat_id))
     values.append((stats.all[10].value,stats.all[10].stat_id))

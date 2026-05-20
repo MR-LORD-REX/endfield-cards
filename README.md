@@ -210,6 +210,7 @@ If you encounter any issues or have questions:
 1. Check the [examples](src/examples/) directory for usage patterns
 2. Enable debug mode to see detailed logs
 3. Open an issue on [GitHub](https://github.com/MR-LORD-REX/endfield-cards/issues)
+4. Contact me on [Telegram](https://t.me/The_Prime_Mover)
 
 ## Related Projects
 

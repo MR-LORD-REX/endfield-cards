@@ -14,7 +14,7 @@ license={file="LICENSE.txt"}
 dependencies=[
     "pydantic>=2.5",
     "aiohttp>=3.9",
-    "endfield-py>=1.0.6",
+    "endfield-py>=1.0.7",
     "pillow>=12.2.0",
     "numpy>=2.4.5"
 ]

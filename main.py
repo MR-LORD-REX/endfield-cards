@@ -1,14 +1,13 @@
-from src.ef_cards import EFCard
+from src.endfield_cards import EFCard
 from endfield import Endfield
 
 import asyncio
 uid=4225399080
 async def main():
     try:
-        async with EFCard() as card:
-            cards=await card.get_all_characters_card(uid)
-            for c in cards:
-                c.show()
+        async with EFCard(debug=True) as card:
+            card=await card.get_character_card(uid, char_index=1)
+            card.show()
     except Exception as e:
         print(f"Error in main: {e}")
 
