@@ -150,14 +150,14 @@ Includes:
 ## Example Output
 
 ### Character Card
-![Character Card Example](docs/examples/character_card_example.png)
+![Character Card Example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/char_card1.png)
 
 ### Profile Card
-![Profile Card Example](docs/examples/profile_card_example.png)
+![Profile Card Example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/profile_card1.png)
 
 ## Data Sources
 
-- **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Official Endfield game data wrapper
+- **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Endfield game data wrapper developed by me
 - **Assets & Player Data**: [enka.network](https://enka.network) - Community-driven asset and player data provider
 
 ## Configuration
@@ -185,25 +185,6 @@ async with EFCard(ef=ef) as ef_card:
     pass
 ```
 
-## Project Structure
-
-```
-endfield-cards/
-├── src/
-│   └── ef_cards/
-│       ├── client.py              # Main EFCard class
-│       ├── models/                # Data models
-│       ├── character/             # Character card templates
-│       ├── profile/               # Profile card templates
-│       ├── utils/                 # Utility functions
-│       │   ├── assets/            # Asset management
-│       │   ├── fonts/             # Font handling
-│       │   └── render/            # Image rendering
-│       └── assets/                # Game assets (fonts, images, etc.)
-├── examples/                      # Usage examples
-├── pyproject.toml
-└── README.md
-```
 
 ## Contributing
 
