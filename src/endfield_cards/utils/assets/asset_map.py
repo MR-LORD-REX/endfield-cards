@@ -26,7 +26,9 @@ asset_mapping: Dict[str, Path] = {
     "53": assets_base_path / "props" / "CrystDamageIncrease.png",
     "54": assets_base_path / "props" / "NaturalDamageIncrease.png",
     "55": assets_base_path / "props" / "EtherDamageIncrease.png",
+    "61": assets_base_path / "props" / "DamageToBrokenUnitIncrease.png",
     "87": assets_base_path / "props" / "PhysicalAndSpellInflictionEnhance.png",
+    "-100": assets_base_path / "props" / "ArtsIncrease.png",
     
     "ASSAULT": assets_base_path / "prof" / "assault.png",
     "CASTER": assets_base_path / "prof" / "caster.png",
@@ -98,7 +100,7 @@ asset_mapping: Dict[str, Path] = {
 
 asset_lit=Literal["0","1","2","3","9","10","17",
     "28","29","30","32","33","39","40","41","42",
-    "44","50","51","52","53","54","55","87",
+    "44","50","51","52","53","54","55","87", "61","-100",
     "ASSAULT","CASTER","DEFENDER","GUARD","SUPPORTER","VANGUARD",
     "c1_enc_lvl","c1_relic_bg","c1_relic_gold_line",
     "c1_stats_bg","c1_stats_top_stat_rect","c1_stats_main_stat","c1_stats_sub_stat",
@@ -111,5 +113,5 @@ asset_lit=Literal["0","1","2","3","9","10","17",
     "Physical","Fire","Pulse","Cryst","Natural","ether",
     "Claymores","Lance","Pistol","Sword","Wand", "pfp1_medals_bg",
     "pfp_char_bottom","pfp_char_bg","pfp_char_show_bg",
-    "pfp_details_bg","pfp1_avatar_layout","pfp1_pfp_bg"
+    "pfp_details_bg","pfp1_avatar_layout","pfp1_pfp_bg",
     ]

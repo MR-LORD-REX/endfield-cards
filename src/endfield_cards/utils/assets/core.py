@@ -184,7 +184,7 @@ class AssetManager:
 
 
 registry = AssetsRegistry(asset_mapping)
-cache = AssetCache(max_raw=200, max_sized=200)
+cache = AssetCache(max_raw=50, max_sized=50)
 loader = AssetLoader(registry, cache)
 processor = AssetProcessor()
 asset_manager = AssetManager(registry, cache, loader, processor)

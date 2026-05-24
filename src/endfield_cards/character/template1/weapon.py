@@ -13,6 +13,11 @@ from endfield.models.weapon import Gem, WeaponData, MainStat
 font = get_font(size=20)
 logger = logging.getLogger(__name__)
 
+special_prop_ids = {
+    "10000": "Main_ratio",
+    "10001": "Sub_ratio",
+}
+
 
 async def build_attri_level(base_lvl: int = 1, current_lvl: int = 1, max_lvl: int = 9) -> Image.Image | None:
     main_bg, gold, white, none_img = await asyncio.gather(
@@ -35,10 +40,26 @@ async def build_attri_level(base_lvl: int = 1, current_lvl: int = 1, max_lvl: in
     return main_bg
 
 
-async def build_attri_section(weapon_skill: WeaponSkill) -> Image.Image | None:
+async def build_attri_section(weapon_skill: WeaponSkill,main_prop_id:str,sub_prop_id:str) -> Image.Image | None:
+    if isinstance(weapon_skill.prop_id, str):
+        prop_id = weapon_skill.prop_id
+    elif isinstance(weapon_skill.prop_id, list) and len(weapon_skill.prop_id) > 0:
+        prop_id = "-100" 
+    else:
+        logger.warning(f"build_attri_section: unrecognized prop_id format '{weapon_skill.prop_id}', expected str or non-empty list")
+        return None
+    if prop_id in special_prop_ids.keys():
+        if prop_id=="10000":
+            prop_id=main_prop_id
+        elif prop_id=="10001":
+            prop_id=sub_prop_id
+        else:
+            logger.warning(f"build_attri_section: unrecognized special prop_id '{prop_id}', defaulting to original prop_id")
+            return None
+    
     attri_lvl, icon = await asyncio.gather(
         build_attri_level(weapon_skill.base_lvl, weapon_skill.current_lvl, weapon_skill.max_lvl),
-        asset_manager.get_asset(str(weapon_skill.prop_id), (27, 27)),
+        asset_manager.get_asset(prop_id, (27, 27)),
     )
     if attri_lvl is None:
         logger.warning(f"build_attri_section: level bar is None for prop_id='{weapon_skill.prop_id}'")
@@ -52,7 +73,13 @@ async def build_attri_section(weapon_skill: WeaponSkill) -> Image.Image | None:
     main_bg.alpha_composite(icon, (4, 30))
 
     draw = ImageDraw.Draw(main_bg)
-    value_text = f"+{round(weapon_skill.value * 100, 1)}%" if weapon_skill.value < 1.5 else f"+{int(weapon_skill.value)}"
+    value=weapon_skill.value
+    if prop_id == "-100":
+        value = weapon_skill.value[0] if isinstance(weapon_skill.value, list) and len(weapon_skill.value) > 0 else None
+    else:
+        value = weapon_skill.value if isinstance(weapon_skill.value, (int, float)) else None
+    
+    value_text = f"+{round(value * 100, 1)}%" if value < 1.5 else f"+{int(value)}"
     draw.text((35, 33), value_text, font=font, fill=(255, 255, 255))
 
     return main_bg
@@ -121,13 +148,13 @@ async def build_middle_bg(main_stat: MainStat, gem_d: Gem, pote_level: int = 0, 
 
 
 
-async def build_weapon_panel(weapon_data: WeaponData) -> Image.Image | None:
+async def build_weapon_panel(weapon_data: WeaponData,main:str,sub:str) -> Image.Image | None:
     stars, weap, line, m_d, sections = await asyncio.gather(
         build_stars(weapon_data.rarity),
         asset_manager.get_asset_from_url(weapon_data.icon_url, (164, 159)),
         asset_manager.get_asset('c1_weapon_line', (7, 30)),
         build_middle_bg(weapon_data.main_stat, weapon_data.gem, weapon_data.refine_lv, weapon_data.level),
-        asyncio.gather(*[build_attri_section(skill) for skill in weapon_data.skills]),
+        asyncio.gather(*[build_attri_section(skill,main,sub) for skill in weapon_data.skills]),
     )
 
     main_frame = Image.new("RGBA", (756, 297), (0, 0, 0, 0))

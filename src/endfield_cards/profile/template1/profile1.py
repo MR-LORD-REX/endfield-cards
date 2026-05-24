@@ -41,12 +41,18 @@ async def build_profile1(profile:PlayerProfile)->Image.Image:
     bg=bg.copy()
     draw=ImageDraw.ImageDraw(bg)
     t=[]
+    
+    domain0_level = str(profile.domain_progress[0].level) if len(profile.domain_progress) > 0 else "-"
+    domain1_level = str(profile.domain_progress[1].level) if len(profile.domain_progress) > 1 else "-"
+
+    t.append(asyncio.to_thread(write_text, draw, domain1_level, pos=(403, 1259), font=f64, fill=(0,0,0)))
+    t.append(asyncio.to_thread(write_text, draw, domain0_level, pos=(815, 1259), font=f64, fill=(0,0,0)))
     t.append(asyncio.to_thread(write_text,draw,str(profile.char_count),pos=(120,950),font=f96,fill=(0,0,0)))
     t.append(asyncio.to_thread(write_text,draw,str(profile.weapon_count),pos=(426,950),font=f96,fill=(0,0,0)))
     t.append(asyncio.to_thread(write_text,draw,str(profile.doc_count),pos=(732,950),font=f96,fill=(0,0,0)))
-    t.append(asyncio.to_thread(write_text,draw,str(profile.domain_progress[1].level),pos=(403,1259),font=f64,fill=(0,0,0)))
-    t.append(asyncio.to_thread(write_text,draw,str(profile.domain_progress[0].level),pos=(815,1259),font=f64,fill=(0,0,0)))
+    
     await asyncio.gather(*t)
+    
     t.clear()
     chars,avatar=await asyncio.gather(
         build_char_showcase(profile=profile),
