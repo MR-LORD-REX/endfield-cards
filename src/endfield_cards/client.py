@@ -4,12 +4,17 @@ import asyncio
 import aiohttp
 import traceback
 
-from .utils.assets.core import asset_manager
 from endfield import Endfield
 from endfield.models.character import CharacterData
+from endfield.models.auth.game_stats import GameStats
+
+from .utils.assets.core import asset_manager
+from .models.profile1 import ProfileCard_1 , Character
+from .models.live_stats import LiveStats
 from .character.template1.char1 import _build_character1
 from .profile.template1.profile1 import build_profile1
-from .models.profile1 import ProfileCard_1 , Character
+from .RT_data.stats import render_live_stats , render_factory
+
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +26,7 @@ class EFCard:
         self.ef = ef if ef is not None else Endfield(debug=debug)
         self.asset_manager = asset_manager
         self.logger = logger
+        self.asset_manager.cache.enabled = cache_assets
         
     async def __aenter__(self):
         if self.ef is None:
@@ -109,3 +115,29 @@ class EFCard:
                 characters=[],
                 char_count=0
             )
+            
+    async def get_live_stats_card(self,uid:int,token:str,server:int=3) -> LiveStats|None:
+        try:
+            stats = await self.ef.get_game_stats(token, server)
+            if stats:
+                return await render_live_stats(stats=stats)
+            else:
+                logger.error(f"Failed to retrieve game stats for uid={uid}")
+                return 
+        except Exception as e:
+            logger.error(f"Error building live stats card for uid={uid}: {e}")
+            traceback.print_exc()
+            return 
+        
+    async def get_factory_stats_card(self,uid:int,token:str,server:int=3) -> Image.Image|None:
+        try:
+            stats = await self.ef.get_game_stats(token, server)
+            if stats:
+                return await render_factory(stats=stats)
+            else:
+                logger.error(f"Failed to retrieve game stats for uid={uid}")
+                return 
+        except Exception as e:
+            logger.error(f"Error building factory stats card for uid={uid}: {e}")
+            traceback.print_exc()
+            return

@@ -95,7 +95,15 @@ asset_mapping: Dict[str, Path] = {
     "pfp_char_show_bg": assets_base_path / "profile1" / "char_show_bg.png",
     "pfp_details_bg": assets_base_path / "profile1" / "details_bg.png",
     "pfp1_avatar_layout": assets_base_path / "profile1" / "avatar_layout.png",
-    "pfp1_pfp_bg": assets_base_path / "profile1" / "pfp_bg.png"
+    "pfp1_pfp_bg": assets_base_path / "profile1" / "pfp_bg.png",
+    
+    "RT_data_live_data_bg": assets_base_path / "RT_data" / "live_data_bg.png",
+    "RT_data_factory_bg": assets_base_path / "RT_data" / "factory_bg.png",
+    "RT_data_fact_lvl_rect": assets_base_path / "RT_data" / "fact_lvl_rect.png",
+    "RT_data_fact_char_circle": assets_base_path / "RT_data" / "fact_char_circle.png",
+    "RT_data_reg_lvl": assets_base_path / "RT_data" / "reg_lvl.png",
+    "RT_data_settle_bg": assets_base_path / "RT_data" / "settle_bg.png",
+    
 }
 
 asset_lit=Literal["0","1","2","3","9","10","17",
@@ -114,4 +122,6 @@ asset_lit=Literal["0","1","2","3","9","10","17",
     "Claymores","Lance","Pistol","Sword","Wand", "pfp1_medals_bg",
     "pfp_char_bottom","pfp_char_bg","pfp_char_show_bg",
     "pfp_details_bg","pfp1_avatar_layout","pfp1_pfp_bg",
+    "RT_data_live_data_bg","RT_data_factory_bg","RT_data_fact_lvl_rect",
+    "RT_data_fact_char_circle","RT_data_reg_lvl","RT_data_settle_bg"
     ]

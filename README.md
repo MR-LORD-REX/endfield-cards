@@ -54,6 +54,7 @@ from ef_cards import EFCard
 
 async def main():
     uid = 4225399080  # Your Endfield UID
+    token = "your_token_here"  # Required for live stats and factory cards
     
     # Using async context manager (recommended)
     async with EFCard() as ef_card:
@@ -67,6 +68,16 @@ async def main():
         # Get profile card with showcase
         profile = await ef_card.get_profile_card(uid)
         profile.card.save("profile_card.png")
+        
+        # Get live stats card (requires token)
+        stats = await ef_card.get_live_stats_card(uid, token)
+        if stats:
+            stats.img.save("live_stats.png")
+        
+        # Get factory stats card (requires token)
+        factory = await ef_card.get_factory_stats_card(uid, token)
+        if factory:
+            factory.save("factory_stats.png")
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -125,6 +136,28 @@ profile = await ef_card.get_profile_card(
 ) -> ProfileCard_1
 ```
 
+### Live Stats Card
+
+```python
+# Get live stats card (requires valid token)
+stats = await ef_card.get_live_stats_card(
+    uid: int,
+    token: str,
+    server: int = 3
+) -> LiveStats | None
+```
+
+### Factory Stats Card
+
+```python
+# Get factory stats card with settlement details (requires valid token)
+factory = await ef_card.get_factory_stats_card(
+    uid: int,
+    token: str,
+    server: int = 3
+) -> Image.Image | None
+```
+
 ## Card Information
 
 ### Character Card Template 1 (1920x800)
@@ -146,6 +179,29 @@ Includes:
 - **Operator Showcase** - 4 featured characters
 - **Statistics** - Total operators, weapons, and files collected
 - **Regional Development** - Development levels by region
+
+### Live Stats Card (1024x355)
+
+Real-time player statistics card (requires valid authentication token):
+
+- **Sanity Points** - Current and maximum sanity
+- **Recovery Timer** - Time until full sanity recovery
+- **Daily Points** - Daily mission completion progress
+- **Weekly Points** - Weekly mission score
+- **Battle Pass** - Current battle pass level
+
+### Factory Stats Card (1156x1755)
+
+Comprehensive factory and settlement information card (requires valid authentication token):
+
+- **Factory Overview** - Main factory level and money status
+- **Settlement Details** - Per-settlement information including:
+  - Settlement name and level
+  - Assigned officer/character
+  - Money storage status
+- **Regional Breakdown** - Statistics for each region
+- **Resource Management** - Visual progress bars for resources
+
 
 ## Example Output
 
@@ -184,7 +240,9 @@ async with EFCard(ef=ef) as ef_card:
     # Your code here
     pass
 ```
+### How to get Token
 
+- Check the [endfield-py documentation](https://github.com/MR-LORD-REX/endfield) for instructions on obtaining a valid token for accessing player data.
 
 ## Contributing
 

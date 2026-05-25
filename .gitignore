@@ -5,3 +5,6 @@ __pycache__/
 *.pyo
 *.pyd
 *.pypirc
+endfield/
+dist/
+src/endfield_cards.egg-info/

@@ -29,20 +29,27 @@ class AssetCache:
         self._sized: OrderedDict[str, Image.Image] = OrderedDict()
         self.max_raw = max_raw
         self.max_sized = max_sized
+        self.enabled: bool = True
 
     def get_raw(self, key: str) -> Optional[Image.Image]:
+        if not self.enabled:
+            return None
         if key in self._raw:
             self._raw.move_to_end(key)
             return self._raw[key]
         return None
 
     def set_raw(self, key: str, image: Image.Image):
+        if not self.enabled:
+            return
         self._raw[key] = image
         self._raw.move_to_end(key)
         if len(self._raw) > self.max_raw:
             self._raw.popitem(last=False)
 
     def get_sized(self, key: str, size: Tuple[int, int]) -> Optional[Image.Image]:
+        if not self.enabled:
+            return None
         sized_key = f"{key}_{size[0]}x{size[1]}"
         if sized_key in self._sized:
             self._sized.move_to_end(sized_key)
@@ -50,6 +57,8 @@ class AssetCache:
         return None
 
     def set_sized(self, key: str, size: Tuple[int, int], image: Image.Image):
+        if not self.enabled:
+            return
         sized_key = f"{key}_{size[0]}x{size[1]}"
         self._sized[sized_key] = image
         self._sized.move_to_end(sized_key)
@@ -105,6 +114,14 @@ class AssetManager:
         self.session = session
         self._session_owner = session is None
         self._connector: aiohttp.TCPConnector | None = None
+
+    @property
+    def cache_enabled(self) -> bool:
+        return self.cache.enabled
+
+    @cache_enabled.setter
+    def cache_enabled(self, value: bool):
+        self.cache.enabled = value
 
     async def get_asset(self, key: asset_lit, size: Tuple[int, int] | None = None) -> Optional[Image.Image]:
         if size:
