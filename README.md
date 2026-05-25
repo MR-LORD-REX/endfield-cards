@@ -211,6 +211,12 @@ Comprehensive factory and settlement information card (requires valid authentica
 ### Profile Card
 ![Profile Card Example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/profile_card1.png)
 
+### Live stats card
+![Stat card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/stats_card.png)
+
+### Factory card
+![Factory card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/factory_card.png)
+
 ## Data Sources
 
 - **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Endfield game data wrapper developed by me
