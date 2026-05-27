@@ -165,7 +165,7 @@ class AssetManager:
                 timeout=aiohttp.ClientTimeout(total=timeout)
             )
 
-    async def get_asset_from_url(self, url: str, size: Tuple[int, int], timeout: float = 20.0) -> Optional[Image.Image]:
+    async def get_asset_from_url(self, url: str, size: Tuple[int, int], timeout: float = 50.0) -> Optional[Image.Image]:
         await self._ensure_session(timeout)
 
         try:
