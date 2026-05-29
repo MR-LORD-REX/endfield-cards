@@ -51,7 +51,10 @@ async def build_avatar(profile:PlayerProfile)->Image.Image:
     
 
 async def build_profile1(profile:PlayerProfile)->Image.Image:
-    bg=await asset_manager.get_asset('pfp1_pfp_bg',size=(1080,1467))
+    bg,logo=await asyncio.gather(
+        asset_manager.get_asset('pfp1_pfp_bg',size=(1080,1467)),
+        asset_manager.get_asset('logos_git_WA',size=(320,74))
+    )
     bg=bg.copy()
     draw=ImageDraw.ImageDraw(bg)
     t=[]
@@ -74,6 +77,7 @@ async def build_profile1(profile:PlayerProfile)->Image.Image:
     )
     bg.alpha_composite(chars.resize(size=(991,406)),(44,531))
     bg.alpha_composite(avatar,(0,0))
+    bg.alpha_composite(logo,(760,0))
     
     return bg
     

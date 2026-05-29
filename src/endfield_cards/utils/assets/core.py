@@ -6,8 +6,15 @@ from PIL import Image
 import asyncio
 import aiohttp
 import io
+import logging
+
+import json
 
 from .asset_map import asset_mapping, asset_lit
+from ...errors import AssetError
+
+logger = logging.getLogger(__name__)
+
 
 assets_base_path = Path(__file__).parent.parent.parent / "assets"
 
@@ -19,7 +26,7 @@ class AssetsRegistry:
     def get(self, key: str) -> Optional[Path]:
         path = self.mapping.get(key)
         if path is None:
-            print(f"Asset with key '{key}' not found in registry.")
+            logger.warning(f"Asset with key '{key}' not found in registry.")
         return path
 
 
@@ -78,15 +85,38 @@ class AssetLoader:
 
         path = self.registry.get(key)
         if not path:
+            error = AssetError(
+                message=f"Asset key not found in registry",
+                asset_name=key,
+                context={"key": key}
+            )
+            error.log()
             return None
 
-        image = await asyncio.to_thread(self._load_sync, path)
-        if image:
-            self.cache.set_raw(key, image)
-        return image
+        try:
+            image = await asyncio.to_thread(self._load_sync, path)
+            if image:
+                self.cache.set_raw(key, image)
+                logger.debug(f"Successfully loaded asset: {key} from {path}")
+            else:
+                logger.warning(f"Asset loading returned None: {key} from {path}")
+            return image
+        except Exception as e:
+            error = AssetError(
+                message=f"Failed to load asset from disk: {e}",
+                asset_name=key,
+                original_error=e,
+                context={"key": key, "path": str(path)}
+            )
+            error.log()
+            return None
 
     def _load_sync(self, path: Path) -> Optional[Image.Image]:
-        return Image.open(path).convert("RGBA")
+        try:
+            return Image.open(path).convert("RGBA")
+        except Exception as e:
+            logger.error(f"Error opening image file {path}: {e}")
+            raise
 
 
 class AssetProcessor:
@@ -114,6 +144,21 @@ class AssetManager:
         self.session = session
         self._session_owner = session is None
         self._connector: aiohttp.TCPConnector | None = None
+        self.proxies = None
+        self.debug = False
+        try:
+            with open("proxies.json") as f:
+                self.proxies = json.load(f)
+        except Exception as e:
+            self.proxies = None
+    
+    def set_debug(self, debug: bool):
+        """Set debug mode. When True, debug logs will be shown."""
+        self.debug = debug
+        if debug:
+            logger.setLevel(logging.DEBUG)
+        else:
+            logger.setLevel(logging.INFO)
 
     @property
     def cache_enabled(self) -> bool:
@@ -146,16 +191,31 @@ class AssetManager:
             self._inflight.pop(inflight_key, None)
 
     async def _load_and_process(self, key: str, size: Tuple[int, int] | None) -> Optional[Image.Image]:
-        raw = await self.loader.load(key)
-        if raw is None:
+        try:
+            raw = await self.loader.load(key)
+            if raw is None:
+                logger.warning(f"Failed to load raw asset: {key}")
+                return None
+
+            if size is None:
+                return raw
+            try:
+                sized = await self.processor.process(raw, size)
+                self.cache.set_sized(key, size, sized)
+                logger.debug(f"Successfully processed asset: {key} to size {size}")
+                return sized
+            except Exception as e:
+                error = AssetError(
+                    message=f"Failed to process asset: {e}",
+                    asset_name=key,
+                    original_error=e,
+                    context={"key": key, "size": size}
+                )
+                error.log()
+                return None
+        except Exception as e:
+            logger.error(f"Unexpected error in _load_and_process for {key}: {e}")
             return None
-
-        if size is None:
-            return raw
-
-        sized = await self.processor.process(raw, size)
-        self.cache.set_sized(key, size, sized)
-        return sized
 
     async def _ensure_session(self, timeout: float = 20.0) -> None:
         if self.session is None:
@@ -167,22 +227,58 @@ class AssetManager:
 
     async def get_asset_from_url(self, url: str, size: Tuple[int, int], timeout: float = 50.0) -> Optional[Image.Image]:
         await self._ensure_session(timeout)
+        proxies_to_try = [None] 
+        if self.proxies and isinstance(self.proxies, list):
+            proxies_to_try.extend(self.proxies)
 
-        try:
-            async with self.session.get(url) as response:
-                if response.status == 200:
-                    raw_data = await response.read()
-                    image = await asyncio.to_thread(Image.open, io.BytesIO(raw_data))
-                    return await self.processor.process(image, size)
+        for attempt, proxy_url in enumerate(proxies_to_try):
+            try:
+                if proxy_url:
+                    connector_kwargs = {
+                        "timeout": aiohttp.ClientTimeout(total=timeout)
+                    }
+                    request_kwargs = {"proxy": proxy_url}
+                    request_type = f"proxy[{attempt}]"
                 else:
-                    print(f"Failed to fetch image from URL: {url} with status {response.status}")
-                    return Image.new("RGBA", size, (0, 0, 0, 0))
-        except asyncio.TimeoutError:
-            print(f"Timeout fetching image from URL: {url}")
-            return None
-        except Exception as e:
-            print(f"Error fetching image from URL: {url} - {e}")
-            return None
+                    request_kwargs = {}
+                    request_type = "direct"
+                async with self.session.get(url, **request_kwargs) as response:
+                    if response.status == 200:
+                        raw_data = await response.read()
+                        image = await asyncio.to_thread(Image.open, io.BytesIO(raw_data))
+                        processed = await self.processor.process(image, size)
+                        logger.debug(f"Successfully fetched image from URL ({request_type}): {url}")
+                        return processed
+                    else:
+                        logger.warning(
+                            f"Failed to fetch image from URL ({request_type}): {url} "
+                            f"with status {response.status}"
+                        )
+                        continue
+            except asyncio.TimeoutError:
+                logger.warning(
+                    f"Timeout fetching image from URL ({request_type}): {url} "
+                    f"(attempt {attempt + 1}/{len(proxies_to_try)})"
+                )
+                continue
+            except Exception as e:
+                logger.warning(
+                    f"Error fetching image from URL ({request_type}): {url} - {e} "
+                    f"(attempt {attempt + 1}/{len(proxies_to_try)})"
+                )
+                continue
+
+        error = AssetError(
+            message=f"Failed to fetch image from URL after {len(proxies_to_try)} attempts (direct + proxies)",
+            asset_name=url,
+            context={
+                "url": url,
+                "attempts": len(proxies_to_try),
+                "proxies_available": len(self.proxies) if self.proxies else 0
+            }
+        )
+        error.log()
+        return None
 
     async def close(self):
         if self.session is not None and self._session_owner:

@@ -8,3 +8,6 @@ __pycache__/
 endfield/
 dist/
 src/endfield_cards.egg-info/
+proxies.json
+logs/
+stats.json

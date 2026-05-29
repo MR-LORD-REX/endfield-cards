@@ -1,26 +1,47 @@
 from src.endfield_cards import EFCard
+from src.endfield_cards.logging_config import setup_logging
+from src.endfield_cards.errors import CardBuildError
 from endfield import Endfield
-
-
+import aiohttp
+import logging
 import asyncio
-uid=4546876184
-token=""
-async def main():
-    try:
-        async with EFCard(debug=True) as efc:
-            card=await efc.get_character_card(uid, char_index=2)
-            card.show()
-            card=await efc.get_profile_card(uid)
-            card.card.show()
-            # stats_card=await efc.get_live_stats_card(uid, token)
-            # if stats_card:
-            #     stats_card.img.show()
-            # factory_card=await efc.get_factory_stats_card(uid, token)
-            # if factory_card:
-            #     factory_card.show()
-    except Exception as e:
-        print(f"Error in main: {e}")
 
+uid = 4572346170
+token = "WAvvQUTEbuXbrf84UwXlPm6z"
+
+logger = logging.getLogger(__name__)
+
+
+async def main():
+    setup_logging(
+        level=logging.INFO,
+        log_file=None,
+        debug=True
+    )
+    try:
+        async with EFCard() as efc:
+            # await efc.ef.update_assets()
+            try:
+                card = await efc.get_character_card(uid, char_index=2)
+                card.show()
+            except CardBuildError as e:
+                logger.error(f"Failed to build character card: {e}")
+            try:
+                card = await efc.get_profile_card(uid)
+                card.card.show()
+            except CardBuildError as e:
+                logger.error(f"Failed to build profile card: {e}")
+
+            # try:
+            #     stats_card = await efc.get_live_stats_card(uid, token)
+            #     if stats_card:
+            #         logger.info("Live stats card built successfully")
+            #         stats_card.img.show()
+            #     else:
+            #         logger.warning("Live stats card is None")
+            # except Exception as e:
+            #     logger.error(f"Failed to build live stats card: {e}")
+    except Exception as e:
+        logger.error(f"Unexpected error in main: {e}", exc_info=True)
 if __name__ == "__main__":
     asyncio.run(main())
-    

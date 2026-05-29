@@ -4,6 +4,12 @@ from pathlib import Path
 assets_base_path = Path(__file__).parent.parent.parent/"assets"
 
 asset_mapping: Dict[str, Path] = {
+    
+    "logos_github": assets_base_path / "logos" / "git.png",
+    "logos_telegram": assets_base_path / "logos" / "telegram.png",
+    "logos_git_WA": assets_base_path / "logos" / "git_W.png",
+    "logos_telegram_WA": assets_base_path / "logos" / "telegram_W.png",
+    
     "1": assets_base_path / "props" / "MaxHp.png",
     "2": assets_base_path / "props" / "Atk.png",
     "3": assets_base_path / "props" / "Def.png",
@@ -123,5 +129,6 @@ asset_lit=Literal["0","1","2","3","9","10","17",
     "pfp_char_bottom","pfp_char_bg","pfp_char_show_bg",
     "pfp_details_bg","pfp1_avatar_layout","pfp1_pfp_bg",
     "RT_data_live_data_bg","RT_data_factory_bg","RT_data_fact_lvl_rect",
-    "RT_data_fact_char_circle","RT_data_reg_lvl","RT_data_settle_bg"
+    "RT_data_fact_char_circle","RT_data_reg_lvl","RT_data_settle_bg",
+    "logos_github","logos_telegram","logos_git_WA","logos_telegram_WA"
     ]
