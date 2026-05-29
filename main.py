@@ -22,7 +22,7 @@ async def main():
         async with EFCard() as efc:
             # await efc.ef.update_assets()
             try:
-                card = await efc.get_character_card(uid, char_index=2)
+                card = await efc.get_character_card(uid, char_index=0)
                 card.show()
             except CardBuildError as e:
                 logger.error(f"Failed to build character card: {e}")

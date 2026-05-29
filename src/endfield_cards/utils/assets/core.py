@@ -249,6 +249,9 @@ class AssetManager:
                         processed = await self.processor.process(image, size)
                         logger.debug(f"Successfully fetched image from URL ({request_type}): {url}")
                         return processed
+                    elif response.status in {404}:
+                        logger.warning(f"Image not found at URL ({request_type}): {url} (status {response.status})")
+                        return None
                     else:
                         logger.warning(
                             f"Failed to fetch image from URL ({request_type}): {url} "

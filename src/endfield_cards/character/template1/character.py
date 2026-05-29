@@ -244,6 +244,8 @@ async def overlay_icons(
     
 async def build_main_frame(char_data: CharacterData,user_img:Image.Image|None=None) -> Image.Image:
     W, H = 1920, 800
+    main_bg = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    main_draw = ImageDraw.Draw(main_bg)
 
     bg, splash , logo = await asyncio.gather(
         asset_manager.get_asset_from_url(char_data.bg_url, (776, 776)),
@@ -251,24 +253,17 @@ async def build_main_frame(char_data: CharacterData,user_img:Image.Image|None=No
         asset_manager.get_asset('logos_git_WA',(250,60))
     )
 
-
-    if bg is None or splash is None:
-        logger.warning(f"build_main_frame: failed to load bg or splash for '{char_data.name}'")
-        return Image.new("RGBA", (W, H), (0, 0, 0, 0))
-
-    bg     = bg.convert("RGBA")
-    splash = splash.convert("RGBA")
-
+    if bg:
+        bg     = bg.convert("RGBA")
+        main_bg.alpha_composite(bg, (13, 3))
+        
     style_layers = await asyncio.to_thread(_build_style_layers, W, H, splash, 0.5)
-
-    main_bg = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    main_draw = ImageDraw.Draw(main_bg)
-    main_bg.alpha_composite(logo, (1650,0))
-    main_bg.alpha_composite(bg, (13, 3))
     main_bg.alpha_composite(style_layers, (0, 0))
-    main_bg.alpha_composite(splash, (350, -243))
-
     
+    if splash:
+        splash = splash.convert("RGBA")
+        main_bg.alpha_composite(splash, (350, -243))
+    main_bg.alpha_composite(logo, (1650,0))
     await overlay_icons(main_bg, main_draw, char_data)
     
     return main_bg
