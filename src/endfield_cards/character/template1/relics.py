@@ -26,7 +26,7 @@ import asyncio
 
 logger = logging.getLogger(__name__)
 
-from endfield.models.equipment import EquipData, AttrModifier
+from endfield.models.basic.equipment import EquipData, AttrModifier
 
 from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font, put_text_in_center

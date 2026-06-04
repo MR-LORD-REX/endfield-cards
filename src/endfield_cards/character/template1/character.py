@@ -21,7 +21,7 @@ import colorsys
 import random
 
 from ...utils.assets.core import asset_manager
-from endfield.models.character import CharacterData
+from endfield.models.basic.character import CharacterData
 from ...utils.char1 import get_pote , build_stars
 from ...utils.fonts.fonts import get_font
 

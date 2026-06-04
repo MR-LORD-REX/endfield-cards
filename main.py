@@ -1,13 +1,12 @@
-from src.endfield_cards import EFCard
-from src.endfield_cards.logging_config import setup_logging
-from src.endfield_cards.errors import CardBuildError
+from endfield_cards import EFCard
+from endfield_cards.logging_config import setup_logging
+from endfield_cards.errors import CardBuildError
 from endfield import Endfield
-import aiohttp
 import logging
 import asyncio
 
 uid = 4572346170
-token = "WAvvQUTEbuXbrf84UwXlPm6z"
+token = ""
 
 logger = logging.getLogger(__name__)
 

@@ -16,7 +16,7 @@ import logging
 import asyncio
 from PIL import Image
 
-from endfield.models.character import CharacterData
+from endfield.models.basic.character import CharacterData
 from .character import build_main_frame
 from .weapon import build_weapon_panel
 from .relics import build_relic_panel

@@ -5,7 +5,7 @@ import aiohttp
 import traceback
 
 from endfield import Endfield
-from endfield.models.character import CharacterData
+from endfield.models.basic.character import CharacterData
 from endfield.models.auth.game_stats import GameStats
 
 from .utils.assets.core import asset_manager

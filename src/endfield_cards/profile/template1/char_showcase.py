@@ -16,7 +16,7 @@ from typing import Literal
 from PIL import Image, ImageDraw, ImageFont
 import asyncio
 
-from endfield.models.profile import PlayerProfile , ProfileCharacter
+from endfield.models.basic.profile import PlayerProfile , ProfileCharacter
 
 from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font

@@ -18,7 +18,7 @@ import asyncio
 
 from .char_showcase import build_char_showcase
 from .medals import build_medals
-from endfield.models.profile import PlayerProfile , Medals 
+from endfield.models.basic.profile import PlayerProfile , Medals 
 from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font
 

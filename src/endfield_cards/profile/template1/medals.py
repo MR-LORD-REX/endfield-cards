@@ -16,7 +16,7 @@ from typing import Literal
 from PIL import Image, ImageDraw, ImageFont
 import asyncio
 
-from endfield.models.profile import Medals
+from endfield.models.basic.profile import Medals
 
 from ...utils.assets.core import asset_manager
 

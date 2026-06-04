@@ -21,8 +21,8 @@ from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font
 from ...utils.char1 import build_stars
 
-from endfield.models.weapon import WeaponSkill
-from endfield.models.weapon import Gem, WeaponData, MainStat
+from endfield.models.basic.weapon import WeaponSkill
+from endfield.models.basic.weapon import Gem, WeaponData, MainStat
 
 font = get_font(size=20)
 logger = logging.getLogger(__name__)

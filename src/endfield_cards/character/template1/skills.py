@@ -18,7 +18,7 @@ from PIL import Image , ImageDraw, ImageFont
 import asyncio
 import logging
 
-from endfield.models.character import SkillInfo , SkillMeta , ComputedStatsWithDetails , StatDetail
+from endfield.models.basic.character import SkillInfo , SkillMeta , ComputedStatsWithDetails , StatDetail
 from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font , put_text_in_center
 from ...utils.pil import alpha_composite_center

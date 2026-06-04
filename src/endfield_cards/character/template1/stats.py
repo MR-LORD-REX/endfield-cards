@@ -16,7 +16,7 @@ from typing import Dict, List
 from PIL import Image , ImageDraw, ImageFont
 import asyncio
 
-from endfield.models.character import ComputedStatsWithDetails , StatDetail
+from endfield.models.basic.character import ComputedStatsWithDetails , StatDetail
 from ...utils.assets.core import asset_manager
 from ...utils.fonts.fonts import get_font , put_text_in_center
 
