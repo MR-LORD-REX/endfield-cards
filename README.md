@@ -234,6 +234,7 @@ Comprehensive factory and settlement information card (requires valid authentica
 
 - **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Endfield game data wrapper developed by me
 - **Assets & Player Data**: [enka.network](https://enka.network) - Community-driven asset and player data provider
+- **Guides data**: [prydwen.gg](https://www.prydwen.gg/) - For character build information and guides
 
 ## Configuration
 
@@ -293,6 +294,7 @@ If you encounter any issues or have questions:
 ## Related Projects
 
 - [endfield-py](https://github.com/MR-LORD-REX/endfield) - Core Endfield game data client
+- [endfield-builds](https://github.com/MR-LORD-REX/endfield-builds) - Library for generating character build cards
 
 ---
 
