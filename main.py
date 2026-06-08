@@ -1,7 +1,6 @@
-from endfield_cards import EFCard
-from endfield_cards.logging_config import setup_logging
-from endfield_cards.errors import CardBuildError
-from endfield import Endfield
+from src.endfield_cards import EFCard
+from src.endfield_cards.logging_config import setup_logging
+from src.endfield_cards.errors import CardBuildError 
 import logging
 import asyncio
 
@@ -20,6 +19,8 @@ async def main():
     try:
         async with EFCard() as efc:
             # await efc.ef.update_assets()
+            # await efc.update_builds()
+            
             try:
                 card = await efc.get_character_card(uid, char_index=0)
                 card.show()
@@ -30,6 +31,12 @@ async def main():
                 card.card.show()
             except CardBuildError as e:
                 logger.error(f"Failed to build profile card: {e}")
+            
+            char_card=await efc.get_character_build('endministrator')
+            char_card[0].show()
+            
+            all=await efc.available_builds()
+            print(all)
 
             # try:
             #     stats_card = await efc.get_live_stats_card(uid, token)
@@ -40,7 +47,9 @@ async def main():
             #         logger.warning("Live stats card is None")
             # except Exception as e:
             #     logger.error(f"Failed to build live stats card: {e}")
+            
     except Exception as e:
         logger.error(f"Unexpected error in main: {e}", exc_info=True)
+        
 if __name__ == "__main__":
     asyncio.run(main())

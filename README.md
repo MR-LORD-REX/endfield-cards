@@ -58,6 +58,10 @@ async def main():
     
     # Using async context manager (recommended)
     async with EFCard() as ef_card:
+        # update assets on the first run or when new assets are available
+        await ef_card.ef.update_assets()  
+        await ef_card.update_builds()
+
         # Get a single character card
         char_card = await ef_card.get_character_card(uid, char_index=0)
         char_card.save("character_card.png")
@@ -78,6 +82,12 @@ async def main():
         factory = await ef_card.get_factory_stats_card(uid, token)
         if factory:
             factory.save("factory_stats.png")
+
+        char_card=await ef_card.get_character_build('endministrator')
+        char_card[0].show()
+        
+        all=await ef_card.available_builds()
+        print(all)
 
 if __name__ == "__main__":
     asyncio.run(main())
@@ -217,6 +227,9 @@ Comprehensive factory and settlement information card (requires valid authentica
 ### Factory card
 ![Factory card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/factory_card.png)
 
+### Character Guild Card
+![Guild card example](https://github.com/MR-LORD-REX/endfield-builds/blob/main/output/endministrator.png)
+
 ## Data Sources
 
 - **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Endfield game data wrapper developed by me
@@ -256,7 +269,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## Disclaimer
 
@@ -265,6 +278,7 @@ This project is not affiliated with or endorsed by the developers of Endfield. A
 ## Acknowledgments
 
 - **endfield-py** - Library developed by me for accessing Endfield game data
+- **endfield-builds** - Sister project for character build cards
 - **enka.network** - For providing player data and asset caching
 
 ## Support

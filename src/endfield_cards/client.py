@@ -3,6 +3,8 @@ from PIL import Image, ImageDraw
 import asyncio
 import aiohttp
 import traceback
+from io import BytesIO
+from typing import Tuple
 
 from endfield import Endfield
 from endfield.models.basic.character import CharacterData
@@ -11,9 +13,14 @@ from endfield.models.auth.game_stats import GameStats
 from .utils.assets.core import asset_manager
 from .models.profile1 import ProfileCard_1 , Character
 from .models.live_stats import LiveStats
+
+from .builds.guides import get_character_build , get_all_character_list , fetch_build_data
+from .builds.map import builds_map
+
 from .character.template1.char1 import _build_character1
 from .profile.template1.profile1 import build_profile1
 from .RT_data.stats import render_live_stats , render_factory
+
 from .errors import CardBuildError, ComponentBuildError, DataFetchError, ErrorSeverity
 
 
@@ -36,7 +43,7 @@ class EFCard:
         if session:
             self.ef._session = session
             self.asset_manager.session = session
-        
+
     async def __aenter__(self):
         if self.ef is None:
             self.ef = Endfield(debug=self.logger.isEnabledFor(logging.DEBUG))
@@ -411,3 +418,58 @@ class EFCard:
         except Exception as e:
             logger.error(f"Unexpected error building factory stats card for uid={uid}: {e}")
             return None
+        
+    async def update_builds(self):
+        """
+        Fetch the latest build data and update the local mapping.
+        
+        Returns:
+            None
+        """
+        try:
+            await fetch_build_data()
+            logger.info("Build data updated successfully")
+        except Exception as e:
+            logger.error(f"Failed to update build data: {e}")
+            
+    async def get_character_build(self,character:builds_map) -> Tuple[Image.Image, str]:
+        """
+        Get the character build image for the specified character.
+        
+        Args:
+            character: Character name from builds_map
+        
+        Returns:
+            Image.Image: Character build image
+        """
+        try:
+            build_url = get_character_build(character)
+            if not build_url:
+                raise ValueError(f"No build URL found for character '{character}'")
+            
+            async with aiohttp.ClientSession() as session:
+                async with session.get(build_url) as response:
+                    if response.status == 200:
+                        img_data = await response.read()
+                        img=Image.open(BytesIO(img_data)).convert("RGBA")
+                        return img , build_url
+                    else:
+                        raise Exception(f"Failed to fetch build image: {response.status}")
+        except Exception as e:
+            logger.error(f"Error fetching build for character '{character}': {e}")
+            return Image.new("RGBA", (1920, 1080), (0, 0, 0, 0)) , ""
+        
+    async def available_builds(self) -> dict[str, dict[str, str]]:
+        """
+        Get the build data for all characters.
+        
+        Returns:
+            dict[str, dict[str, str]]: Mapping of character names to their icon urls
+        """
+        try:
+            return get_all_character_list()
+        except Exception as e:
+            logger.error(f"Error fetching all character builds: {e}")
+            return {}
+        
+        
