@@ -2,7 +2,8 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/endfield-cards)](https://pypi.org/project/endfield-cards/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE.txt)
+
 
 A powerful Python library for generating beautiful character and profile cards for **Endfield**. This library provides an easy-to-use interface to create stunning visual cards with character stats, weapons, relics, and profile information.
 
