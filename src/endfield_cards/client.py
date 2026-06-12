@@ -9,6 +9,7 @@ from typing import Tuple
 from endfield import Endfield
 from endfield.models.basic.character import CharacterData
 from endfield.models.auth.game_stats import GameStats
+from endfield.proxy_pool import ProxyPool
 
 from .utils.assets.core import asset_manager
 from .models.profile1 import ProfileCard_1 , Character
@@ -32,13 +33,29 @@ logging.getLogger('PIL').setLevel(logging.WARNING)
 class EFCard:
     """
     paramters: 
+    - ef: Optional Endfield instance (if not provided, a new one will be created)
+    - cache_assets: Whether to cache assets in ram (default: False)
+    - debug: Enable debug logging (default: False)
+    - session: Optional aiohttp.ClientSession to use for HTTP requests (if not provided, a new session will be created)
+    - local_cache: Whether to store assets on disk for local caching (default: True)
+    - proxy_pool: Optional ProxyPool instance for managing proxies (if not provided, no proxy will be used)
+    ( from endfield.proxy_pool import ProxyPool  use it create a proxy pool )
+    
     """
     
-    def __init__(self,ef:Endfield |None=None,cache_assets:bool=False , debug:bool=False,session:aiohttp.ClientSession|None=None):
-        self.ef = ef if ef is not None else Endfield(debug=debug)
+    def __init__(
+        self,ef:Endfield |None=None,
+        cache_assets:bool=False , 
+        debug:bool=False,
+        session:aiohttp.ClientSession|None=None,
+        local_cache:bool=True,
+        proxy_pool:ProxyPool|None=None
+        ):
+        self.ef = ef if ef is not None else Endfield(debug=debug, proxy_pool=proxy_pool)
         self.asset_manager = asset_manager
         self.logger = logger
         self.asset_manager.cache.enabled = cache_assets
+        self.asset_manager.local_cache = local_cache
         self.asset_manager.set_debug(debug)
         if session:
             self.ef._session = session
@@ -71,6 +88,9 @@ class EFCard:
     def __exit__(self, exc_type, exc, tb):
         pass
         
+    def clear_cache(self):
+        """Clear on-disk asset cache if local_cache ."""
+        self.asset_manager.clear_all_local_assets()
         
     async def get_character_card(self,uid:int,char_index:int=0,user_img:Image.Image|None=None,template:int=1) -> Image.Image:
         """

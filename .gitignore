@@ -10,4 +10,5 @@ dist/
 src/endfield_cards.egg-info/
 proxies.json
 logs/
+src/endfield_cards/cache/
 stats.json

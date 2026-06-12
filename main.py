@@ -4,7 +4,7 @@ from src.endfield_cards.errors import CardBuildError
 import logging
 import asyncio
 
-uid = 4572346170
+uid = 6580184840
 token = ""
 
 logger = logging.getLogger(__name__)
@@ -22,8 +22,9 @@ async def main():
             # await efc.update_builds()
             
             try:
-                card = await efc.get_character_card(uid, char_index=0)
-                card.show()
+                cards = await efc.get_all_characters_card(uid)
+                for c in cards:
+                    c.show()
             except CardBuildError as e:
                 logger.error(f"Failed to build character card: {e}")
             try:
@@ -34,9 +35,10 @@ async def main():
             
             char_card=await efc.get_character_build('endministrator')
             char_card[0].show()
+
             
-            all=await efc.available_builds()
-            print(all)
+            # all=await efc.available_builds()
+            # print(all)
 
             # try:
             #     stats_card = await efc.get_live_stats_card(uid, token)

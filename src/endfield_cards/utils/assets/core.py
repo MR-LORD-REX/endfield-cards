@@ -7,6 +7,7 @@ import asyncio
 import aiohttp
 import io
 import logging
+import os
 
 import json
 
@@ -124,7 +125,7 @@ class AssetProcessor:
         return await asyncio.to_thread(self._resize, image, size)
 
     def _resize(self, image: Image.Image, size: Tuple[int, int]) -> Image.Image:
-        return image.resize(size, Image.LANCZOS)
+        return image.resize(size)
 
 
 class AssetManager:
@@ -146,6 +147,8 @@ class AssetManager:
         self._connector: aiohttp.TCPConnector | None = None
         self.proxies = None
         self.debug = False
+        self.local_cache=True
+        self.cache_path = assets_base_path.parent / "cache"
         try:
             with open("proxies.json") as f:
                 self.proxies = json.load(f)
@@ -167,6 +170,25 @@ class AssetManager:
     @cache_enabled.setter
     def cache_enabled(self, value: bool):
         self.cache.enabled = value
+        
+    def load_downloaded_cache(self, cache_file: Path)->Optional[Image.Image]:
+        with open(cache_file, "rb") as f:
+            try:
+                return Image.open(f).convert("RGBA")
+            except Exception as e:
+                logger.error(f"Error opening cached image file {cache_file}: {e}")
+                return None
+            
+    def clear_all_local_assets(self):
+        if self.cache_path.exists() and self.cache_path.is_dir():
+            for file in self.cache_path.iterdir():
+                try:
+                    file.unlink()
+                    logger.debug(f"Deleted cached asset: {file}")
+                except Exception as e:
+                    logger.error(f"Error deleting cached asset {file}: {e}")
+        else:
+            logger.info("No local cache directory found to clear.")
 
     async def get_asset(self, key: asset_lit, size: Tuple[int, int] | None = None) -> Optional[Image.Image]:
         if size:
@@ -226,6 +248,19 @@ class AssetManager:
             )
 
     async def get_asset_from_url(self, url: str, size: Tuple[int, int], timeout: float = 50.0) -> Optional[Image.Image]:
+        if self.local_cache:
+            key=url.replace("https://enka.network/ui/ef/", "").split("/")[-1]
+            key_without_ext = key.rsplit(".", 1)[0] if "." in key else key
+            cache_file = self.cache_path / f"{key_without_ext}_{size[0]}x{size[1]}.png"
+            if os.path.exists(cache_file):
+                try:
+                    image = await asyncio.to_thread(self.load_downloaded_cache, cache_file)
+                    if image:
+                        logger.debug(f"Loaded image from local cache: {key}")
+                        return image
+                except Exception as e:
+                    logger.error(f"Error loading image from local cache {key}: {e}")
+                    
         await self._ensure_session(timeout)
         proxies_to_try = [None] 
         if self.proxies and isinstance(self.proxies, list):
@@ -247,6 +282,9 @@ class AssetManager:
                         raw_data = await response.read()
                         image = await asyncio.to_thread(Image.open, io.BytesIO(raw_data))
                         processed = await self.processor.process(image, size)
+                        key_without_ext = key.rsplit(".", 1)[0] if "." in key else key
+                        cache_file = self.cache_path / f"{key_without_ext}_{size[0]}x{size[1]}.png"
+                        processed.save(cache_file)
                         logger.debug(f"Successfully fetched image from URL ({request_type}): {url}")
                         return processed
                     elif response.status in {404}:
