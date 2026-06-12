@@ -154,6 +154,7 @@ class AssetManager:
                 self.proxies = json.load(f)
         except Exception as e:
             self.proxies = None
+        os.makedirs(self.cache_path, exist_ok=True)
     
     def set_debug(self, debug: bool):
         """Set debug mode. When True, debug logs will be shown."""
