@@ -21,6 +21,10 @@ A powerful Python library for generating beautiful character and profile cards f
 
 **Easy Integration** - Simple API for quick integration into your projects
 
+## Bots 
+
+- This library was built for my [Discord bot](https://discordapp.com/oauth2/authorize?client_id=1515234156034920468) and [Telegram bot](https://t.me/AKE_Endfield_bot) , go check live demo of the cards there !
+
 ## Installation
 
 ### From PyPI (Recommended)
