@@ -4,7 +4,7 @@ from src.endfield_cards.errors import CardBuildError
 import logging
 import asyncio
 
-uid = 6580184840
+uid = 6697262238
 token = ""
 
 logger = logging.getLogger(__name__)
@@ -17,24 +17,27 @@ async def main():
         debug=True
     )
     try:
-        async with EFCard() as efc:
+        async with EFCard(debug=True) as efc:
             # await efc.ef.update_assets()
             # await efc.update_builds()
+
+            # card=await efc.get_character_card(uid,2)
+            # card.show()
             
-            try:
-                cards = await efc.get_all_characters_card(uid)
-                for c in cards:
-                    c.show()
-            except CardBuildError as e:
-                logger.error(f"Failed to build character card: {e}")
+            # try:
+            #     cards = await efc.get_all_characters_card(uid)
+            #     for c in cards:
+            #         c.show()
+            # except CardBuildError as e:
+            #     logger.error(f"Failed to build character card: {e}")
             try:
                 card = await efc.get_profile_card(uid)
                 card.card.show()
             except CardBuildError as e:
                 logger.error(f"Failed to build profile card: {e}")
             
-            char_card=await efc.get_character_build('endministrator')
-            char_card[0].show()
+            # char_card=await efc.get_character_build('endministrator')
+            # char_card[0].show()
 
             
             # all=await efc.available_builds()

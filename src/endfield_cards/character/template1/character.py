@@ -188,6 +188,9 @@ def _build_style_layers(
     splash: Image.Image,
     opacity: float = 0.5,
 ) -> Image.Image:
+    if not splash:
+        return Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    
     splash = splash.convert("RGBA")
 
     dominant    = _sample_dominant_hue(splash)
