@@ -14,13 +14,17 @@ from endfield.proxy_pool import ProxyPool
 from .utils.assets.core import asset_manager
 from .models.profile1 import ProfileCard_1 , Character
 from .models.live_stats import LiveStats
+from .models.allc import AllChars
+from .models.monument import MonumentShowcase, DomainData
 
 from .builds.guides import get_character_build , get_all_character_list , fetch_build_data
 from .builds.map import builds_map
 
 from .character.template1.char1 import _build_character1
 from .profile.template1.profile1 import build_profile1
+from .profile.allc.all_chars import build_allc
 from .RT_data.stats import render_live_stats , render_factory
+from .endgames.monument.monument import Build_monument_card , build_domain_showcase
 
 from .errors import CardBuildError, ComponentBuildError, DataFetchError, ErrorSeverity
 
@@ -491,5 +495,123 @@ class EFCard:
         except Exception as e:
             logger.error(f"Error fetching all character builds: {e}")
             return {}
+        
+    async def get_allc_card(self,token:str) -> AllChars:
+        """
+        Build a card showing all characters for the given token.
+        
+        Args:
+            token: Game token for authentication 
+        """
+        try:
+            allc_data = await self.ef.get_all_characters(token)
+            if not allc_data:
+                raise ValueError("No character data returned from API")
+            card=await build_allc(allc_data)
+            
+            return AllChars(
+                card=card,
+                allChars=allc_data
+            )
+            
+        except Exception as e:
+            error = CardBuildError(
+                message=f"Failed to build all characters card: {e}",
+                card_type="all_characters",
+                original_error=e
+            )
+            error.log()
+            raise
+        
+    async def get_game_character(
+        self,
+        token:str,
+        char_id:str,
+        template:int=1,
+    )-> Image.Image:
+        """
+        Build a character card for a specific hashed character ID. from the game data.
+        
+        args:
+            token: Game token for authentication
+            char_id: Hashed character ID ( use get_allc_card to get all characters and their hashed IDs )
+            template: Card template version (default: 1)
+        """
+        try:
+            char_data=await self.ef.get_game_character(token,char_id)
+            if not char_data:
+                raise ValueError(f"No character data returned for char_id {char_id}")
+            if template==1:
+                return await _build_character1(char_data=char_data)
+            else:
+                logger.warning(f"Template {template} not implemented, defaulting to template 1")
+                return await self.get_game_character(token,char_id,template=1)
+        except Exception as e:
+            error = CardBuildError(
+                message=f"Failed to build game character card: {e}",
+                card_type="game_character",
+                original_error=e,
+                context={"char_id": char_id}
+            )
+            error.log()
+            raise
+        
+    async def get_monument_showcase_card(self,token:str) -> MonumentShowcase:
+        """
+        Build a monument showcase card for the given token.
+        
+        Args:
+            token: Game token for authentication
+        """
+        try:
+            monument_data = await self.ef.get_monument(token)
+            if not monument_data:
+                raise ValueError("No monument data returned from API")
+            card=await Build_monument_card(monument_data.indie_hard)
+            domains=[DomainData(name=domain.name, slot=i) for i, domain in enumerate(monument_data.indie_hard.indie_hard_groups)]
+            
+            return MonumentShowcase(
+                card=card,
+                domains=domains
+            )
+            
+        except Exception as e:
+            error = CardBuildError(
+                message=f"Failed to build monument showcase card: {e}",
+                card_type="monument_showcase",
+                original_error=e
+            )
+            error.log()
+            raise
+        
+    async def get_monument_domain_card(self,token:str,domain_index:int) -> Image.Image:
+        """
+        Build a monument domain card for the given token and domain index.
+        
+        Args:
+            token: Game token for authentication
+            domain_index: Index of the domain in the monument showcase
+        """
+        try:
+            monument_data = await self.ef.get_monument(token)
+            if not monument_data:
+                raise ValueError("No monument data returned from API")
+            if domain_index < 0 or domain_index >= len(monument_data.indie_hard.indie_hard_groups):
+                raise IndexError(f"Domain index {domain_index} out of range")
+            
+            domain_data = monument_data.indie_hard.indie_hard_groups[domain_index]
+            card=await build_domain_showcase(domain_data)
+            
+            return card
+            
+        except Exception as e:
+            error = CardBuildError(
+                message=f"Failed to build monument domain card: {e}",
+                card_type="monument_domain",
+                original_error=e,
+                context={"domain_index": domain_index}
+            )
+            error.log()
+            raise
         
         

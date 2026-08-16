@@ -6,6 +6,7 @@ __pycache__/
 *.pyd
 *.pypirc
 endfield/
+.endfield_cache/
 dist/
 src/endfield_cards.egg-info/
 proxies.json

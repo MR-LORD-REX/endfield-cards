@@ -235,6 +235,15 @@ Comprehensive factory and settlement information card (requires valid authentica
 ### Character Guild Card
 ![Guild card example](https://github.com/MR-LORD-REX/endfield-builds/blob/main/output/endministrator.png)
 
+### All characters card
+![All characters card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/allc_card.png)
+
+### Monument card
+![Monument card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/monument_showcase.png)
+
+### Monument domain card 
+![Monument domain card example](https://github.com/MR-LORD-REX/endfield-cards/blob/main/src/examples/cards/monument_domain.png)
+
 ## Data Sources
 
 - **Game Data**: [endfield-py](https://github.com/MR-LORD-REX/endfield) - Endfield game data wrapper developed by me

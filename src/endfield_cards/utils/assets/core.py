@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 assets_base_path = Path(__file__).parent.parent.parent / "assets"
 
+cwd=Path().cwd()
 
 class AssetsRegistry:
     def __init__(self, mapping: Dict[str, Path]):
@@ -148,7 +149,7 @@ class AssetManager:
         self.proxies = None
         self.debug = False
         self.local_cache=True
-        self.cache_path = assets_base_path.parent / "cache"
+        self.cache_path = cwd / ".endfield_cache"
         try:
             with open("proxies.json") as f:
                 self.proxies = json.load(f)
@@ -287,7 +288,7 @@ class AssetManager:
                         cache_file = self.cache_path / f"{key_without_ext}_{size[0]}x{size[1]}.png"
                         processed.save(cache_file)
                         logger.debug(f"Successfully fetched image from URL ({request_type}): {url}")
-                        return processed
+                        return processed.convert("RGBA")
                     elif response.status in {404}:
                         logger.warning(f"Image not found at URL ({request_type}): {url} (status {response.status})")
                         return None

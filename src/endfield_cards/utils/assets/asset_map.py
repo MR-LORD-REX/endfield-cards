@@ -110,6 +110,17 @@ asset_mapping: Dict[str, Path] = {
     "RT_data_reg_lvl": assets_base_path / "RT_data" / "reg_lvl.png",
     "RT_data_settle_bg": assets_base_path / "RT_data" / "settle_bg.png",
     
+    "allc_6star": assets_base_path / "allc" / "6star_bg.png",
+    "allc_5star": assets_base_path / "allc" / "5star_bg.png",
+    "allc_4star": assets_base_path / "allc" / "4star_bg.png",
+    
+    "monu_bg": assets_base_path / "monu" / "main_bg.png",
+    "monu_done": assets_base_path / "monu" / "done.png",
+    "monu_not_done": assets_base_path / "monu" / "not_done.png",
+    "monu_6star": assets_base_path / "monu" / "6star.png",
+    "monu_5star": assets_base_path / "monu" / "5star.png",
+    "monu_4star": assets_base_path / "monu" / "4star.png",
+    
 }
 
 asset_lit=Literal["0","1","2","3","9","10","17",
@@ -130,5 +141,8 @@ asset_lit=Literal["0","1","2","3","9","10","17",
     "pfp_details_bg","pfp1_avatar_layout","pfp1_pfp_bg",
     "RT_data_live_data_bg","RT_data_factory_bg","RT_data_fact_lvl_rect",
     "RT_data_fact_char_circle","RT_data_reg_lvl","RT_data_settle_bg",
-    "logos_github","logos_telegram","logos_git_WA","logos_telegram_WA"
+    "logos_github","logos_telegram","logos_git_WA","logos_telegram_WA",
+    "allc_6star","allc_5star","allc_4star" , "monu_bg","monu_done","monu_not_done",
+    "monu_6star","monu_5star","monu_4star"
+    
     ]
