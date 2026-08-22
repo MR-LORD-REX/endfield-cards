@@ -1,6 +1,6 @@
 pydantic>=2.5
 aiohttp>=3.9
 pillow>=12.2.0
-numpy<2.0.0
-endfield-py>=1.0.7
+numpy>=2.1
+endfield-py>=1.2.0
 endfield-cards>=1.0.1
