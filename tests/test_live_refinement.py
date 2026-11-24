@@ -22,9 +22,9 @@ from endfield_cards.adapters.skport import context_for
 from endfield_cards.assets.fonts import FontManager
 from endfield_cards.assets.manifest import resource_path
 from endfield_cards.assets.store import AssetStore
-from endfield_cards.client import Cards
 from endfield_cards.errors import OwnerMismatchError
 from endfield_cards.models import OwnerIdentity, RenderIssue
+from endfield_cards.rendering import RenderEngine
 from endfield_cards.rendering.templates import activity
 from endfield_cards.utils.drawing import PageCanvas
 
@@ -332,7 +332,7 @@ async def test_live_profile_owner_mismatch_precedes_even_custom_art_loading(monk
         raise AssertionError("Owner mismatch must be rejected before artwork loading")
 
     monkeypatch.setattr(AssetStore, "load", unexpected_load)
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         options = {"profile": profile(owner(2)), "art": b"invalid-art"}
         with pytest.raises(OwnerMismatchError):
             if stream:
@@ -357,7 +357,7 @@ async def test_live_alias_returns_one_encoded_result_and_keeps_profile_source_is
         raise AssertionError("A profile without remote images must not require HTTP")
 
     monkeypatch.setattr(AssetStore, "get", unexpected_fetch)
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         pages = await cards.render_live(live(), profile=card)
     assert len(pages) == 1 and pages[0].family == "activity" and pages[0].pages == 1
     assert RenderIssue("profile-source", "Observed profile issue") in pages[0].issues
@@ -386,7 +386,7 @@ async def test_roster_result_keeps_nested_character_sdk_issues_without_http(monk
         raise AssertionError("Nested issue propagation must not require HTTP")
 
     monkeypatch.setattr(AssetStore, "get", unexpected_fetch)
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         pages = await cards.render_roster(card)
     assert len(pages) == 1
     assert pages[0].issues == (

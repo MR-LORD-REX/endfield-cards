@@ -1,4 +1,4 @@
-"""Cards and source-backed selection/time data stay consistent and copy safe."""
+"""Rendered cards and source-backed selection/time data stay consistent and copy safe."""
 
 import asyncio
 from dataclasses import FrozenInstanceError, replace
@@ -22,9 +22,10 @@ from skport.games.endfield.models import (
     ResourceMeter,
 )
 
-from endfield_cards import CardResult, Cards
+from endfield_cards import CardResult
 from endfield_cards.adapters.skport import context_for
 from endfield_cards.models import CharacterListInfo, ContractInfo, LiveInfo, MonumentInfo, RenderedCard
+from endfield_cards.rendering import RenderEngine
 from endfield_cards.utils.selection import bundle_render
 
 
@@ -191,8 +192,8 @@ async def test_facade_captures_model_before_async_work_and_keeps_injected_sdk_bo
         await release.wait()
         return [card(family)]
 
-    monkeypatch.setattr(Cards, "render", draw)
-    async with Cards(skport=sdk) as cards:
+    monkeypatch.setattr(RenderEngine, "render", draw)
+    async with RenderEngine(skport=sdk) as cards:
         pending = asyncio.create_task(cards.render_profile_with_data(model))
         await entered.wait()
         model.characters[0].name = "Changed while rendering"
@@ -206,7 +207,7 @@ async def test_facade_captures_model_before_async_work_and_keeps_injected_sdk_bo
 @pytest.mark.asyncio
 async def test_actual_live_with_data_keeps_legacy_image_method_and_utc_time_data():
     model = LiveStatus(player=profile().player, server_time=datetime(2026, 11, 24, 12, tzinfo=UTC))
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         legacy = await cards.render_live(model)
         result = await cards.render_live_with_data(
             model, context=replace(context_for(model), display_timezone="Asia/Kolkata")
@@ -221,7 +222,7 @@ async def test_selected_monument_card_and_info_use_the_same_event():
     model = MonumentState(
         player=player, events=[MonumentEvent(id=f"event-{i}", name=f"Event {i}") for i in range(3)]
     )
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         result = await cards.render_monument_with_data(model, event_id="event-2")
     assert len(result.cards) == 1
     assert [(event.index, event.id) for event in result.info.events] == [(2, "event-2")]

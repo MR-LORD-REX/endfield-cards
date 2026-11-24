@@ -27,9 +27,9 @@ from skport.games.endfield.models import (
 
 from endfield_cards.adapters.skport import context_for
 from endfield_cards.assets.store import AssetStore
-from endfield_cards.client import Cards
 from endfield_cards.errors import DataValidationError, DownloadError, OwnerMismatchError
 from endfield_cards.models import Artwork, OwnerIdentity, RenderContext, RenderIssue
+from endfield_cards.rendering import RenderEngine
 from endfield_cards.rendering.templates import compare
 from endfield_cards.rendering.templates.comparison._shared import compare_rows, equipment_slots, skill_pairs
 from endfield_cards.utils.drawing import PageCanvas
@@ -324,7 +324,7 @@ async def test_pair_and_owner_validation_happens_before_any_custom_art_load(monk
     else:
         options["second_context"] = RenderContext(OwnerIdentity("Wrong Owner", "different-uid"))
         expected = OwnerMismatchError
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         with pytest.raises(expected):
             await cards.render_compare(first, second, **options)
     assert calls == []
@@ -357,7 +357,7 @@ async def test_comparison_results_preserve_both_sdk_issue_lists_before_asset_fal
         raise AssertionError("Source issue propagation must not require HTTP")
 
     monkeypatch.setattr(AssetStore, "get", source_image)
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         pages = await cards.render_compare(first, second)
     assert len(pages) == 1
     issues = pages[0].issues

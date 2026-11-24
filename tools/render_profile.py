@@ -23,8 +23,9 @@ sys.path[:0] = [str(ROOT / "src"), str(WORKSPACE / "skport-py/src")]
 from skport import ClientConfig, ImageSource, SkportClient  # noqa: E402
 from skport.games.endfield.models import PlayerCard  # noqa: E402
 
-from endfield_cards import CacheConfig, Cards, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import CacheConfig, CardsConfig, OutputConfig  # noqa: E402
 from endfield_cards.adapters.skport import context_for  # noqa: E402
+from endfield_cards.rendering import RenderEngine  # noqa: E402
 
 
 def token_from_file(path: Path) -> str:
@@ -149,7 +150,7 @@ async def main() -> None:
         locale = arguments.locale or model.locale
         context = replace(context_for(model, locale=locale), display_timezone=arguments.timezone)
         config = CardsConfig(locale=locale, cache=CacheConfig(directory=ROOT / "local/image-cache"))
-        async with Cards(config=config, skport=sdk) as cards:
+        async with RenderEngine(config=config, skport=sdk) as cards:
             results = await cards.render_profile(
                 model,
                 context=context,

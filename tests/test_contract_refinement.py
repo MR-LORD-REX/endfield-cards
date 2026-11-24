@@ -15,10 +15,10 @@ from skport.games.endfield.models import (
     ResourceMeter,
 )
 
-from endfield_cards import Cards
 from endfield_cards.adapters.skport import context_for
 from endfield_cards.assets.store import AssetStore
 from endfield_cards.errors import DataValidationError, OwnerMismatchError
+from endfield_cards.rendering import RenderEngine
 from endfield_cards.rendering.templates import contingency_contract as contract
 from endfield_cards.rendering.templates.contingency_contract import _shared as parts
 from endfield_cards.utils.drawing import PageCanvas
@@ -133,7 +133,7 @@ async def test_profile_owner_is_validated_before_any_custom_art_io(monkeypatch):
     monkeypatch.setattr(AssetStore, "load", unexpected)
     model = state()
     wrong = PlayerCard(player=PlayerIdentity(name="Other", game_uid="456", skport_id="other"))
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         with pytest.raises(OwnerMismatchError):
             await cards.render_contingency_contract(model, profile=wrong, art=b"invalid")
     assert calls == []

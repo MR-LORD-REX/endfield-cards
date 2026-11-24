@@ -133,7 +133,7 @@ async def test_supplied_endgame_models_do_not_initialize_auth_and_inject_matchin
             return [CardResult(b"test-card", "JPEG", 1600, 1000, family, "dark")]
 
     monkeypatch.setattr(review, "SkportClient", unexpected)
-    monkeypatch.setattr(review, "Cards", Renderer)
+    monkeypatch.setattr(review, "RenderEngine", Renderer)
     result = await review.main(
         [
             "--monument-snapshot",

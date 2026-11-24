@@ -21,8 +21,9 @@ from render_profile import load_tokens  # noqa: E402
 from skport import ClientConfig, ImageSource, Language, SkportClient  # noqa: E402
 from skport.games.endfield.models import CharacterBuild, PlayerCard  # noqa: E402
 
-from endfield_cards import Artwork, CacheConfig, Cards, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import Artwork, CacheConfig, CardsConfig, OutputConfig  # noqa: E402
 from endfield_cards.adapters.skport import context_for  # noqa: E402
+from endfield_cards.rendering import RenderEngine  # noqa: E402
 from endfield_cards.rendering.templates.compare import validate_pair  # noqa: E402
 
 
@@ -185,7 +186,7 @@ async def main(argv: list[str] | None = None) -> dict[str, Any]:
             for side in ("first", "second")
         ]
         config = CardsConfig(locale=locale, cache=CacheConfig(directory=ROOT / "local/image-cache"))
-        async with Cards(config=config, skport=sdk) as cards:
+        async with RenderEngine(config=config, skport=sdk) as cards:
             results = await cards.render_compare(
                 first,
                 second,

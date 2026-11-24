@@ -23,8 +23,9 @@ from skport import ClientConfig, ImageSource, Language, SkportClient  # noqa: E4
 from skport.games.endfield.clean.progress import build_live_status  # noqa: E402
 from skport.games.endfield.models import LiveStatus, PlayerCard  # noqa: E402
 
-from endfield_cards import CacheConfig, Cards, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import CacheConfig, CardsConfig, OutputConfig  # noqa: E402
 from endfield_cards.adapters.skport import context_for  # noqa: E402
+from endfield_cards.rendering import RenderEngine  # noqa: E402
 
 
 def token_from_env_file(path: Path) -> str:
@@ -198,7 +199,7 @@ async def main(argv: list[str] | None = None) -> dict[str, Any]:
         if not arguments.fetch_only:
             locale = arguments.locale or getattr(first, "locale", "en")
             config = CardsConfig(locale=locale, cache=CacheConfig(directory=ROOT / "local/image-cache"))
-            async with Cards(config=config, skport=sdk) as cards:
+            async with RenderEngine(config=config, skport=sdk) as cards:
                 for family in selected:
                     model = models[family]
                     context = replace(context_for(model, locale=locale), display_timezone=arguments.timezone)

@@ -9,11 +9,11 @@ from types import SimpleNamespace
 import pytest
 from PIL import Image
 
-from endfield_cards import Cards
 from endfield_cards.assets.store import AssetStore
 from endfield_cards.config import CacheConfig, CardsConfig
 from endfield_cards.errors import DownloadError, OwnerMismatchError, RenderError, ResourceClosedError
 from endfield_cards.models import OwnerIdentity, RenderContext
+from endfield_cards.rendering import RenderEngine
 
 
 @dataclass(frozen=True)
@@ -25,7 +25,7 @@ class Source:
 def fake_template(monkeypatch: pytest.MonkeyPatch, draw: object) -> None:
     module = SimpleNamespace(iter_render=draw, render=draw)
     monkeypatch.setattr(
-        "endfield_cards.client.pick", lambda family, variant=None: (family, variant or "field", module)
+        "endfield_cards.rendering.engine.pick", lambda family, variant=None: (family, variant or "field", module)
     )
 
 
@@ -42,7 +42,7 @@ async def test_render_cache_isolates_owners_and_rejects_mismatch_before_drawing(
     fake_template(monkeypatch, draw)
     first = Source(OwnerIdentity("One", "10001"))
     second = Source(OwnerIdentity("Two", "10002"))
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         one = await cards.render_character(first)
         two = await cards.render_character(second)
         assert one[0].data != two[0].data
@@ -70,7 +70,7 @@ async def test_render_single_flight_survives_waiter_cancellation(monkeypatch: py
 
     fake_template(monkeypatch, draw)
     source = Source(OwnerIdentity("One", "10001"))
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         first = asyncio.create_task(cards.render_character(source))
         second = asyncio.create_task(cards.render_character(source))
         assert await asyncio.to_thread(entered.wait, 3)
@@ -87,7 +87,7 @@ async def test_borrowed_assets_and_sdk_are_not_closed(monkeypatch: pytest.Monkey
     closed = []
     assets = AssetStore(CacheConfig(enabled=False))
     sdk = SimpleNamespace(aclose=lambda: closed.append("sdk"))
-    cards = Cards(asset_store=assets, skport=sdk)
+    cards = RenderEngine(asset_store=assets, skport=sdk)
     await cards.aclose()
     await cards.aclose()
     assert not assets.stats["closed"] and closed == []
@@ -110,7 +110,7 @@ async def test_closing_with_suspended_page_iterator_preserves_consumer_task(
             closed.append("generator")
 
     fake_template(monkeypatch, draw)
-    cards = Cards(config=CardsConfig(cache=CacheConfig(enabled=False)))
+    cards = RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False)))
     iterator = cards.iter_pages("character", Source(OwnerIdentity("One", "10001")))
     await anext(iterator)
     await cards.aclose()
@@ -132,7 +132,7 @@ async def test_closing_active_uncached_render_releases_generator(monkeypatch: py
             closed.append("generator")
 
     fake_template(monkeypatch, draw)
-    cards = Cards(config=CardsConfig(cache=CacheConfig(enabled=False)))
+    cards = RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False)))
     rendering = asyncio.create_task(cards.render_character(Source(OwnerIdentity("One", "10001"))))
     assert await asyncio.to_thread(entered.wait, 3)
     closing = asyncio.create_task(cards.aclose())
@@ -157,7 +157,7 @@ async def test_comparison_participates_in_active_shutdown(monkeypatch: pytest.Mo
     fake_template(monkeypatch, draw)
     monkeypatch.setattr(compare, "validate_pair", lambda first, second: None)
     monkeypatch.setattr(compare, "iter_render", lambda *args, **kwargs: iter(draw(*args, **kwargs)))
-    cards = Cards(config=CardsConfig(cache=CacheConfig(enabled=False)))
+    cards = RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False)))
     rendering = asyncio.create_task(
         cards.render_compare(Source(OwnerIdentity("One", "10001")), Source(OwnerIdentity("Two", "10002")))
     )
@@ -179,7 +179,7 @@ async def test_comparison_closes_encoded_source_images(monkeypatch: pytest.Monke
     fake_template(monkeypatch, lambda *args, **kwargs: [])
     monkeypatch.setattr(compare, "validate_pair", lambda first, second: None)
     monkeypatch.setattr(compare, "iter_render", lambda *args, **kwargs: iter(pixels))
-    async with Cards(config=CardsConfig(cache=CacheConfig(enabled=False))) as cards:
+    async with RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False))) as cards:
         results = await cards.render_compare(
             Source(OwnerIdentity("One", "10001")), Source(OwnerIdentity("Two", "10002"))
         )
@@ -201,7 +201,7 @@ async def test_comparison_translates_template_failure_and_preserves_cause(
     fake_template(monkeypatch, failed)
     monkeypatch.setattr(compare, "validate_pair", lambda first, second: None)
     monkeypatch.setattr(compare, "iter_render", failed)
-    async with Cards(config=CardsConfig(cache=CacheConfig(enabled=False))) as cards:
+    async with RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False))) as cards:
         with pytest.raises(RenderError) as exc:
             await cards.render_compare(
                 Source(OwnerIdentity("One", "10001")), Source(OwnerIdentity("Two", "10002"))
@@ -235,7 +235,7 @@ async def test_optional_image_failure_is_reported_once_and_does_not_poison_rende
     fake_template(monkeypatch, draw)
     assets = AssetStore(CacheConfig(disk_bytes=0))
     assets.downloader.fetch = fetch
-    cards = Cards(asset_store=assets)
+    cards = RenderEngine(asset_store=assets)
     source = Source(OwnerIdentity("One", "10001"))
     try:
         first = await cards.render_character(source)
@@ -270,7 +270,7 @@ async def test_cache_off_remote_decode_uses_live_worker_bridge_without_persisten
 
     fake_template(monkeypatch, draw)
     config = CardsConfig(cache=CacheConfig(enabled=False, decoded_bytes=0, disk_bytes=0))
-    async with Cards(config=config) as cards:
+    async with RenderEngine(config=config) as cards:
         cards.assets.downloader.fetch = fetch
         source = Source(OwnerIdentity("One", "10001"))
         first = await asyncio.wait_for(cards.render_character(source), timeout=3)
@@ -301,7 +301,7 @@ async def test_close_cancels_lazy_waiter_without_closing_borrowed_shared_downloa
     fake_template(monkeypatch, draw)
     assets = AssetStore(CacheConfig(enabled=False))
     assets.downloader.fetch = fetch
-    cards = Cards(config=CardsConfig(cache=CacheConfig(enabled=False)), asset_store=assets)
+    cards = RenderEngine(config=CardsConfig(cache=CacheConfig(enabled=False)), asset_store=assets)
     rendering = asyncio.create_task(cards.render_character(Source(OwnerIdentity("One", "10001"))))
     await entered.wait()
     shared = asyncio.create_task(assets.get(source_url))

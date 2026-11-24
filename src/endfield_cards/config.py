@@ -2,6 +2,13 @@
 
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Literal, TypeAlias
+from zoneinfo import ZoneInfo
+
+from endfield_cards.i18n import normalize_locale
+
+Locale: TypeAlias = Literal["en", "ja", "ko", "zh-Hans", "zh-Hant"]
+OutputFormat: TypeAlias = Literal["PNG", "JPEG", "WEBP"]
 
 
 @dataclass(frozen=True)
@@ -37,7 +44,7 @@ class DownloadConfig:
 
 @dataclass(frozen=True)
 class OutputConfig:
-    format: str = "PNG"
+    format: OutputFormat = "PNG"
     quality: int = 90
     max_bytes: int | None = None
 
@@ -58,8 +65,12 @@ class CardsConfig:
     download: DownloadConfig = field(default_factory=DownloadConfig)
     render_workers: int = 2
     admitted_jobs: int = 8
-    locale: str = "en"
+    locale: Locale = "en"
+    display_timezone: str = "UTC"
+    output: OutputConfig = field(default_factory=OutputConfig)
 
     def __post_init__(self) -> None:
         if min(self.render_workers, self.admitted_jobs) <= 0:
             raise ValueError("render budgets must be positive")
+        object.__setattr__(self, "locale", normalize_locale(self.locale))
+        ZoneInfo(self.display_timezone)

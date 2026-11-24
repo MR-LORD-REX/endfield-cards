@@ -16,7 +16,8 @@ sys.path.insert(0, str(ROOT.parent / "skport-py" / "src"))
 
 from skport.games.endfield.models import CharacterBuild, PlayerCard  # noqa: E402
 
-from endfield_cards import Artwork, CacheConfig, Cards, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import Artwork, CacheConfig, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards.rendering import RenderEngine  # noqa: E402
 
 _LEGACY_PREVIEW = re.compile(
     r"(?:character-(?:field|dossier|terminal|portrait)|profile-(?:overview|operations|identity))"
@@ -79,7 +80,7 @@ async def main() -> None:
     details_output = ROOT / "local" / "detail-previews"
     config = CardsConfig(cache=CacheConfig(directory=ROOT / "local" / "image-cache"))
     report = []
-    async with Cards(config=config, url_policy=(lambda url: False) if args.offline else None) as cards:
+    async with RenderEngine(config=config, url_policy=(lambda url: False) if args.offline else None) as cards:
         art_path = source / "assets" / "zhuang-half-body.webp"
         artwork = Artwork(art_path, fit="contain") if art_path.exists() and args.offline else None
         for family, model in (("character", character), ("profile", profile)):

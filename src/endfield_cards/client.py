@@ -1,130 +1,165 @@
-"""Account-independent facade; the SDK retains authentication and game logic."""
+"""SDK-backed card requests; drawing and resource management live in RenderEngine."""
 
 from __future__ import annotations
 
 import asyncio
-import hashlib
-from collections.abc import AsyncGenerator, AsyncIterator, Iterable
+from collections.abc import Callable, Coroutine, Sequence
+from copy import deepcopy
 from dataclasses import replace
-from typing import Any, cast
+from functools import wraps
+from pathlib import Path
+from types import MappingProxyType
+from typing import Any, Concatenate, Literal, ParamSpec, TypeVar, cast
 
-from skport import SkportClient
+from aiohttp import ClientSession
+from PIL import Image
+from skport import Role, SkportAPI, SkportClient
+from skport.games.endfield.models import (
+    CharacterBuild,
+    ContractState,
+    FactoryState,
+    LiveStatus,
+    MonumentState,
+    PlayerCard,
+    PullHistory,
+    WikiPage,
+)
 
-from endfield_cards._version import __version__
 from endfield_cards.adapters.skport import context_for, validate_owner
+from endfield_cards.assets.download import URLPolicy
 from endfield_cards.assets.store import AssetStore
-from endfield_cards.cache import ByteLRU, cache_key
-from endfield_cards.config import CardsConfig, OutputConfig
-from endfield_cards.errors import CardError, FetchError, RenderError, ResourceClosedError
+from endfield_cards.config import CardsConfig, Locale
+from endfield_cards.errors import (
+    DataValidationError,
+    FetchError,
+    ResourceClosedError,
+    UnsupportedVariantError,
+)
 from endfield_cards.models import (
     Artwork,
-    BatchItem,
-    CardResult,
-    RenderContext,
-    RenderIssue,
-    RenderRequest,
-)
-from endfield_cards.models.rendered import (
     CharacterListInfo,
     ContractInfo,
     LiveInfo,
     MonumentInfo,
+    OwnerIdentity,
+    RenderContext,
     RenderedCard,
-    RenderInfo,
 )
-from endfield_cards.rendering.encoding import encode
-from endfield_cards.rendering.executor import RenderExecutor
-from endfield_cards.rendering.pipeline import LazyAssets
-from endfield_cards.rendering.registry import VARIANTS, pick
+from endfield_cards.rendering.engine import RenderEngine
+from endfield_cards.utils.selection import render_info
+
+# Public template numbers stay stable when the internal named registry changes.
+_STYLES = {
+    "profile": ("overview", "operations", "identity"),
+    "character": ("dossier", "terminal", "field", "portrait"),
+    "compare": ("dossier", "field"),
+    **dict.fromkeys(
+        (
+            "all_characters",
+            "live",
+            "factory",
+            "monument",
+            "monument_detailed",
+            "contingency_contract",
+            "contingency_contract_detailed",
+            "pulls",
+            "wiki",
+        ),
+        ("light", "dark"),
+    ),
+}
+TEMPLATES = MappingProxyType({name: tuple(range(1, len(styles) + 1)) for name, styles in _STYLES.items()})
+
+Art = Artwork | str | Path | bytes | Image.Image
+P = ParamSpec("P")
+T = TypeVar("T")
 
 
-def _snapshot(model: Any) -> Any:
-    if hasattr(model, "model_copy"):
-        return model.model_copy(deep=True)
-    if isinstance(model, (list, tuple)):
-        return [_snapshot(item) for item in model]
-    import copy
+def _request(
+    method: Callable[Concatenate[Cards, P], Coroutine[Any, Any, T]],
+) -> Callable[Concatenate[Cards, P], Coroutine[Any, Any, T]]:
+    """Track the whole fetch/render request so closing cancels either phase."""
 
-    return copy.deepcopy(model)
+    @wraps(method)
+    async def run(self: Cards, *args: P.args, **kwargs: P.kwargs) -> T:
+        self._check_open()
+        task = asyncio.current_task()
+        if task is not None:
+            self._active.add(task)
+        try:
+            return await method(self, *args, **kwargs)
+        finally:
+            if task is not None:
+                self._active.discard(task)
 
-
-def _next_page(iterator: Any, output: OutputConfig) -> tuple[bytes, int, int] | None:
-    try:
-        image = next(iterator)
-    except StopIteration:
-        return None
-    try:
-        return encode(image, output), image.width, image.height
-    finally:
-        image.close()
-
-
-def _source_issues(model: Any) -> list[RenderIssue]:
-    """Retain SDK issues for returned collections as well as their containers."""
-    result: list[RenderIssue] = []
-    for item in model if isinstance(model, (list, tuple)) else [model]:
-        result.extend(RenderIssue(issue.code, str(issue.message)) for issue in getattr(item, "issues", []))
-        result.extend(_source_issues(getattr(item, "characters", ())))
-    return result
+    return run
 
 
-def _validated_options(family: str, context: RenderContext, options: dict[str, Any]) -> dict[str, Any]:
-    if family in {"activity", "monument", "contingency_contract"} and options.get("profile") is not None:
-        options = dict(options)
-        options["profile"] = _snapshot(options["profile"])
-        validate_owner(options["profile"], context)
-    return options
+def _style(family: str, template: int) -> str:
+    if type(template) is not int or template not in TEMPLATES[family]:
+        raise UnsupportedVariantError(f"{family} template must be one of {TEMPLATES[family]}")
+    return _STYLES[family][template - 1]
+
+
+def _selector(char_id: str | None, name: str | None, index: int | None) -> dict[str, Any]:
+    if sum(value is not None for value in (char_id, name, index)) > 1:
+        raise DataValidationError("Supply one of char_id, name or index")
+    if char_id is not None:
+        if not isinstance(char_id, str) or not char_id.strip():
+            raise DataValidationError("char_id must be a nonempty string")
+        return {"char_id": char_id}
+    if name is not None:
+        if not isinstance(name, str) or not name.strip():
+            raise DataValidationError("name must be a nonempty string")
+        return {"name": name}
+    if index is not None and (type(index) is not int or index < 0):
+        raise DataValidationError("index must be a nonnegative integer")
+    return {"index": 0 if index is None else index}
 
 
 class Cards:
-    """Render supplied models for arbitrary owners with reusable bounded resources.
+    """Fetch and create cards for any target using one injected SKPort SDK or API.
 
-    SDK and AssetStore injections are borrowed. A passed aiohttp session is
-    borrowed by the internally owned store. Use one client per event loop.
+    Set locale, output and resource budgets once with CardsConfig. Injected SDK,
+    API, AssetStore and session resources are borrowed. Use one client per loop.
     """
 
     def __init__(
         self,
-        *,
-        config: CardsConfig | None = None,
         skport: SkportClient | None = None,
+        *,
+        api: SkportAPI | None = None,
+        config: CardsConfig | None = None,
         asset_store: AssetStore | None = None,
-        session: Any = None,
-        url_policy: Any = None,
+        session: ClientSession | None = None,
+        url_policy: URLPolicy | None = None,
     ) -> None:
-        self.config = config or CardsConfig()
+        if (skport is None) == (api is None):
+            raise ValueError("Supply exactly one of skport or api")
         if asset_store is not None and (session is not None or url_policy is not None):
             raise ValueError("session and url_policy belong to the supplied AssetStore")
-        self.skport = skport
-        self.assets = asset_store or AssetStore(
-            self.config.cache, self.config.download, session=session, url_policy=url_policy
+        self.skport = skport if skport is not None else SkportClient(api=api)
+        self._owns_sdk = skport is None
+        self.config = config or CardsConfig(locale=cast(Locale, self.skport.config.lang.value))
+        self._engine = RenderEngine(
+            config=self.config, asset_store=asset_store, session=session, url_policy=url_policy
         )
-        self._owns_assets = asset_store is None
-        self._executor = RenderExecutor(self.config.render_workers)
-        self._admission = asyncio.Semaphore(self.config.admitted_jobs)
-        self._renders: ByteLRU[tuple[CardResult, ...]] = ByteLRU(
-            self.config.cache.encoded_bytes if self.config.cache.enabled else 0,
-            ttl_seconds=self.config.cache.ttl_seconds,
-        )
-        self._flights: dict[str, asyncio.Task[list[CardResult]]] = {}
         self._closed = False
-        self._generation = 0
         self._active: set[asyncio.Task[Any]] = set()
         self._close_task: asyncio.Task[None] | None = None
-        self._resource_revision: str | None = None
 
     @property
-    def variants(self) -> dict[str, tuple[str, ...]]:
-        return dict(VARIANTS)
+    def templates(self) -> dict[str, tuple[int, ...]]:
+        """Available numeric templates for each card method (without the _card suffix)."""
+        return dict(TEMPLATES)
+
+    @property
+    def variants(self) -> dict[str, tuple[int, ...]]:
+        return self.templates
 
     @property
     def cache_stats(self) -> dict[str, Any]:
-        return {
-            "renders": self._renders.stats,
-            "assets": self.assets.stats,
-            "active": len(self._active),
-            "in_flight": len(self._flights),
-        }
+        return self._engine.cache_stats
 
     def _check_open(self) -> None:
         if self._closed:
@@ -140,458 +175,362 @@ class Cards:
     async def aclose(self) -> None:
         if self._close_task is None:
             self._closed = True
-            self._generation += 1
             self._close_task = asyncio.create_task(self._close_resources())
         await asyncio.shield(self._close_task)
 
     close = aclose
 
     async def _close_resources(self) -> None:
-        active = list(self._active | set(self._flights.values()))
+        active = list(self._active)
         for task in active:
             task.cancel()
         if active:
             await asyncio.gather(*active, return_exceptions=True)
-        await self._executor.aclose()
-        if self._owns_assets:
-            await self.assets.aclose()
-        self._renders.clear()
+        try:
+            await self._engine.aclose()
+        finally:
+            if self._owns_sdk:
+                await self.skport.close()
 
     async def clear_cache(self, *, renders: bool = True, images: bool = True, disk: bool = True) -> None:
         self._check_open()
-        self._generation += 1
-        if renders:
-            self._renders.clear()
-        if images or disk:
-            await self.assets.clear_cache(memory=images, disk=disk)
+        await self._engine.clear_cache(renders=renders, images=images, disk=disk)
 
-    async def render(
+    def _target(
         self,
-        family: str,
-        model: Any,
+        skport_id: str | int | None,
+        role_id: str | int | None,
+        server_id: str | int | None,
         *,
-        context: RenderContext | None = None,
-        owner: Any = None,
-        variant: str | None = None,
-        art: Artwork | Any = None,
-        output: OutputConfig | None = None,
-        **options: Any,
-    ) -> list[CardResult]:
-        """Return separately encoded pages; identity validation precedes asset I/O."""
+        token: str | None = None,
+        role: Role | str | None = None,
+    ) -> dict[str, Any]:
+        if (skport_id is None) == (token is None):
+            raise DataValidationError("Supply exactly one of skport_id or token")
+        if token is not None:
+            if not isinstance(token, str) or not token.strip():
+                raise DataValidationError("token must be a nonempty string")
+            if role_id is not None or server_id is not None:
+                raise DataValidationError("Owner requests select a role with role")
+            return {"token": token, "role": role}
+        if type(skport_id) not in (str, int) or not str(skport_id).strip():
+            raise DataValidationError("skport_id must be a nonempty string or integer")
+        if role is not None:
+            raise DataValidationError("Public requests select a role with role_id and server_id")
+        return {"skport_id": skport_id, "role_id": role_id, "server_id": server_id}
+
+    async def _fetch(self, method: str, **ids: Any) -> Any:
         self._check_open()
-        family, variant, _ = pick(family, variant)
-        snapshot = _snapshot(model)
-        context = context or context_for(snapshot, owner, locale=self.config.locale)
-        validate_owner(snapshot, context)
-        options = _validated_options(family, context, options)
-        artwork = art if isinstance(art, Artwork) else Artwork(art) if art is not None else None
-        output = output or OutputConfig()
-        cacheable = self.config.cache.enabled and artwork is None
-        if self._resource_revision is None:
-
-            def resource_revision() -> str:
-                from importlib.resources import files
-
-                return hashlib.sha256(
-                    files("endfield_cards").joinpath("assets/resources/manifest.json").read_bytes()
-                ).hexdigest()
-
-            self._resource_revision = await asyncio.to_thread(resource_revision)
-        key = cache_key(
-            __version__, self._resource_revision, family, variant, snapshot, context, output, options
-        )
-        if cacheable:
-            cached = self._renders.get(key)
-            if cached is not None:
-                return list(cached)
-            flight_key = f"{self._generation}:{key}"
-            task = self._flights.get(flight_key)
-            if task is None:
-                generation = self._generation
-                task = asyncio.create_task(
-                    self._collect(family, snapshot, context, variant, artwork, output, options)
-                )
-                self._flights[flight_key] = task
-                task.add_done_callback(
-                    lambda completed: self._finish_render(flight_key, key, generation, completed)
-                )
-            return list(await asyncio.shield(task))
-        return await self._collect(family, snapshot, context, variant, artwork, output, options)
-
-    def _finish_render(
-        self, flight_key: str, key: str, generation: int, task: asyncio.Task[list[CardResult]]
-    ) -> None:
-        self._flights.pop(flight_key, None)
-        if task.cancelled():
-            return
-        exception = task.exception()
-        if exception is None and not self._closed and generation == self._generation:
-            results = task.result()
-            if not any(result.issues for result in results):
-                self._renders.put(key, tuple(results), size_bytes=sum(len(result.data) for result in results))
-
-    async def _collect(
-        self,
-        family: str,
-        model: Any,
-        context: RenderContext,
-        variant: str,
-        artwork: Artwork | None,
-        output: OutputConfig,
-        options: dict[str, Any],
-    ) -> list[CardResult]:
-        pages = [
-            page async for page in self._iterate(family, model, context, variant, artwork, output, options)
-        ]
-        issues = tuple(dict.fromkeys(issue for page in pages for issue in page.issues))
-        return [replace(page, pages=len(pages), issues=issues) for page in pages]
-
-    async def iter_pages(
-        self,
-        family: str,
-        model: Any,
-        *,
-        context: RenderContext | None = None,
-        owner: Any = None,
-        variant: str | None = None,
-        art: Any = None,
-        output: OutputConfig | None = None,
-        **options: Any,
-    ) -> AsyncIterator[CardResult]:
-        """Yield encoded pages; heavy families draw each page as it is requested.
-
-        Streaming results use pages=0 (unknown until exhaustion). The embedded
-        footer uses the template's planned total. Close an abandoned iterator.
-        """
-        self._check_open()
-        family, variant, _ = pick(family, variant)
-        snapshot = _snapshot(model)
-        context = context or context_for(snapshot, owner, locale=self.config.locale)
-        validate_owner(snapshot, context)
-        options = _validated_options(family, context, options)
-        artwork = art if isinstance(art, Artwork) else Artwork(art) if art is not None else None
-        iterator = self._iterate(
-            family, snapshot, context, variant, artwork, output or OutputConfig(), options
-        )
         try:
-            async for page in iterator:
-                yield page
-        finally:
-            await iterator.aclose()
-
-    async def _iterate(
-        self,
-        family: str,
-        model: Any,
-        context: RenderContext,
-        variant: str,
-        artwork: Artwork | None,
-        output: OutputConfig,
-        options: dict[str, Any],
-    ) -> AsyncGenerator[CardResult, None]:
-        task = asyncio.current_task()
-        if task is not None:
-            self._active.add(task)
-        iterator = None
-        try:
-            async with self._admission:
-                self._check_open()
-                _, _, module = pick(family, variant)
-                overrides = {}
-                if artwork is not None:
-                    overrides["custom_art"] = await self.assets.load(artwork)
-                issues = _source_issues(model)
-                if (
-                    family in {"activity", "monument", "contingency_contract"}
-                    and (profile := options.get("profile")) is not None
-                ):
-                    issues.extend(
-                        RenderIssue(issue.code, str(issue.message))
-                        for issue in getattr(profile, "issues", [])
-                    )
-                assets = LazyAssets(
-                    self.assets, asyncio.get_running_loop(), issues=issues, overrides=overrides
-                )
-                draw: Any = getattr(module, "iter_render", module.render)
-                kwargs = dict(variant=variant, assets=assets, **options)
-                if family == "character":
-                    kwargs["artwork"] = artwork
-                iterator = await self._executor.run(
-                    lambda: iter(draw(model, context, **kwargs)), on_cancel=assets.cancel_pending
-                )
-                page = 0
-                while True:
-                    self._check_open()
-                    value = await self._executor.run(
-                        _next_page, iterator, output, on_cancel=assets.cancel_pending
-                    )
-                    if value is None:
-                        break
-                    page += 1
-                    data, width, height = value
-                    if task is not None:
-                        self._active.discard(task)
-                    yield CardResult(
-                        data,
-                        output.format,
-                        width,
-                        height,
-                        family,
-                        variant,
-                        page=page,
-                        pages=0,
-                        issues=tuple(issues),
-                    )
-                    if task is not None:
-                        self._active.add(task)
-        except CardError:
-            raise
-        except (TypeError, ValueError, AttributeError, OSError) as exc:
-            raise RenderError(f"{family} card could not be rendered") from exc
-        finally:
-            if iterator is not None and hasattr(iterator, "close"):
-                await asyncio.to_thread(iterator.close)
-            if task is not None:
-                self._active.discard(task)
-
-    async def render_batch(self, requests: Iterable[RenderRequest]) -> list[BatchItem]:
-        """Keep input order and item failures while scheduling a bounded chunk."""
-        results: list[BatchItem] = []
-        pending: list[tuple[int, RenderRequest]] = []
-
-        async def one(index: int, request: RenderRequest) -> BatchItem:
-            try:
-                pages = await self.render(
-                    request.family, request.model, context=request.context, variant=request.variant
-                )
-                return BatchItem(index, tuple(pages))
-            except CardError as exc:
-                return BatchItem(index, error=exc)
-
-        for index, request in enumerate(requests):
-            pending.append((index, request))
-            if len(pending) == self.config.admitted_jobs:
-                results.extend(await asyncio.gather(*(one(i, item) for i, item in pending)))
-                pending.clear()
-        if pending:
-            results.extend(await asyncio.gather(*(one(i, item) for i, item in pending)))
-        return results
-
-    async def fetch(self, family: str, **ids: Any) -> Any:
-        """Delegate public/explicit-owner fetching to an injected SDK client."""
-        self._check_open()
-        if self.skport is None:
-            raise FetchError("fetching requires an injected SkportClient", code="missing_sdk")
-        canonical, _, _ = pick(family)
-        method = {
-            "profile": "card",
-            "character": "character",
-            "roster": "characters",
-            "activity": "activity",
-            "factory": "factory",
-            "monument": "monument",
-            "monument_detail": "monument",
-            "contingency_contract": "contract",
-            "contingency_contract_detail": "contract",
-        }.get(canonical)
-        if method is None:
-            raise FetchError(
-                "pulls and wiki currently require supplied normalized models", code="supplied_model_required"
-            )
-        if "token" in ids and method in {"card", "character", "characters"}:
-            method = "owned_" + method
-        game = getattr(self.skport, "endfield", self.skport)
-        try:
-            return await getattr(game, method)(**ids)
+            return await getattr(self.skport.endfield, method)(lang=self.config.locale, **ids)
         except Exception as exc:
-            raise FetchError(f"SDK could not fetch {canonical}") from exc
+            raise FetchError(f"SKPort could not fetch {method}") from exc
 
-    async def render_compare(
-        self,
-        first: Any,
-        second: Any,
-        *,
-        context: RenderContext | None = None,
-        second_context: RenderContext | None = None,
-        variant: str = "field",
-        art: Any = None,
-        second_art: Any = None,
-        output: OutputConfig | None = None,
-        details: bool = False,
-    ) -> list[CardResult]:
-        """Compare the same canonical operator from two explicit owner models."""
-        from endfield_cards.rendering.templates import compare
+    def _context(
+        self, model: Any, *, owner: Any = None, scope: str | None = None, live: bool = False
+    ) -> RenderContext:
+        context = context_for(model, owner, locale=self.config.locale, source_scope=scope)
+        return replace(context, display_timezone="UTC" if live else self.config.display_timezone)
 
-        self._check_open()
-        _, variant, _ = pick("character", variant)
-        first, second = _snapshot(first), _snapshot(second)
-        context = context or context_for(first, locale=self.config.locale)
-        second_context = second_context or context_for(second, locale=self.config.locale)
-        validate_owner(first, context)
-        validate_owner(second, second_context)
-        compare.validate_pair(first, second)
-        output = output or OutputConfig()
-        artwork = art if isinstance(art, Artwork) else Artwork(art) if art is not None else None
-        second_artwork = (
-            second_art
-            if isinstance(second_art, Artwork)
-            else Artwork(second_art)
-            if second_art is not None
-            else None
-        )
-        task = asyncio.current_task()
-        if task is not None:
-            self._active.add(task)
-        try:
-            async with self._admission:
-                self._check_open()
-                issues = [
-                    RenderIssue(issue.code, str(issue.message))
-                    for model in (first, second)
-                    for issue in getattr(model, "issues", [])
-                ]
-                assets = LazyAssets(self.assets, asyncio.get_running_loop(), issues=issues)
-                if artwork:
-                    assets["custom_art"] = await self.assets.load(artwork)
-                if second_artwork:
-                    assets["second_custom_art"] = await self.assets.load(second_artwork)
-
-                def draw() -> list[CardResult]:
-                    images = compare.iter_render(
-                        first,
-                        second,
-                        context,
-                        second_context,
-                        variant=variant,
-                        assets=assets,
-                        artwork=artwork,
-                        second_artwork=second_artwork,
-                        details=details,
-                    )
-                    results = []
-                    for index, image in enumerate(images):
-                        try:
-                            results.append(
-                                CardResult(
-                                    encode(image, output),
-                                    output.format,
-                                    image.width,
-                                    image.height,
-                                    "character",
-                                    variant,
-                                    index + 1,
-                                    0,
-                                )
-                            )
-                        finally:
-                            image.close()
-                    return [
-                        replace(result, pages=len(results), issues=tuple(assets.issues)) for result in results
-                    ]
-
-                return await self._executor.run(draw, on_cancel=assets.cancel_pending)
-        except CardError:
-            raise
-        except (TypeError, ValueError, AttributeError, OSError) as exc:
-            raise RenderError("comparison card could not be rendered") from exc
-        finally:
-            if task is not None:
-                self._active.discard(task)
-
-    async def render_with_data(
+    async def _create(
         self,
         family: str,
-        model: Any,
+        model: T,
+        variant: str,
+        template: int,
         *,
-        context: RenderContext | None = None,
         owner: Any = None,
-        variant: str | None = None,
-        art: Any = None,
-        output: OutputConfig | None = None,
+        scope: str | None = None,
+        art: Art | None = None,
         **options: Any,
-    ) -> RenderedCard[Any, RenderInfo]:
-        """Return images, a private SDK model and typed downstream selection data."""
-        from endfield_cards.utils.selection import bundle_render
-
+    ) -> RenderedCard[T, Any]:
         self._check_open()
-        family, variant, _ = pick(family, variant)
-        snapshot, options = _snapshot(model), _snapshot(options)
-        context = context or context_for(snapshot, owner, locale=self.config.locale)
-        if family == "activity":
-            context = replace(context, display_timezone="UTC")
-        options = _validated_options(family, context, options)
-        pages = await self.render(
-            family, snapshot, context=context, variant=variant, art=art, output=output, **options
+        snapshot, options = deepcopy(model), deepcopy(options)
+        context = self._context(snapshot, owner=owner, scope=scope, live=family == "activity")
+        if (profile := options.get("profile")) is not None:
+            validate_owner(profile, context)
+        pages = await self._engine.render(
+            family, snapshot, context=context, variant=variant, art=art, output=self.config.output, **options
         )
-        return bundle_render(family, snapshot, pages, context, **options)
-
-    async def render_profile_with_data(
-        self, model: Any, **kwargs: Any
-    ) -> RenderedCard[Any, CharacterListInfo]:
-        return cast(
-            RenderedCard[Any, CharacterListInfo], await self.render_with_data("profile", model, **kwargs)
+        return RenderedCard(
+            [replace(page, variant=template) for page in pages],
+            snapshot,
+            render_info(family, snapshot, context, **options),
         )
 
-    async def render_roster_with_data(
-        self, model: Any, **kwargs: Any
-    ) -> RenderedCard[Any, CharacterListInfo]:
-        return cast(
-            RenderedCard[Any, CharacterListInfo], await self.render_with_data("roster", model, **kwargs)
+    @_request
+    async def profile_card(
+        self,
+        skport_id: str | int | None = None,
+        *,
+        template: Literal[1, 2, 3] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        token: str | None = None,
+        role: Role | str | None = None,
+        details: bool = False,
+    ) -> RenderedCard[PlayerCard, CharacterListInfo]:
+        """Create a profile and return its exposed character selectors."""
+        variant = _style("profile", template)
+        ids = self._target(skport_id, role_id, server_id, token=token, role=role)
+        model = await self._fetch("owned_card" if token is not None else "card", **ids)
+        return await self._create("profile", model, variant, template, details=details)
+
+    @_request
+    async def character_card(
+        self,
+        skport_id: str | int | None = None,
+        *,
+        template: Literal[1, 2, 3, 4] = 1,
+        char_id: str | None = None,
+        name: str | None = None,
+        index: int | None = None,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        token: str | None = None,
+        role: Role | str | None = None,
+        full: bool = True,
+        showcase_only: bool = False,
+        art: Art | None = None,
+        details: bool = False,
+    ) -> RenderedCard[CharacterBuild, None]:
+        """Create one operator card; choose by ID, name or index (default 0)."""
+        variant = _style("character", template)
+        ids = self._target(skport_id, role_id, server_id, token=token, role=role)
+        selectors = _selector(char_id, name, index)
+        if token is None:
+            selectors["showcase_only"] = showcase_only
+        elif showcase_only:
+            raise DataValidationError("showcase_only is a public character selector")
+        model = await self._fetch(
+            "owned_character" if token is not None else "character", full=full, **ids, **selectors
+        )
+        return await self._create(
+            "character",
+            model,
+            variant,
+            template,
+            art=art,
+            details=details,
+            scope="owner" if token is not None else "public",
         )
 
-    async def render_live_with_data(self, model: Any, **kwargs: Any) -> RenderedCard[Any, LiveInfo]:
-        return cast(RenderedCard[Any, LiveInfo], await self.render_with_data("activity", model, **kwargs))
-
-    async def render_monument_with_data(self, model: Any, **kwargs: Any) -> RenderedCard[Any, MonumentInfo]:
-        return cast(RenderedCard[Any, MonumentInfo], await self.render_with_data("monument", model, **kwargs))
-
-    async def render_contingency_contract_with_data(
-        self, model: Any, **kwargs: Any
-    ) -> RenderedCard[Any, ContractInfo]:
-        return cast(
-            RenderedCard[Any, ContractInfo],
-            await self.render_with_data("contingency_contract", model, **kwargs),
+    @_request
+    async def all_characters_card(
+        self,
+        token: str,
+        *,
+        template: Literal[1, 2] = 1,
+        role: Role | str | None = None,
+        full: bool = True,
+        character_ids: Sequence[str] | None = None,
+        details: bool = False,
+    ) -> RenderedCard[list[CharacterBuild], CharacterListInfo]:
+        """Create the explicit token owner's roster, optionally selecting operator IDs."""
+        variant = _style("all_characters", template)
+        if isinstance(character_ids, (str, bytes)):
+            raise DataValidationError("character_ids must be a sequence of IDs, not a string")
+        ids = self._target(None, None, None, token=token, role=role)
+        model = await self._fetch("owned_characters", full=full, **ids)
+        owner = model[0].owner if model else await self._fetch("owned_card", **ids)
+        return await self._create(
+            "roster",
+            model,
+            variant,
+            template,
+            owner=owner,
+            scope="owner",
+            character_ids=tuple(character_ids) if character_ids is not None else None,
+            details=details,
         )
 
-    async def render_profile(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("profile", model, **kwargs)
+    @_request
+    async def live_card(
+        self,
+        skport_id: str | int | None = None,
+        *,
+        template: Literal[1, 2] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        token: str | None = None,
+        role: Role | str | None = None,
+        details: bool = False,
+    ) -> RenderedCard[LiveStatus, LiveInfo]:
+        """Create the resource/activity dashboard with source deadlines in UTC."""
+        variant = _style("live", template)
+        ids = self._target(skport_id, role_id, server_id, token=token, role=role)
+        model = await self._fetch("owned_activity" if token is not None else "activity", **ids)
+        profile = await self._fetch("owned_card" if token is not None else "card", **ids)
+        return await self._create(
+            "activity",
+            model,
+            variant,
+            template,
+            scope="owner" if token is not None else "public",
+            profile=profile,
+            details=details,
+        )
 
-    async def render_character(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("character", model, **kwargs)
+    @_request
+    async def factory_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+    ) -> RenderedCard[FactoryState, None]:
+        """Create a factory card from a public player's region and crew data."""
+        variant = _style("factory", template)
+        model = await self._fetch("factory", **self._target(skport_id, role_id, server_id))
+        return await self._create("factory", model, variant, template)
 
-    async def render_roster(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("roster", model, **kwargs)
+    @_request
+    async def monument_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        event_id: str | None = None,
+        details: bool = False,
+    ) -> RenderedCard[MonumentState, MonumentInfo]:
+        """Create a Monument overview and return event/stage selectors."""
+        variant = _style("monument", template)
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("monument", **ids)
+        profile = await self._fetch("card", **ids)
+        return await self._create(
+            "monument", model, variant, template, profile=profile, event_id=event_id, details=details
+        )
 
-    async def render_activity(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("activity", model, **kwargs)
+    @_request
+    async def monument_detailed_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        event_id: str | None = None,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+    ) -> RenderedCard[MonumentState, MonumentInfo]:
+        """Create full Monument stage records for an event, or all supplied events."""
+        variant = _style("monument_detailed", template)
+        model = await self._fetch("monument", **self._target(skport_id, role_id, server_id))
+        return await self._create("monument_detail", model, variant, template, event_id=event_id)
 
-    render_live = render_activity
+    @_request
+    async def contingency_contract_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        contract_id: str | None = None,
+        details: bool = False,
+    ) -> RenderedCard[ContractState, ContractInfo]:
+        """Create a Contract overview and return contract/run selectors."""
+        variant = _style("contingency_contract", template)
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("contract", **ids)
+        profile = await self._fetch("card", **ids)
+        return await self._create(
+            "contingency_contract",
+            model,
+            variant,
+            template,
+            profile=profile,
+            contract_id=contract_id,
+            details=details,
+        )
 
-    async def render_factory(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("factory", model, **kwargs)
+    @_request
+    async def contingency_contract_detailed_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        contract_id: str | None = None,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+    ) -> RenderedCard[ContractState, ContractInfo]:
+        """Create full Contract rules and run records for the selected contract."""
+        variant = _style("contingency_contract_detailed", template)
+        model = await self._fetch("contract", **self._target(skport_id, role_id, server_id))
+        return await self._create(
+            "contingency_contract_detail", model, variant, template, contract_id=contract_id
+        )
 
-    async def render_monument(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("monument", model, **kwargs)
+    @_request
+    async def compare_card(
+        self,
+        first_skport_id: str | int,
+        second_skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        char_id: str | None = None,
+        name: str | None = None,
+        index: int | None = None,
+        second_char_id: str | None = None,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+        second_role_id: str | int | None = None,
+        second_server_id: str | int | None = None,
+        art: Art | None = None,
+        second_art: Art | None = None,
+        details: bool = False,
+    ) -> RenderedCard[tuple[CharacterBuild, CharacterBuild], None]:
+        """Compare one operator from two players; opaque IDs may differ per account."""
+        variant = _style("compare", template)
+        first_ids = self._target(first_skport_id, role_id, server_id)
+        second_ids = self._target(second_skport_id, second_role_id, second_server_id)
+        selector = _selector(char_id, name, index)
+        second_selector = _selector(second_char_id, None, None) if second_char_id is not None else None
+        first = await self._fetch("character", full=True, **first_ids, **selector)
+        # Resolve by name instead of reusing an account-specific character ID or index.
+        second = await self._fetch(
+            "character", full=True, **second_ids, **(second_selector or _selector(None, first.name, None))
+        )
+        first, second = deepcopy(first), deepcopy(second)
+        context, second_context = self._context(first), self._context(second)
+        pages = await self._engine.render_compare(
+            first,
+            second,
+            context=context,
+            second_context=second_context,
+            variant=variant,
+            art=art,
+            second_art=second_art,
+            output=self.config.output,
+            details=details,
+        )
+        return RenderedCard([replace(page, variant=template) for page in pages], (first, second), None)
 
-    async def render_monument_detail(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("monument_detail", model, **kwargs)
+    @_request
+    async def pulls_card(
+        self,
+        data: PullHistory,
+        *,
+        template: Literal[1, 2] = 1,
+        owner: OwnerIdentity | None = None,
+    ) -> RenderedCard[PullHistory, None]:
+        """Create a supplied pull-history card; SKPort has no normalized fetch route yet."""
+        variant = _style("pulls", template)
+        return await self._create("pulls", data, variant, template, owner=owner, scope="supplied")
 
-    render_monument_event = render_monument_detail
-
-    async def render_contingency_contract(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("contingency_contract", model, **kwargs)
-
-    async def render_contingency_contract_detail(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("contingency_contract_detail", model, **kwargs)
-
-    render_contract = render_contingency_contract
-    render_contract_detail = render_contingency_contract_detail
-
-    async def render_pulls(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("pulls", model, **kwargs)
-
-    async def render_wiki(self, model: Any, **kwargs: Any) -> list[CardResult]:
-        return await self.render("wiki", model, **kwargs)
+    @_request
+    async def wiki_card(
+        self,
+        data: WikiPage,
+        *,
+        owner: OwnerIdentity,
+        template: Literal[1, 2] = 1,
+    ) -> RenderedCard[WikiPage, None]:
+        """Create a supplied wiki-page card with its explicit display owner."""
+        variant = _style("wiki", template)
+        return await self._create("wiki", data, variant, template, owner=owner, scope="supplied")
 
 
 EFCard = Cards

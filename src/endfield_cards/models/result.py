@@ -25,10 +25,15 @@ class CardResult:
     width: int
     height: int
     family: str
-    variant: str
+    variant: str | int
     page: int = 1
     pages: int = 1
     issues: tuple[RenderIssue, ...] = ()
+
+    @property
+    def template(self) -> int | None:
+        """Numeric template for public cards; engines retain named variants."""
+        return self.variant if isinstance(self.variant, int) else None
 
     def to_pillow(self) -> Image.Image:
         """Decode fresh pixels; mutations cannot alter cached results."""

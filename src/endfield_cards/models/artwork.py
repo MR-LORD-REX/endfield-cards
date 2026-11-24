@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 from PIL import Image
 
@@ -9,7 +10,7 @@ from PIL import Image
 @dataclass(frozen=True)
 class Artwork:
     source: str | Path | bytes | Image.Image
-    fit: str = "cover"
+    fit: Literal["cover", "contain"] = "cover"
     focal_point: tuple[float, float] = (0.5, 0.35)
     allow_remote: bool = False
     retain: bool = False

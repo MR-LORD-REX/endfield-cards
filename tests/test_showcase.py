@@ -29,10 +29,10 @@ from skport.games.endfield.models.progress import ResourceMeter
 from skport.games.endfield.models.world import AreaProgress, RegionProgress
 
 from endfield_cards.adapters.skport import context_for
-from endfield_cards.client import Cards
 from endfield_cards.config import OutputConfig
 from endfield_cards.errors import DataValidationError
 from endfield_cards.models import Artwork
+from endfield_cards.rendering import RenderEngine
 from endfield_cards.rendering.components import PageCanvas
 from endfield_cards.rendering.templates import character, compare, profile
 from endfield_cards.rendering.templates.character._shared import SIZE_BY_VARIANT as CHARACTER_SIZES
@@ -321,7 +321,7 @@ def test_default_comparison_never_generates_individual_character_appendices(play
 async def test_cards_facade_returns_one_page_without_appendices_by_default(rich_character, player):
     other = PlayerIdentity(skport_id="social-two", game_uid="game-two", name="Second Owner")
     output = OutputConfig(format="JPEG")
-    async with Cards() as cards:
+    async with RenderEngine() as cards:
         pages = await cards.render_character(rich_character, output=output)
         assert len(pages) == 1 and pages[0].page == 1 and pages[0].pages == 1
         assert len(await cards.render_profile(PlayerCard(player=player), output=output)) == 1

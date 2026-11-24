@@ -127,7 +127,7 @@ async def test_two_live_targets_one_image_safe_reports_and_client_cleanup(
             return [CardResult(output.getvalue(), "PNG", 16, 10, "character", "terminal")]
 
     monkeypatch.setattr(review, "SkportClient", SDK)
-    monkeypatch.setattr(review, "Cards", Renderer)
+    monkeypatch.setattr(review, "RenderEngine", Renderer)
     report = await review.main(
         [
             "--first-skport-id",
@@ -170,7 +170,7 @@ async def test_snapshot_pair_mismatch_stops_before_auth_or_render(review, monkey
         pytest.fail("Supplied snapshots must not initialize authentication or render mismatched operators")
 
     monkeypatch.setattr(review, "SkportClient", unexpected)
-    monkeypatch.setattr(review, "Cards", unexpected)
+    monkeypatch.setattr(review, "RenderEngine", unexpected)
     with pytest.raises(DataValidationError, match="same canonical"):
         await review.main(
             [
@@ -212,7 +212,7 @@ async def test_explicit_details_keeps_snapshot_sources_and_separate_exports(revi
             ]
 
     monkeypatch.setattr(review, "SkportClient", unexpected)
-    monkeypatch.setattr(review, "Cards", Renderer)
+    monkeypatch.setattr(review, "RenderEngine", Renderer)
     report = await review.main(
         [
             "--first-snapshot",

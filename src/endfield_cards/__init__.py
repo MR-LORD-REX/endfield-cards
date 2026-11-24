@@ -1,8 +1,8 @@
 """Endfield cards 2: no network calls, directories or handlers at import time."""
 
 from endfield_cards._version import __version__
-from endfield_cards.client import Cards, EFCard
-from endfield_cards.config import CacheConfig, CardsConfig, DownloadConfig, OutputConfig
+from endfield_cards.client import TEMPLATES, Cards, EFCard
+from endfield_cards.config import CacheConfig, CardsConfig, DownloadConfig, Locale, OutputConfig, OutputFormat
 from endfield_cards.errors import CardError
 from endfield_cards.models import (
     Artwork,
@@ -24,7 +24,8 @@ from endfield_cards.models import (
     RenderRequest,
     StageSelection,
 )
-from endfield_cards.rendering.registry import VARIANTS
+
+VARIANTS = TEMPLATES
 
 __all__ = [
     "Artwork",
@@ -37,6 +38,7 @@ __all__ = [
     "ContractInfo",
     "ContractSelection",
     "LiveInfo",
+    "Locale",
     "MeterInfo",
     "MonumentEventInfo",
     "MonumentInfo",
@@ -45,6 +47,7 @@ __all__ = [
     "DownloadConfig",
     "EFCard",
     "OutputConfig",
+    "OutputFormat",
     "OwnerIdentity",
     "RenderContext",
     "RenderIssue",
@@ -52,6 +55,7 @@ __all__ = [
     "RenderInfo",
     "RenderRequest",
     "StageSelection",
+    "TEMPLATES",
     "VARIANTS",
     "__version__",
 ]

@@ -22,8 +22,9 @@ from skport import ClientConfig, ImageSource, Language, SkportClient  # noqa: E4
 from skport.games.endfield.clean.endgame import build_contract_report, build_monument_report  # noqa: E402
 from skport.games.endfield.models import ContractState, MonumentState, PlayerCard  # noqa: E402
 
-from endfield_cards import CacheConfig, Cards, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import CacheConfig, CardsConfig, OutputConfig  # noqa: E402
 from endfield_cards.adapters.skport import context_for  # noqa: E402
+from endfield_cards.rendering import RenderEngine  # noqa: E402
 
 FAMILIES = ("monument", "contingency_contract")
 FILENAMES = {"monument": "monument", "contingency_contract": "contingency-contract"}
@@ -194,7 +195,7 @@ async def main(argv: list[str] | None = None) -> dict[str, Any]:
             config = CardsConfig(
                 locale=arguments.locale or "en", cache=CacheConfig(directory=ROOT / "local/image-cache")
             )
-            async with Cards(config=config, skport=sdk) as cards:
+            async with RenderEngine(config=config, skport=sdk) as cards:
                 for family in selected:
                     model = models[family]
                     context = replace(

@@ -129,7 +129,7 @@ async def test_two_supplied_snapshots_render_without_authentication_or_new_snaps
             return [CardResult(b"observed-image", "JPEG", 100, 80, family, "dark", 1, 1)]
 
     monkeypatch.setattr(review, "SkportClient", unexpected)
-    monkeypatch.setattr(review, "Cards", Renderer)
+    monkeypatch.setattr(review, "RenderEngine", Renderer)
     report = await review.main(
         [
             "--roster-snapshot",
@@ -206,6 +206,6 @@ async def test_mismatched_snapshot_owners_are_rejected_before_render(review, mon
         pytest.fail("Identity mismatch must fail before rendering/authentication")
 
     monkeypatch.setattr(review, "SkportClient", unexpected)
-    monkeypatch.setattr(review, "Cards", unexpected)
+    monkeypatch.setattr(review, "RenderEngine", unexpected)
     with pytest.raises(ValueError, match="same owner"):
         await review.main(["--roster-snapshot", str(paths[0]), "--live-snapshot", str(paths[1])])
