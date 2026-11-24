@@ -11,6 +11,7 @@ from skport.games.endfield.models import StatUnit, StatValue, format_percent
 from endfield_cards.adapters.skport import image_url
 from endfield_cards.utils.drawing import ELEMENT_COLORS, PageCanvas, element_key
 from endfield_cards.utils.images import fitted, masked, shape_mask
+from endfield_cards.utils.talents import TalentBadge, compact_talents
 
 RARITY_COLORS = {6: "#F18A43", 5: "#E7B947", 4: "#A17CDF", 3: "#68A4D6"}
 CORE_IDS = (1, 2, 3, 39, 40, 41, 42)
@@ -233,7 +234,9 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
             if stat is None:
                 continue
             role = _role(model, stat)
-            color = c.accent if role == "Main" else c.fg if role == "Sub" else c.muted
+            color = (
+                (c.accent if c.dark else "#916900") if role == "Main" else c.fg if role == "Sub" else c.muted
+            )
             offset = _stat_icon(c, stat, px, attribute_y + 9, min(30, cell // 3), color)
             _text(c, px + offset, attribute_y, STAT_NAMES[key], cell - offset, size=15, color=color)
             _text(
@@ -293,7 +296,7 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
         px, py = x + 17 + col * (width // 2 + 4), attribute_top + row * attr_h
         cell = width // 2 - 10
         role = _role(model, stat)
-        color = c.accent if role == "Main" else c.fg if role == "Sub" else c.muted
+        color = (c.accent if c.dark else "#916900") if role == "Main" else c.fg if role == "Sub" else c.muted
         offset = _stat_icon(c, stat, px, py + 6, 24, color)
         _text(c, px + offset, py + 1, STAT_NAMES[key], cell - offset, size=14, color=color)
         _text(c, px + offset, py + 22, display_value(stat), cell - offset, size=26, bold=True)
@@ -367,6 +370,7 @@ def draw_skills(c: PageCanvas, model: Any, box: Box, *, columns: int = 4) -> Non
 
 
 def draw_talents(c: PageCanvas, model: Any, box: Box) -> None:
+    """Compact source-backed attribute, combat-level and base-tier badges."""
     x, y, right, bottom = box
     c.panel(box)
     top = _title(c, box, "Talents")
@@ -375,62 +379,122 @@ def draw_talents(c: PageCanvas, model: Any, box: Box) -> None:
     if not nodes:
         _text(c, x + 18, top + 6, c.t("Unavailable"), right - x - 36, muted=True, size=16)
         return
-    groups = [
-        (kind, [node for node in nodes if node.kind == kind]) for kind in ("attribute", "combat", "base")
-    ]
-    remainder = [node for node in nodes if node.kind not in {"attribute", "combat", "base"}]
-    if remainder:
-        groups.append(("Other", remainder))
-    groups = [(kind, group) for kind, group in groups if group]
-    available = right - x - 30 - (len(groups) - 1) * 14
+    badges = compact_talents(model)
+    groups: dict[str, list[TalentBadge]] = {}
+    for badge in badges:
+        groups.setdefault(badge.kind, []).append(badge)
+    available = right - x - 30
+    size = min(42, bottom - top - 25)
+
+    def badge_width(badge: TalentBadge, icon_size: int) -> int:
+        if badge.kind != "attribute" or not badge.bonus:
+            return icon_size
+        font = c.fonts.get(13, text=badge.bonus)
+        return icon_size + 6 + int(c.draw.textlength(badge.bonus, font=font))
+
+    def row_width(icon_size: int) -> int:
+        return (
+            sum(badge_width(badge, icon_size) for badge in badges)
+            + (len(badges) - len(groups)) * 8
+            + (len(groups) - 1) * 20
+        )
+
+    while size > 14 and row_width(size) > available:
+        size -= 1
     px = x + 15
-    for kind, group in groups:
-        width = int(available * len(group) / len(nodes))
+    for kind, group in groups.items():
+        width = sum(badge_width(badge, size) for badge in group) + (len(group) - 1) * 8
         _text(c, px, top - 1, kind.title(), width, size=12, muted=True)
-        size = max(12, min(31, bottom - top - 29, (width - (len(group) - 1) * 5) // len(group)))
-        for index, node in enumerate(group):
-            nx, ny = px + index * (size + 5), top + 20
-            unlocked = node.unlocked or node.id in model.talents.unlocked_node_ids
-            links = node.icon if unlocked else node.locked_icon
-            source = _source(c, links) or _source(c, node.icon)
-            if source is None:
-                c.draw.ellipse(
-                    (nx + 2, ny + 2, nx + size - 2, ny + size - 2),
-                    outline=c.fg if unlocked else c.muted,
-                    width=2,
+        nx = px
+        for badge in group:
+            _talent_badge(c, model, badge, nx, top + 18, size)
+            width_for_badge = badge_width(badge, size)
+            if badge.bonus:
+                _text(
+                    c,
+                    nx + size + 6,
+                    top + 18 + (size - 20) // 2,
+                    badge.bonus,
+                    width_for_badge - size - 4,
+                    size=13,
+                    bold=True,
                 )
-            else:
-                glyph = fitted(source, (size, size), contain=True)
-                if kind != "base" and glyph.getchannel("A").getextrema() != (255, 255):
-                    alpha = glyph.getchannel("A")
-                    glyph = Image.new("RGBA", glyph.size, c.fg if unlocked else c.muted)
-                    glyph.putalpha(alpha)
-                if not unlocked:
-                    glyph.putalpha(glyph.getchannel("A").point(lambda alpha: int(alpha * 0.34)))
-                c.image.alpha_composite(glyph, (nx, ny))
-        px += width + 14
+            nx += width_for_badge + 8
+        px += width + 20
 
     if bottom - y < 150:
         return
-    text_top = top + 63
+    text_top = top + 18 + size + 13
     capacity = max(0, ((bottom - text_top - 8) // 28) * 2)
-    named = []
-    seen = set()
-    for kind in ("combat", "base", "attribute", "Other"):
-        for node in nodes:
-            if node.kind != kind or not node.name:
-                continue
-            key = (node.name, node.level, node.max_level)
-            if key in seen:
-                continue
-            seen.add(key)
-            named.append(node)
+    named = sorted((badge for badge in badges if badge.name), key=lambda badge: badge.kind == "attribute")
     cell = (right - x - 42) // 2
-    for index, node in enumerate(named[:capacity]):
+    for index, badge in enumerate(named[:capacity]):
         row, column = divmod(index, 2)
         nx, ny = x + 15 + column * (cell + 12), text_top + row * 28
-        _text(c, nx, ny, node.name, cell - 50, size=14, muted=True)
-        _text(c, nx + cell - 43, ny, f"{node.level}/{node.max_level}", 43, size=12, muted=True)
+        _text(c, nx, ny, badge.name, cell - 50, size=14, muted=True)
+        label = badge.stage or f"{badge.level}/{badge.max_level}"
+        _text(c, nx + cell - 43, ny, label, 43, size=12, muted=True)
+
+
+def _talent_badge(c: PageCanvas, model: Any, badge: TalentBadge, x: int, y: int, size: int) -> None:
+    tint = ELEMENT_COLORS.get(element_key(model), "#71899E")
+    base = badge.kind == "base"
+    color = c.accent if base else tint
+    plate = Image.new("RGBA", (size * 3, size * 3), (0, 0, 0, 0))
+    pd = ImageDraw.Draw(plate)
+    bounds = (1, 1, size * 3 - 2, size * 3 - 2)
+    fill = "#313743" if base or not badge.unlocked else tint
+    if base:
+        pd.rounded_rectangle(
+            bounds,
+            radius=max(3, size // 5) * 3,
+            fill=fill,
+            outline=color if badge.unlocked else c.line,
+            width=3,
+        )
+    else:
+        pd.ellipse(bounds, fill=fill, outline=color if badge.unlocked else c.line, width=3)
+    c.image.alpha_composite(plate.resize((size, size), Image.Resampling.LANCZOS), (x, y))
+    links = badge.node.icon if badge.unlocked else badge.node.locked_icon
+    source = _source(c, links) or _source(c, badge.node.icon)
+    inset = max(2, size // 6)
+    if source is not None:
+        glyph = fitted(source, (size - inset * 2, size - inset * 2), contain=True)
+        if not base and glyph.getchannel("A").getextrema() != (255, 255):
+            alpha = glyph.getchannel("A")
+            glyph = Image.new("RGBA", glyph.size, "#FCFCFE")
+            glyph.putalpha(alpha)
+        if not badge.unlocked:
+            glyph.putalpha(glyph.getchannel("A").point(lambda alpha: int(alpha * 0.34)))
+        c.image.alpha_composite(glyph, (x + inset, y + inset))
+    elif badge.kind == "attribute":
+        effect = next(iter(badge.node.effects), None)
+        if effect is not None:
+            c.icon(
+                f"stat.{effect.id}",
+                x + inset,
+                y + inset,
+                size - inset * 2,
+                tint="#FCFCFE" if badge.unlocked else c.muted,
+            )
+    label = badge.stage if base else f"{badge.level}/{badge.max_level}" if badge.kind == "combat" else ""
+    if label:
+        font = c.fonts.get(11, weight="semibold", text=label)
+        marker_width = int(c.draw.textlength(label, font=font)) + 6
+        marker_x, marker_y = x + size - marker_width + 2, y + size - 14
+        c.draw.rounded_rectangle(
+            (marker_x, marker_y, marker_x + marker_width, marker_y + 15), radius=3, fill="#202630"
+        )
+        c.text(
+            marker_x + 3,
+            marker_y - 2,
+            label,
+            size=11,
+            bold=True,
+            fill=c.accent if base and badge.unlocked else "#FCFCFE" if badge.unlocked else c.muted,
+            width=marker_width - 5,
+            max_lines=1,
+        )
 
 
 def _effect_text(model: Any, effect: Any) -> str | None:
@@ -580,7 +644,16 @@ def draw_equipment(c: PageCanvas, model: Any, box: Box, *, columns: int = 4) -> 
     sets = model.equipment_sets
     if sets:
         summary = " · ".join(f"{suit.name} {suit.pieces}/{suit.required_pieces}" for suit in sets)
-        _text(c, x + 16, title_y - 1, summary, width - 34, size=16, bold=True, color=c.accent)
+        _text(
+            c,
+            x + 16,
+            title_y - 1,
+            summary,
+            width - 34,
+            size=16,
+            bold=True,
+            color=c.accent if c.dark else "#916900",
+        )
         title_y += 28
     if model.tactical_item is not None:
         item = model.tactical_item

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -88,3 +91,112 @@ async def test_shared_disk_clients_do_not_republish_after_clear(tmp_path: Path) 
     assert first.generation == second.generation
     assert not await first.put("stale", b"before-clear", generation=generation)
     assert await first.get("stale") is None
+
+
+@pytest.mark.asyncio
+async def test_busy_atomic_replacement_is_optional_and_cleans_temporary_file(tmp_path, monkeypatch):
+    disk = DiskCache(tmp_path)
+    assert await disk.put("image", b"original")
+
+    def busy_destination(source, destination):
+        raise PermissionError("another process holds the cache destination open")
+
+    monkeypatch.setattr("endfield_cards.cache.disk.os.replace", busy_destination)
+    assert not await disk.put("image", b"updated")
+    assert await disk.get("image") == b"original"
+    assert list(tmp_path.glob(".source-*.tmp")) == []
+
+
+@pytest.mark.skipif(sys.platform != "win32", reason="Windows forbids replacing an open reader's path")
+@pytest.mark.asyncio
+async def test_external_windows_reader_does_not_fail_a_cache_publication(tmp_path):
+    disk = DiskCache(tmp_path)
+    assert await disk.put("image", b"original")
+    reader_code = (
+        "import sys; "
+        "source = open(sys.argv[1], 'rb'); "
+        "print('ready', flush=True); "
+        "sys.stdin.readline(); "
+        "source.close()"
+    )
+    reader = subprocess.Popen(
+        [sys.executable, "-c", reader_code, str(disk._path("image"))],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        assert reader.stdout is not None and reader.stdout.readline().strip() == "ready"
+        assert not await disk.put("image", b"updated")
+        assert list(tmp_path.glob(".source-*.tmp")) == []
+    finally:
+        reader.communicate("\n", timeout=10)
+    assert reader.returncode == 0
+    assert await disk.get("image") == b"original"
+    assert await disk.put("image", b"updated")
+    assert await disk.get("image") == b"updated"
+
+
+@pytest.mark.asyncio
+async def test_eviction_skips_an_entry_removed_after_enumeration(tmp_path, monkeypatch):
+    disk = DiskCache(tmp_path)
+    assert await disk.put("expired", b"older bytes")
+    expired = disk._path("expired")
+    original_stat = Path.stat
+    raced = False
+
+    def concurrent_expiry(path, *args, **kwargs):
+        nonlocal raced
+        if path == expired and not raced:
+            raced = True
+            expired.unlink()
+        return original_stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "stat", concurrent_expiry)
+    assert await disk.put("fresh", b"fresh bytes")
+    assert raced
+    assert await disk.get("fresh") == b"fresh bytes"
+    assert list(tmp_path.glob(".source-*.tmp")) == []
+
+
+@pytest.mark.asyncio
+async def test_eviction_continues_after_a_busy_entry(tmp_path, monkeypatch):
+    disk = DiskCache(tmp_path, max_bytes=2048)
+    assert await disk.put("busy", b"busy bytes")
+    assert await disk.put("old", b"old bytes")
+    busy, old = disk._path("busy"), disk._path("old")
+    os.utime(busy, (1, 1))
+    os.utime(old, (2, 2))
+    disk.max_bytes = busy.stat().st_size + 10
+    original_unlink = Path.unlink
+
+    def concurrent_reader(path, *args, **kwargs):
+        if path == busy:
+            raise PermissionError("another process is reading this entry")
+        return original_unlink(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "unlink", concurrent_reader)
+    assert await disk.put("fresh", b"new bytes")
+    assert await disk.size() <= disk.max_bytes
+    assert busy.exists() and not old.exists()
+
+
+@pytest.mark.asyncio
+async def test_size_survives_concurrent_expiry(tmp_path, monkeypatch):
+    disk = DiskCache(tmp_path)
+    assert await disk.put("expired", b"older bytes")
+    expired = disk._path("expired")
+    original_stat = Path.stat
+    raced = False
+
+    def concurrent_expiry(path, *args, **kwargs):
+        nonlocal raced
+        if path == expired and not raced:
+            raced = True
+            expired.unlink()
+        return original_stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "stat", concurrent_expiry)
+    assert await disk.size() == 0
+    assert raced

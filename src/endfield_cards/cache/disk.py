@@ -12,7 +12,6 @@ from pathlib import Path
 from threading import RLock
 
 from endfield_cards.cache.keys import cache_key
-from endfield_cards.errors import CacheError
 
 
 class _DirectoryState:
@@ -97,6 +96,7 @@ class DiskCache:
                 return None
 
     async def put(self, key: str, data: bytes, *, generation: int | None = None) -> bool:
+        """Publish when possible; optional persistence must not break a valid download."""
         return await asyncio.to_thread(self._put, key, data, generation)
 
     def _put(self, key: str, data: bytes, generation: int | None) -> bool:
@@ -126,8 +126,11 @@ class DiskCache:
                 temporary = None
                 self._trim()
                 return True
-            except OSError as exc:
-                raise CacheError("source cache could not be written") from exc
+            except OSError:
+                # Another process may hold the destination open on Windows or
+                # remove an entry during eviction. Its lock is independent of
+                # this process's lock; keep the caller's downloaded bytes usable.
+                return False
             finally:
                 if temporary is not None:
                     try:
@@ -136,13 +139,25 @@ class DiskCache:
                         pass
 
     def _trim(self) -> None:
-        files = sorted(self.directory.glob("*.cache"), key=lambda p: p.stat().st_mtime)
-        sizes = [(p, p.stat().st_size) for p in files]
-        total = sum(size for _, size in sizes)
-        for path, size in sizes:
+        entries = []
+        for path in self.directory.glob("*.cache"):
+            try:
+                metadata = path.stat()
+            except OSError:
+                # Expired reads and evictions in other processes can remove a
+                # path between enumeration and stat. Snapshot each path once.
+                continue
+            entries.append((path, metadata.st_size, metadata.st_mtime))
+        entries.sort(key=lambda entry: entry[2])
+        total = sum(size for _, size, _ in entries)
+        for path, size, _ in entries:
             if total <= self.max_bytes:
                 break
-            path.unlink(missing_ok=True)
+            try:
+                path.unlink(missing_ok=True)
+            except OSError:
+                # Skip a busy reader and keep trying other eviction candidates.
+                continue
             total -= size
 
     async def clear(self) -> None:
@@ -162,4 +177,10 @@ class DiskCache:
         with self._lock:
             if not self.directory.exists():
                 return 0
-            return sum(path.stat().st_size for path in self.directory.glob("*.cache"))
+            total = 0
+            for path in self.directory.glob("*.cache"):
+                try:
+                    total += path.stat().st_size
+                except OSError:
+                    continue
+            return total

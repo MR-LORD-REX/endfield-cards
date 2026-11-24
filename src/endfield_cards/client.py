@@ -410,7 +410,12 @@ class Cards:
         try:
             async with self._admission:
                 self._check_open()
-                assets = LazyAssets(self.assets, asyncio.get_running_loop())
+                issues = [
+                    RenderIssue(issue.code, str(issue.message))
+                    for model in (first, second)
+                    for issue in getattr(model, "issues", [])
+                ]
+                assets = LazyAssets(self.assets, asyncio.get_running_loop(), issues=issues)
                 if artwork:
                     assets["custom_art"] = await self.assets.load(artwork)
                 if second_artwork:

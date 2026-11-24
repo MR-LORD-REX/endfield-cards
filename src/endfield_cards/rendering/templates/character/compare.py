@@ -7,8 +7,8 @@ from typing import Any
 from PIL import Image, ImageDraw
 
 from endfield_cards.errors import DataValidationError
-from endfield_cards.rendering.templates import character
-from endfield_cards.utils.drawing import PageCanvas, art_url, place_art
+from endfield_cards.rendering.templates import character, comparison
+from endfield_cards.utils.drawing import PageCanvas
 
 
 def validate_pair(first: Any, second: Any) -> None:
@@ -39,40 +39,16 @@ def iter_render(
 ) -> Iterator[Image.Image]:
     validate_pair(first, second)
     combined = replace(context, comparison_owner=second_context.owner)
-    c = PageCanvas(
-        "Comparison", combined, dark=variant in {"field", "terminal"}, size=(1600, 1100), assets=assets
+    c = comparison.render_canvas(
+        first,
+        second,
+        context,
+        second_context,
+        variant=variant,
+        assets=assets,
+        artwork=artwork,
+        second_artwork=second_artwork,
     )
-    c.text(50, 143, first.name, size=40, bold=True, width=1500)
-    for index, model in enumerate((first, second)):
-        x = 40 + index * 770
-        source = (assets or {}).get("custom_art" if index == 0 else "second_custom_art") or (
-            assets or {}
-        ).get(art_url(model))
-        place_art(c, source, (x, 217, x + 750, 610), artwork if index == 0 else second_artwork, blend=True)
-        owner = context.owner if index == 0 else second_context.owner
-        c.text(x + 22, 630, owner.name, size=31, bold=True, width=695)
-        c.text(
-            x + 22,
-            675,
-            f"UID {owner.game_uid}  ·  Lv {model.level}/{model.max_level}  ·  P{model.potential}",
-            size=22,
-        )
-        y = 734
-        for stat_id in (1, 2, 3, 9, 10):
-            if model.stats is None or stat_id not in model.stats.values:
-                continue
-            stat = model.stats.values[stat_id]
-            y += c.row(stat.name or f"Property {stat_id}", stat.display, x + 22, y, width=695)
-        if model.weapon is not None and y + 30 < c.height - 66:
-            c.text(
-                x + 22,
-                y,
-                f"{model.weapon.name} · Lv {model.weapon.level} · R{model.weapon.refinement}",
-                size=18,
-                fill=c.muted,
-                width=695,
-                max_lines=1,
-            )
     if not details:
         yield c.finish()
         return
