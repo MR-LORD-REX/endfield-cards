@@ -9,9 +9,8 @@ from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
 from endfield_cards.errors import DataValidationError
-from endfield_cards.rendering.components import PageCanvas
-
-from ._records import Record, fit_label, iter_records, photo, record_page_count
+from endfield_cards.utils.drawing import PageCanvas
+from endfield_cards.utils.records import Record, fit_label, iter_records, photo, record_page_count
 
 
 def _characters(model: Any) -> list[Any]:

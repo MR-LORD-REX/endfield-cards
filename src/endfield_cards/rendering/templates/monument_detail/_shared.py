@@ -9,8 +9,7 @@ from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
 from endfield_cards.errors import DataValidationError
-
-from ._records import Record, iter_records, medal_lines, run_lines, stamp, team_images
+from endfield_cards.utils.records import Record, iter_records, medal_lines, run_lines, stamp, team_images
 
 
 def _events(model: Any, event_id: str | None = None) -> list[Any]:

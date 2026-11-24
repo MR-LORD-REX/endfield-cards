@@ -7,9 +7,8 @@ from typing import Any
 
 from PIL import Image
 
-from endfield_cards.rendering.components import PageCanvas
-
-from ._records import (
+from endfield_cards.utils.drawing import PageCanvas
+from endfield_cards.utils.records import (
     Record,
     append_model_text,
     fit_label,

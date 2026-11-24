@@ -35,6 +35,7 @@ from endfield_cards.errors import DataValidationError
 from endfield_cards.models import Artwork
 from endfield_cards.rendering.components import PageCanvas
 from endfield_cards.rendering.templates import character, compare, profile
+from endfield_cards.rendering.templates.profile._shared import SIZE_BY_VARIANT
 
 
 @pytest.fixture
@@ -85,7 +86,7 @@ def test_public_profile_zero_to_eight_supplied_entries(count, variant, player, d
     assert names[:count] == expected
     assert set(names) == set(expected)
     assert any(f"{count}/8" in value for value in text)
-    assert all(page.size == (1600, 1000) for page in pages)
+    assert all(page.size == SIZE_BY_VARIANT[variant] for page in pages)
     assert len(pages) == 1
     assert any("No characters supplied" in value for value in text) is (count == 0)
     assert sum("UID game-one" in value for value in text) >= len(pages)

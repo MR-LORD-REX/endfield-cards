@@ -7,7 +7,7 @@ from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
 from endfield_cards.models import Artwork
-from endfield_cards.rendering.components import (
+from endfield_cards.utils.drawing import (
     ELEMENT_COLORS,
     STAT_ICONS,
     PageCanvas,
@@ -15,7 +15,7 @@ from endfield_cards.rendering.components import (
     element_key,
     place_art,
 )
-from endfield_cards.rendering.templates._records import (
+from endfield_cards.utils.records import (
     Record,
     append_model_text,
     iter_records,

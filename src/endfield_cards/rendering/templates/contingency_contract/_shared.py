@@ -8,9 +8,17 @@ from typing import Any
 from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
-from endfield_cards.rendering.components import PageCanvas
-
-from ._records import Record, fit_label, iter_records, meter_text, photo, progress, record_page_count, stamp
+from endfield_cards.utils.drawing import PageCanvas
+from endfield_cards.utils.records import (
+    Record,
+    fit_label,
+    iter_records,
+    meter_text,
+    photo,
+    progress,
+    record_page_count,
+    stamp,
+)
 
 
 def contracts(model: Any) -> list[Any]:

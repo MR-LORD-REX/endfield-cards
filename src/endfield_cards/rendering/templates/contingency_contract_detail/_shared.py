@@ -9,8 +9,8 @@ from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
 from endfield_cards.errors import DataValidationError
-
-from ._records import (
+from endfield_cards.rendering.templates.contingency_contract import contracts
+from endfield_cards.utils.records import (
     Record,
     append_model_text,
     iter_records,
@@ -20,7 +20,6 @@ from ._records import (
     stamp,
     team_images,
 )
-from .contingency_contract import contracts
 
 
 def _selected(model: Any, contract_id: str | None = None) -> list[Any]:

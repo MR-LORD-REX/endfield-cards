@@ -8,8 +8,7 @@ from typing import Any
 from PIL import Image
 
 from endfield_cards.adapters.skport import image_url
-
-from ._records import Record, append_model_text, iter_records, meter_text, stamp
+from endfield_cards.utils.records import Record, append_model_text, iter_records, meter_text, stamp
 
 
 def urls(model: Any) -> set[str]:
