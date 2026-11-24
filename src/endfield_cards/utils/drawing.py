@@ -65,7 +65,7 @@ def wrap_text(draw: ImageDraw.ImageDraw, value: str, font: ImageFont.FreeTypeFon
         for char in paragraph:
             if current and draw.textlength(current + char, font=font) > width:
                 split = current.rfind(" ")
-                if split > len(current) // 2:
+                if split > 0:
                     lines.append(current[:split])
                     current = current[split + 1 :] + char
                 else:

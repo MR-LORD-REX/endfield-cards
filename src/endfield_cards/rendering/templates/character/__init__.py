@@ -1,7 +1,6 @@
 """Character family with explicit named variant modules."""
 
 from collections.abc import Iterator
-from importlib import import_module
 from typing import Any
 
 from PIL import Image
@@ -22,8 +21,7 @@ def iter_render(model: Any, context: Any, *, variant: str = "field", **options: 
     """Select a named family variant without changing its rendering contract."""
     if variant not in VARIANTS:
         raise UnsupportedVariantError(f"unknown character variant {variant!r}; choose {VARIANTS}")
-    module = import_module(f"{__name__}.{variant}")
-    return module.iter_render(model, context, **options)
+    return _shared.iter_render(model, context, variant=variant, **options)
 
 
 def render(model: Any, context: Any, *, variant: str = "field", **options: Any) -> list[Image.Image]:

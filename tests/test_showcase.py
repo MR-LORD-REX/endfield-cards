@@ -35,6 +35,7 @@ from endfield_cards.errors import DataValidationError
 from endfield_cards.models import Artwork
 from endfield_cards.rendering.components import PageCanvas
 from endfield_cards.rendering.templates import character, compare, profile
+from endfield_cards.rendering.templates.character._shared import SIZE_BY_VARIANT as CHARACTER_SIZES
 from endfield_cards.rendering.templates.profile._shared import SIZE_BY_VARIANT
 
 
@@ -113,10 +114,10 @@ def test_owner_profile_paginates_all_owned_entries(player, drawn_text):
 @pytest.mark.parametrize(
     "variant,size",
     [
-        ("field", (1920, 900)),
-        ("dossier", (1600, 1100)),
-        ("terminal", (1600, 1000)),
-        ("portrait", (1000, 1400)),
+        ("field", CHARACTER_SIZES["field"]),
+        ("dossier", CHARACTER_SIZES["dossier"]),
+        ("terminal", CHARACTER_SIZES["terminal"]),
+        ("portrait", CHARACTER_SIZES["portrait"]),
     ],
 )
 def test_character_variants_keep_actual_max_level_and_optional_missing_state(
@@ -270,9 +271,11 @@ def test_concise_character_keeps_present_unit_aware_bonus_stats(variant, player,
     pages = character.render(model, context_for(model), variant=variant)
     text = "\n".join(entry[0] for entry in drawn_text)
     assert len(pages) == 1
-    assert "5990" in text and "100.0%" in text and "65.5%" in text
-    assert "Ultimate Gain" in text and "Electric Damage" in text
-    assert "ATK" not in text and "DEF" not in text
+    assert "5990" in text.replace(",", "") and "100.0%" in text and "65.5%" in text
+    assert "Ult Gain" in text and "Electric DMG" in text
+    assert text.count("—") >= 2
+    assert all(entry[0] != "0.0%" for entry in drawn_text)
+    assert "ATK 0" not in text and "DEF 0" not in text
     close_pages(pages)
 
 
