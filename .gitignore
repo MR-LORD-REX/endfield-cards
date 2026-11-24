@@ -11,6 +11,8 @@ __pycache__/
 
 .env
 
+.sk_assets/
+
 assets/
 design-data/
 docs/
