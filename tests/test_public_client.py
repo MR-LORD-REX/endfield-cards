@@ -27,6 +27,7 @@ from skport.games.endfield.models import (
 
 from endfield_cards import CardResult, Cards, CardsConfig, EFCard, OutputConfig
 from endfield_cards.errors import (
+    CardNotImplementedError,
     DataValidationError,
     FetchError,
     OwnerMismatchError,
@@ -228,6 +229,11 @@ async def test_numeric_templates_map_to_named_engine_styles(
 ):
     async with Cards(skport=sdk) as cards:
         for template, variant in enumerate(variants, 1):
+            if family in {"factory", "wiki"}:
+                with pytest.raises(CardNotImplementedError):
+                    await getattr(cards, method)(*args, template=template, **options)
+                assert draws == []
+                continue
             result = await getattr(cards, method)(*args, template=template, **options)
             assert isinstance(result, RenderedCard) and isinstance(result.info, info_type)
             assert result.card.family == family and result.card.variant == result.card.template == template

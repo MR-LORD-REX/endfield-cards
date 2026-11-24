@@ -227,6 +227,7 @@ def test_empty_families_are_bounded_and_dark_works(family, owner):
     module = import_module(f"endfield_cards.rendering.templates.{family}")
     pages = module.render(state, context_for(state, owner), variant="dark")
     assert 1 <= len(pages) <= 2
-    assert all(page.width == 1600 and page.height <= 1100 for page in pages)
+    expected_width = 2000 if family == "contingency_contract_detail" else 1600
+    assert all(page.width == expected_width and page.height <= 1100 for page in pages)
     for page in pages:
         page.close()

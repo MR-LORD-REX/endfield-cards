@@ -3,7 +3,7 @@
 from importlib import import_module
 from types import MappingProxyType, ModuleType
 
-from endfield_cards.errors import UnsupportedVariantError
+from endfield_cards.errors import CardNotImplementedError, UnsupportedVariantError
 
 VARIANTS = MappingProxyType(
     {
@@ -27,13 +27,30 @@ VARIANTS = MappingProxyType(
 )
 ALIASES = MappingProxyType(
     {
+        "all_characters": "roster",
         "live": "activity",
         "monument_event": "monument_detail",
         "monument_detailed": "monument_detail",
         "contract": "contingency_contract",
         "contract_detail": "contingency_contract_detail",
+        "contingency_contract_detailed": "contingency_contract_detail",
     }
 )
+
+# Generic text exporters are retained internally, but are not finished card layouts.
+UNIMPLEMENTED = frozenset({"factory", "wiki"})
+
+
+def ensure_implemented(family: str, variant: str) -> None:
+    """Reject unfinished layouts before SDK, image downloads or worker admission."""
+    family = ALIASES.get(family, family)
+    if family in UNIMPLEMENTED:
+        name = {
+            "monument_detail": "monument_detailed",
+            "contingency_contract_detail": "contingency_contract_detailed",
+        }.get(family, family)
+        template = VARIANTS[family].index(variant) + 1
+        raise CardNotImplementedError(f"{name}_card(template={template}) is not implemented yet")
 
 
 def pick(family: str, variant: str | None = None) -> tuple[str, str, ModuleType]:
@@ -43,4 +60,5 @@ def pick(family: str, variant: str | None = None) -> tuple[str, str, ModuleType]
     selected = variant or VARIANTS[family][0]
     if selected not in VARIANTS[family]:
         raise UnsupportedVariantError(f"unknown {family} variant {selected!r}; choose {VARIANTS[family]}")
+    ensure_implemented(family, selected)
     return family, selected, import_module(f"endfield_cards.rendering.templates.{family}")

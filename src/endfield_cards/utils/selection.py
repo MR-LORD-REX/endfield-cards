@@ -61,10 +61,41 @@ def character_info(
     )
 
 
-def monument_info(model: Any, context: RenderContext, event_id: str | None = None) -> MonumentInfo:
+def observed_stage_clear(stage: Any, difficulty: str) -> bool | None:
+    """Use supplied completion evidence, preserving unknown states when no flag/run confirms a clear."""
+    run = getattr(stage, difficulty)
+    if run is not None and run.completed:
+        return True
+    field = f"{difficulty}_cleared"
+    return getattr(stage, field) if field in stage.model_fields_set else None
+
+
+def default_monument_event_index(events: Sequence[Any]) -> int | None:
+    """Use an active event, then the latest supplied start date, retaining source order on ties."""
+    if not events:
+        return None
+    active = next((index for index, event in enumerate(events) if event.is_active), None)
+    if active is not None:
+        return active
+    dated = [
+        (started, index)
+        for index, event in enumerate(events)
+        if (started := source_datetime(event.starts_at)) is not None
+    ]
+    return max(dated, key=lambda value: value[0])[1] if dated else 0
+
+
+def monument_info(
+    model: Any, context: RenderContext, event_id: str | None = None, *, selected_only: bool = False
+) -> MonumentInfo:
     events = list(model.events) if hasattr(model, "events") else [model]
+    selected_index = None
+    if selected_only and event_id is None and events:
+        selected_index = default_monument_event_index(events)
     entries = []
     for index, event in enumerate(events):
+        if selected_index is not None and index != selected_index:
+            continue
         if event_id is not None and event.id != str(event_id):
             continue
         stages = tuple(
@@ -76,8 +107,8 @@ def monument_info(model: Any, context: RenderContext, event_id: str | None = Non
                 identifier(stage.normal_id),
                 identifier(stage.hard_id),
                 stage.recommended_level,
-                stage.normal_cleared if "normal_cleared" in stage.model_fields_set else None,
-                stage.hard_cleared if "hard_cleared" in stage.model_fields_set else None,
+                observed_stage_clear(stage, "normal"),
+                observed_stage_clear(stage, "hard"),
                 stage.normal.duration_seconds if stage.normal is not None else None,
                 stage.hard.duration_seconds if stage.hard is not None else None,
             )
@@ -97,7 +128,9 @@ def monument_info(model: Any, context: RenderContext, event_id: str | None = Non
     return MonumentInfo(context.owner, tuple(entries))
 
 
-def contract_info(model: Any, context: RenderContext, contract_id: str | None = None) -> ContractInfo:
+def contract_info(
+    model: Any, context: RenderContext, contract_id: str | None = None, *, selected_only: bool = False
+) -> ContractInfo:
     if hasattr(model, "contracts"):
         entries = [model.current] if model.current is not None else []
         entries.extend(item for item in model.contracts if all(item.id != entry.id for entry in entries))
@@ -106,6 +139,8 @@ def contract_info(model: Any, context: RenderContext, contract_id: str | None = 
         entries, current_id = [model], None
     contracts = []
     for index, item in enumerate(entries):
+        if selected_only and contract_id is None and index != 0:
+            continue
         if contract_id is not None and item.id != str(contract_id):
             continue
         contracts.append(
@@ -155,9 +190,13 @@ def render_info(family: str, model: Any, context: RenderContext, **options: Any)
     if family == "activity":
         return live_info(model, context)
     if family in {"monument", "monument_detail"}:
-        return monument_info(model, context, options.get("event_id"))
+        return monument_info(
+            model, context, options.get("event_id"), selected_only=family == "monument_detail"
+        )
     if family in {"contingency_contract", "contingency_contract_detail"}:
-        return contract_info(model, context, options.get("contract_id"))
+        return contract_info(
+            model, context, options.get("contract_id"), selected_only=family == "contingency_contract_detail"
+        )
     return None
 
 

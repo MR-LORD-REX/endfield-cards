@@ -69,7 +69,11 @@ def _source_issues(model: Any) -> list[RenderIssue]:
 
 
 def _validated_options(family: str, context: RenderContext, options: dict[str, Any]) -> dict[str, Any]:
-    if family in {"activity", "monument", "contingency_contract"} and options.get("profile") is not None:
+    if (
+        family
+        in {"activity", "monument", "monument_detail", "contingency_contract", "contingency_contract_detail"}
+        and options.get("profile") is not None
+    ):
         options = dict(options)
         options["profile"] = _snapshot(options["profile"])
         validate_owner(options["profile"], context)
@@ -302,7 +306,14 @@ class RenderEngine:
                     overrides["custom_art"] = await self.assets.load(artwork)
                 issues = _source_issues(model)
                 if (
-                    family in {"activity", "monument", "contingency_contract"}
+                    family
+                    in {
+                        "activity",
+                        "monument",
+                        "monument_detail",
+                        "contingency_contract",
+                        "contingency_contract_detail",
+                    }
                     and (profile := options.get("profile")) is not None
                 ):
                     issues.extend(
@@ -592,4 +603,3 @@ class RenderEngine:
 
     async def render_wiki(self, model: Any, **kwargs: Any) -> list[CardResult]:
         return await self.render("wiki", model, **kwargs)
-

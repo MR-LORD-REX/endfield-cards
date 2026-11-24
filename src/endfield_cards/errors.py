@@ -53,3 +53,9 @@ class RenderError(CardError):
 
 class FetchError(CardError):
     default_code = "fetch_failed"
+
+
+class CardNotImplementedError(CardError, NotImplementedError):
+    """A planned card/template has no finished renderer yet."""
+
+    default_code = "not_implemented"

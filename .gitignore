@@ -18,3 +18,5 @@ previews/
 
 !README.md
 *.md
+
+main.py

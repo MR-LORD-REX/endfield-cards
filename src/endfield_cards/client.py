@@ -46,6 +46,7 @@ from endfield_cards.models import (
     RenderedCard,
 )
 from endfield_cards.rendering.engine import RenderEngine
+from endfield_cards.rendering.registry import ensure_implemented
 from endfield_cards.utils.selection import render_info
 
 # Public template numbers stay stable when the internal named registry changes.
@@ -98,7 +99,9 @@ def _request(
 def _style(family: str, template: int) -> str:
     if type(template) is not int or template not in TEMPLATES[family]:
         raise UnsupportedVariantError(f"{family} template must be one of {TEMPLATES[family]}")
-    return _STYLES[family][template - 1]
+    variant = _STYLES[family][template - 1]
+    ensure_implemented("character" if family == "compare" else family, variant)
+    return variant
 
 
 def _selector(char_id: str | None, name: str | None, index: int | None) -> dict[str, Any]:
@@ -415,10 +418,14 @@ class Cards:
         role_id: str | int | None = None,
         server_id: str | int | None = None,
     ) -> RenderedCard[MonumentState, MonumentInfo]:
-        """Create full Monument stage records for an event, or all supplied events."""
+        """Create a stage board for the selected event, defaulting to the active event."""
         variant = _style("monument_detailed", template)
-        model = await self._fetch("monument", **self._target(skport_id, role_id, server_id))
-        return await self._create("monument_detail", model, variant, template, event_id=event_id)
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("monument", **ids)
+        profile = await self._fetch("card", **ids)
+        return await self._create(
+            "monument_detail", model, variant, template, event_id=event_id, profile=profile
+        )
 
     @_request
     async def contingency_contract_card(
@@ -456,11 +463,13 @@ class Cards:
         role_id: str | int | None = None,
         server_id: str | int | None = None,
     ) -> RenderedCard[ContractState, ContractInfo]:
-        """Create full Contract rules and run records for the selected contract."""
+        """Create the selected/current Contract's battle and indicator board."""
         variant = _style("contingency_contract_detailed", template)
-        model = await self._fetch("contract", **self._target(skport_id, role_id, server_id))
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("contract", **ids)
+        profile = await self._fetch("card", **ids)
         return await self._create(
-            "contingency_contract_detail", model, variant, template, contract_id=contract_id
+            "contingency_contract_detail", model, variant, template, contract_id=contract_id, profile=profile
         )
 
     @_request
