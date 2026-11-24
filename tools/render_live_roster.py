@@ -72,7 +72,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--roster-snapshot", type=Path, help="Previously fetched owner PlayerCard JSON")
     result.add_argument("--live-snapshot", type=Path, help="Previously fetched LiveStatus JSON")
     result.add_argument("--locale", choices=("en", "ja", "ko", "zh-Hans", "zh-Hant"))
-    result.add_argument("--timezone", default="Asia/Kolkata")
+    result.add_argument("--timezone", default="UTC")
     result.add_argument("--assets-dir", type=Path, help="Optional canonical SDK cache")
     result.add_argument("--format", choices=("JPEG", "PNG", "WEBP"), default="JPEG")
     result.add_argument("--quality", type=int, default=90)
@@ -204,6 +204,8 @@ async def main(argv: list[str] | None = None) -> dict[str, Any]:
                     context = replace(context_for(model, locale=locale), display_timezone=arguments.timezone)
                     if family == "live" and "roster" in models:
                         context = replace(context, source_scope=models["roster"].source_scope)
+                    if family == "live":
+                        context = replace(context, display_timezone="UTC")
                     results = await cards.render(
                         "activity" if family == "live" else "roster",
                         model,

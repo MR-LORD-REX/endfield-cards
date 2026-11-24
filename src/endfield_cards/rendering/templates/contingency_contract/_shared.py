@@ -1,129 +1,341 @@
-"""Contingency Contract score, medal and source-provided mission dashboard."""
-
-from __future__ import annotations
+"""A concise contract showcase preserving missions, medal, art and encounter."""
 
 from collections.abc import Iterator
+from dataclasses import replace
+from importlib import import_module
 from typing import Any
 
 from PIL import Image
 
-from endfield_cards.adapters.skport import image_url
+from endfield_cards.adapters.skport import image_url, validate_owner
+from endfield_cards.errors import DataValidationError
 from endfield_cards.utils.drawing import PageCanvas
-from endfield_cards.utils.records import (
-    Record,
-    fit_label,
-    iter_records,
-    meter_text,
-    photo,
-    progress,
-    record_page_count,
-    stamp,
-)
+from endfield_cards.utils.images import composite_fitted, fitted, gradient_alpha, masked, shape_mask
+from endfield_cards.utils.meters import bar, ring
+from endfield_cards.utils.records import Record, duration, iter_records, meter_text, record_page_count
+from endfield_cards.utils.time import display_time
+
+SIZE = (1600, 1000)
+Box = tuple[int, int, int, int]
 
 
 def contracts(model: Any) -> list[Any]:
     if not hasattr(model, "contracts"):
         return [model]
-    result = [model.current] if model.current is not None else []
-    result.extend(item for item in model.contracts if all(item.id != existing.id for existing in result))
-    return result
+    source_ids = [item.id for item in model.contracts if item.id]
+    if len(set(source_ids)) != len(source_ids):
+        raise DataValidationError("Contract contains duplicate identities", code="duplicate_contract")
+    entries = [model.current] if model.current is not None else []
+    entries.extend(
+        item for item in model.contracts if all(item.id != entry.id or not item.id for entry in entries)
+    )
+    identifiers = [item.id for item in entries if item.id]
+    if len(set(identifiers)) != len(identifiers):
+        raise DataValidationError("Contract contains duplicate identities", code="duplicate_contract")
+    return entries
+
+
+def selected(model: Any, contract_id: str | None = None) -> Any:
+    entries = contracts(model)
+    if contract_id is not None:
+        entries = [item for item in entries if item.id == str(contract_id)]
+        if not entries:
+            raise DataValidationError(
+                "Selected Contingency Contract is absent from this snapshot", code="contract_not_found"
+            )
+    return entries[0] if entries else None
 
 
 def urls(model: Any) -> set[str]:
-    links = [image_url(item.poster) for item in contracts(model)]
-    links.extend(image_url(item.medal.icon) for item in contracts(model) if item.medal is not None)
-    return {link for link in links if link}
+    links = []
+    for item in contracts(model):
+        links.append(image_url(item.poster))
+        if item.medal is not None:
+            links.append(image_url(item.medal.icon))
+        links.extend(image_url(enemy.icon) for enemy in item.enemies[:8])
+    return {url for url in links if url}
+
+
+def text(c: PageCanvas, x: int, y: int, value: object, width: int, *, size: int = 20, **options: Any) -> None:
+    c.text(x, y, value, width=width, size=size, max_lines=options.pop("max_lines", 1), **options)
+
+
+def new_canvas(context: Any, *, dark: bool, assets: Any) -> PageCanvas:
+    return PageCanvas(
+        "Contingency Contract",
+        replace(context, display_timezone="UTC"),
+        dark=dark,
+        size=SIZE,
+        assets=assets,
+        header=False,
+    )
+
+
+def owner_header(c: PageCanvas, profile: Any = None) -> None:
+    url = image_url(profile.avatar) if profile is not None else None
+    source = c.assets.get(url) if url else None
+    c.draw.ellipse((38, 32, 131, 125), fill=c.accent)
+    if source is not None:
+        composite_fitted(c.image, source, (43, 37, 126, 120), shape="circle", focus=(0.5, 0.25))
+    else:
+        c.draw.ellipse((43, 37, 126, 120), fill=c.panel_color)
+        text(c, 65, 51, c.context.owner.name[:1], 55, size=41, bold=True)
+    text(c, 151, 34, c.context.owner.name, 858, size=44, bold=True)
+    identity = f"UID {c.context.owner.game_uid}"
+    if profile is not None:
+        if profile.server_name:
+            identity += " · " + profile.server_name
+        if "authority_level" in profile.model_fields_set:
+            identity += f" · Authority {profile.authority_level}"
+    text(c, 153, 96, identity, 857, size=19, fill=c.muted)
+    c.icon("player.contingency-contract", 1045, 54, 31, tint=c.accent if c.dark else "#916900")
+    text(c, 1088, 58, "CONTINGENCY CONTRACT", 470, size=23, bold=True)
+
+
+def hero(c: PageCanvas, item: Any, box: Box, *, full: bool = False) -> None:
+    x, y, right, bottom = box
+    size = right - x, bottom - y
+    url = image_url(item.poster)
+    source = c.assets.get(url) if url else None
+    tile = (
+        fitted(source, size, focus=(0.55, 0.4)) if source is not None else Image.new("RGBA", size, "#24303A")
+    )
+    shade = Image.new("RGBA", size, "#101822")
+    shade.putalpha(gradient_alpha(size, start=0.0, end=0.93, maximum=235, vertical=False, reverse=True))
+    tile.alpha_composite(shade)
+    if full:
+        floor = Image.new("RGBA", size, "#181B20")
+        floor.putalpha(gradient_alpha(size, start=0.38, end=1, maximum=255))
+        tile.alpha_composite(floor)
+    c.image.alpha_composite(
+        masked(tile, shape_mask(size, shape="rectangle" if full else "rounded", radius=16)), (x, y)
+    )
+
+
+def title(c: PageCanvas, item: Any, box: Box) -> None:
+    x, y, right, bottom = box
+    text(c, x, y, "OPERATION", right - x, size=17, bold=True, fill=c.accent)
+    name = item.name.removeprefix("Contingency Contract:").strip() or item.id or "Unavailable"
+    text(c, x - 1, y + 34, name, right - x, size=43, bold=True, fill="#F4F5F7", max_lines=2)
+    stage = getattr(item, "stage_name", "")
+    if stage and stage != "Contingency Contract":
+        text(c, x, bottom - 33, stage, right - x, size=18, fill="#BBC5CF")
+
+
+def medal(c: PageCanvas, item: Any, box: Box) -> None:
+    x, y, right, bottom = box
+    value = item.medal
+    if value is None:
+        text(c, x, y + 18, "Medal unavailable", right - x, size=16, fill=c.muted)
+        return
+    url = image_url(value.icon)
+    source = c.assets.get(url) if url else None
+    size = min(right - x, bottom - y - 30)
+    if source is not None:
+        glyph = fitted(source, (size, size), contain=True)
+        if value.level == 0:
+            glyph.putalpha(glyph.getchannel("A").point(lambda alpha: alpha // 2))
+        c.image.alpha_composite(glyph, (x + (right - x - size) // 2, y))
+    status = (
+        f"Medal Lv {value.level}" + (" · Plated" if value.plated else "")
+        if value.level > 0
+        else "Not earned yet"
+    )
+    text(c, x, bottom - 26, status, right - x, size=15, fill=c.muted, max_lines=1)
+
+
+def score(c: PageCanvas, item: Any, box: Box) -> None:
+    x, y, right, bottom = box
+    c.panel(box)
+    text(c, x + 23, y + 21, "BEST SCORE", right - x - 46, size=16, bold=True, fill=c.muted)
+    value = str(item.best_score) if "best_score" in item.model_fields_set else "—"
+    text(c, x + 20, y + 55, value, 252, size=110, bold=True, fill=c.accent if c.dark else c.fg)
+    attempts = str(item.attempts) if "attempts" in item.model_fields_set else "—"
+    text(c, x + 24, bottom - 53, f"{attempts} attempts", right - x - 48, size=20, fill=c.muted)
+    medal(c, item, (right - 164, y + 24, right - 16, y + 207))
+
+
+def missions(c: PageCanvas, item: Any, box: Box, *, radial: bool) -> None:
+    x, y, right, bottom = box
+    c.panel(box)
+    values = item.missions[:6]
+    if not values:
+        text(c, x + 22, y + 26, "Mission progress unavailable", right - x - 44, size=24, fill=c.muted)
+        return
+    if radial:
+        columns = min(3, len(values))
+        rows = (len(values) + columns - 1) // columns
+        cell_w, cell_h = (right - x - 30) // columns, (bottom - y - 22) // rows
+        for index, meter in enumerate(values):
+            row, column = divmod(index, columns)
+            px, py = x + 15 + column * cell_w, y + 11 + row * cell_h
+            size = min(114, cell_h - 34)
+            gx, gy = px + (cell_w - size) // 2, py + max(0, (cell_h - size - 31) // 2)
+            ring(c, gx, gy, size, meter.ratio)
+            inset = max(11, min(18, size // 7))
+            c.centered_text(
+                (gx + inset, gy + inset, gx + size - inset, gy + size - inset),
+                meter_text(meter),
+                size=29 if size >= 100 else 17,
+                bold=True,
+            )
+            c.centered_text(
+                (px + 7, gy + size + 9, px + cell_w - 7, gy + size + 31),
+                meter.name or meter.key,
+                size=17 if size >= 100 else 14,
+                bold=True,
+            )
+        if len(item.missions) > len(values):
+            text(
+                c,
+                x + 22,
+                bottom - 22,
+                f"+{len(item.missions) - len(values)} missions",
+                right - x - 44,
+                size=12,
+                fill=c.muted,
+            )
+        return
+    step = min(100, (bottom - y - 22) // len(values))
+    for index, meter in enumerate(values):
+        py = y + 13 + index * step
+        text(
+            c,
+            x + 22,
+            py + 1,
+            meter.name or meter.key,
+            (right - x) * 2 // 3,
+            size=min(21, step - 27),
+            bold=True,
+        )
+        text(c, right - 191, py + 1, meter_text(meter), 169, size=min(31, step - 20), bold=True)
+        bar(c, (x + 22, py + step - 13, right - 22, py + step - 6), meter.ratio)
+    if len(item.missions) > len(values):
+        text(
+            c,
+            x + 22,
+            bottom - 18,
+            f"+{len(item.missions) - len(values)} missions",
+            right - x - 44,
+            size=12,
+            fill=c.muted,
+        )
+
+
+def encounter(c: PageCanvas, item: Any, box: Box) -> None:
+    x, y, right, bottom = box
+    c.panel(box)
+    text(c, x + 20, y + 13, "ENCOUNTER", right - x - 40, size=17, bold=True)
+    enemy_count = str(len(item.enemies)) if len(item.enemies) <= 8 else f"8 / {len(item.enemies)}"
+    text(
+        c,
+        right - 260,
+        y + 15,
+        f"{enemy_count} enemies · {len(item.modifiers)} indicators",
+        239,
+        size=13,
+        fill=c.muted,
+    )
+    values = item.enemies[:8]
+    if not values:
+        text(c, x + 22, y + 77, "Enemy data unavailable", right - x - 44, size=21, fill=c.muted)
+        return
+    step = (right - x - 34) // len(values)
+    for index, enemy in enumerate(values):
+        px, py = x + 17 + index * step, y + 48
+        url = image_url(enemy.icon)
+        source = c.assets.get(url) if url else None
+        size = min(76, step - 10)
+        if source is not None:
+            composite_fitted(
+                c.image,
+                source,
+                (px + (step - size) // 2, py, px + (step + size) // 2, py + size),
+                radius=9,
+                contain=True,
+            )
+        text(c, px + 3, py + size + 5, enemy.name or enemy.id, step - 7, size=14, bold=True, max_lines=2)
+        if enemy.level is not None:
+            text(c, px + 3, bottom - 26, f"Lv {enemy.level}", step - 7, size=12, fill=c.muted)
+
+
+def schedule(c: PageCanvas, model: Any, item: Any, box: Box) -> None:
+    x, y, right, bottom = box
+    c.panel(box)
+    text(c, x + 21, y + 15, "SCHEDULE / UTC", right - x - 42, size=17, bold=True)
+    for index, (label, value) in enumerate(
+        (("Gameplay ends", item.ends_at), ("Collection ends", item.ends_at_collection))
+    ):
+        py = y + 54 + index * 60
+        text(c, x + 21, py, label, right - x - 42, size=13, fill=c.muted)
+        text(c, x + 21, py + 22, display_time(value, c.context), right - x - 42, size=18, bold=True)
+    unlocked = sum(modifier.is_unlocked for modifier in item.modifiers)
+    text(
+        c,
+        x + 21,
+        bottom - 30,
+        f"Indicators unlocked {unlocked}/{len(item.modifiers)}",
+        right - x - 42,
+        size=14,
+        fill=c.muted,
+    )
+
+
+def history(c: PageCanvas, model: Any, item: Any, box: Box) -> None:
+    other = [entry for entry in contracts(model) if entry is not item and entry.id != item.id]
+    if other:
+        names = " · ".join(
+            f"{entry.name.removeprefix('Contingency Contract:').strip()} ({entry.best_score})"
+            for entry in other[:3]
+        )
+        if len(other) > 3:
+            names += f" · +{len(other) - 3} contracts"
+        text(c, box[0], box[1], "Other contracts: " + names, box[2] - box[0], size=13, fill="#C0C8D2")
 
 
 def iter_render(
-    model: Any, context: Any, *, variant: str = "light", assets: dict | None = None, **options: Any
+    model: Any,
+    context: Any,
+    *,
+    variant: str = "light",
+    assets: dict | None = None,
+    profile: Any = None,
+    contract_id: str | None = None,
+    details: bool = False,
+    **options: Any,
 ) -> Iterator[Image.Image]:
-    entries: list[tuple[Any, list[Any]]] = []
-    detail_records = []
-    for item in contracts(model):
-        groups = [item.missions[i : i + 6] for i in range(0, len(item.missions), 6)] or [[]]
-        entries.extend((item, group) for group in groups)
-        if fit_label(item.name or item.id, 1100, locale=context.locale, size=57, max_lines=2)[2]:
-            detail_records.append(
-                Record("Contract identity", [item.name or item.id, f"Contract ID: {item.id}"])
-            )
-        for mission in item.missions:
-            if fit_label(mission.name or mission.key, 260, locale=context.locale, size=20, max_lines=1)[2]:
-                detail_records.append(Record("Mission", [mission.name or mission.key, meter_text(mission)]))
-    if not entries:
-        canvas = PageCanvas("CONTINGENCY CONTRACT", context, dark=variant == "dark", assets=assets)
-        canvas.text(56, 250, "No Contingency Contract supplied", size=36)
-        yield canvas.finish()
-        return
-    total_pages = len(entries) + (record_page_count(context, detail_records) if detail_records else 0)
-    for index, (item, missions) in enumerate(entries):
-        canvas = PageCanvas("CONTINGENCY CONTRACT", context, dark=variant == "dark", assets=assets)
-        canvas.icon("player.contingency-contract", 1420, 143, size=75)
-        canvas.panel((56, 205, 1544, 445))
-        photo(canvas, image_url(item.poster), (57, 206, 1543, 444), assets)
-        shade = Image.new("RGBA", (1486, 238), "#161A20")
-        alpha = Image.new("L", (1486, 1))
-        alpha.putdata([int(240 * (1 - x / 1486)) for x in range(1486)])
-        shade.putalpha(alpha.resize(shade.size))
-        canvas.image.alpha_composite(shade, (57, 206))
-        canvas.text(
-            88,
-            238,
-            "CURRENT CONTRACT" if getattr(model, "current", None) is item else "CONTRACT RECORD",
-            size=21,
-            fill=canvas.accent,
-            bold=True,
+    item = selected(model, contract_id)
+    if profile is not None:
+        validate_owner(profile, context)
+    module = import_module(f"endfield_cards.rendering.templates.contingency_contract.{variant}")
+    c = module.draw(model, context, item=item, profile=profile, assets=assets)
+    records = []
+    if details and item is not None:
+        records = [Record(item.name or item.id, [item.rules, f"Contract ID: {item.id}"])]
+        records.extend(
+            Record(meter.name or meter.key, [meter_text(meter), meter.note]) for meter in item.missions
         )
-        label, label_size, _ = fit_label(
-            item.name or item.id, 1100, locale=context.locale, size=57, max_lines=2
+        records.extend(
+            Record(modifier.name or modifier.id, [modifier.description, f"Score {modifier.score}"])
+            for modifier in item.modifiers
         )
-        canvas.text(88, 280, label, size=label_size, fill="#F4F3EE", bold=True)
-        canvas.panel((56, 472, 458, 894))
-        canvas.text(88, 503, "BEST SCORE", size=24, fill=canvas.muted, bold=True)
-        canvas.text(84, 554, str(item.best_score), size=136, bold=True, width=350, max_lines=1)
-        canvas.text(88, 753, f"{item.attempts} attempts", size=29)
-        canvas.text(88, 810, "Ends " + stamp(item.ends_at), size=19, width=344)
-        canvas.panel((1128, 472, 1544, 894))
-        canvas.text(1160, 503, "MEDAL", size=24, fill=canvas.muted, bold=True)
-        if item.medal is not None:
-            photo(canvas, image_url(item.medal.icon), (1230, 574, 1444, 788), assets, contain=True)
-            canvas.text(
-                1160,
-                814,
-                f"{item.medal.name or 'Medal'} · Lv {item.medal.level}"
-                + (" · Plated" if item.medal.plated else ""),
-                size=23,
-                width=352,
-            )
-        else:
-            canvas.text(1160, 628, "Not supplied", size=30)
-        canvas.panel((482, 472, 1104, 894))
-        canvas.text(512, 503, "MISSIONS", size=24, fill=canvas.muted, bold=True)
-        for i, mission in enumerate(missions):
-            row, col = divmod(i, 2)
-            x, y = 512 + col * 293, 566 + row * 104
-            label, label_size, _ = fit_label(
-                mission.name or mission.key, 260, locale=context.locale, size=20, max_lines=1
-            )
-            canvas.text(x, y, label, size=label_size)
-            canvas.text(x, y + 31, meter_text(mission), size=24, bold=True, width=260)
-            progress(canvas, mission.ratio, x, y + 74, 260)
-        if not missions:
-            canvas.text(512, 592, "No mission progress supplied", size=25, width=530)
-        yield canvas.finish(page=index + 1, pages=total_pages)
-    if detail_records:
+        records.extend(
+            Record(enemy.name or enemy.id, [enemy.description, enemy.ability or ""]) for enemy in item.enemies
+        )
+        records.extend(Record(run.id or "Run", [duration(run.duration_seconds)]) for run in item.runs)
+    total = 1 + (record_page_count(context, records) if records else 0)
+    yield c.finish(1, total)
+    if records:
         yield from iter_records(
-            "CONTINGENCY CONTRACT DETAILS",
+            "Contingency Contract details",
             context,
-            detail_records,
+            records,
             variant=variant,
             assets=assets,
-            page_offset=len(entries),
-            total_pages=total_pages,
+            page_offset=1,
+            total_pages=total,
         )
 
 
-def render(
-    model: Any, context: Any, *, variant: str = "light", assets: dict | None = None, **options: Any
-) -> list[Image.Image]:
-    return list(iter_render(model, context, variant=variant, assets=assets, **options))
+def render(model: Any, context: Any, **options: Any) -> list[Image.Image]:
+    return list(iter_render(model, context, **options))

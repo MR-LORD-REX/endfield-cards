@@ -6,7 +6,9 @@ import asyncio
 import hashlib
 from collections.abc import AsyncGenerator, AsyncIterator, Iterable
 from dataclasses import replace
-from typing import Any
+from typing import Any, cast
+
+from skport import SkportClient
 
 from endfield_cards._version import __version__
 from endfield_cards.adapters.skport import context_for, validate_owner
@@ -21,6 +23,14 @@ from endfield_cards.models import (
     RenderContext,
     RenderIssue,
     RenderRequest,
+)
+from endfield_cards.models.rendered import (
+    CharacterListInfo,
+    ContractInfo,
+    LiveInfo,
+    MonumentInfo,
+    RenderedCard,
+    RenderInfo,
 )
 from endfield_cards.rendering.encoding import encode
 from endfield_cards.rendering.executor import RenderExecutor
@@ -59,7 +69,7 @@ def _source_issues(model: Any) -> list[RenderIssue]:
 
 
 def _validated_options(family: str, context: RenderContext, options: dict[str, Any]) -> dict[str, Any]:
-    if family == "activity" and options.get("profile") is not None:
+    if family in {"activity", "monument", "contingency_contract"} and options.get("profile") is not None:
         options = dict(options)
         options["profile"] = _snapshot(options["profile"])
         validate_owner(options["profile"], context)
@@ -77,7 +87,7 @@ class Cards:
         self,
         *,
         config: CardsConfig | None = None,
-        skport: Any = None,
+        skport: SkportClient | None = None,
         asset_store: AssetStore | None = None,
         session: Any = None,
         url_policy: Any = None,
@@ -291,7 +301,10 @@ class Cards:
                 if artwork is not None:
                     overrides["custom_art"] = await self.assets.load(artwork)
                 issues = _source_issues(model)
-                if family == "activity" and (profile := options.get("profile")) is not None:
+                if (
+                    family in {"activity", "monument", "contingency_contract"}
+                    and (profile := options.get("profile")) is not None
+                ):
                     issues.extend(
                         RenderIssue(issue.code, str(issue.message))
                         for issue in getattr(profile, "issues", [])
@@ -484,6 +497,61 @@ class Cards:
         finally:
             if task is not None:
                 self._active.discard(task)
+
+    async def render_with_data(
+        self,
+        family: str,
+        model: Any,
+        *,
+        context: RenderContext | None = None,
+        owner: Any = None,
+        variant: str | None = None,
+        art: Any = None,
+        output: OutputConfig | None = None,
+        **options: Any,
+    ) -> RenderedCard[Any, RenderInfo]:
+        """Return images, a private SDK model and typed downstream selection data."""
+        from endfield_cards.utils.selection import bundle_render
+
+        self._check_open()
+        family, variant, _ = pick(family, variant)
+        snapshot, options = _snapshot(model), _snapshot(options)
+        context = context or context_for(snapshot, owner, locale=self.config.locale)
+        if family == "activity":
+            context = replace(context, display_timezone="UTC")
+        options = _validated_options(family, context, options)
+        pages = await self.render(
+            family, snapshot, context=context, variant=variant, art=art, output=output, **options
+        )
+        return bundle_render(family, snapshot, pages, context, **options)
+
+    async def render_profile_with_data(
+        self, model: Any, **kwargs: Any
+    ) -> RenderedCard[Any, CharacterListInfo]:
+        return cast(
+            RenderedCard[Any, CharacterListInfo], await self.render_with_data("profile", model, **kwargs)
+        )
+
+    async def render_roster_with_data(
+        self, model: Any, **kwargs: Any
+    ) -> RenderedCard[Any, CharacterListInfo]:
+        return cast(
+            RenderedCard[Any, CharacterListInfo], await self.render_with_data("roster", model, **kwargs)
+        )
+
+    async def render_live_with_data(self, model: Any, **kwargs: Any) -> RenderedCard[Any, LiveInfo]:
+        return cast(RenderedCard[Any, LiveInfo], await self.render_with_data("activity", model, **kwargs))
+
+    async def render_monument_with_data(self, model: Any, **kwargs: Any) -> RenderedCard[Any, MonumentInfo]:
+        return cast(RenderedCard[Any, MonumentInfo], await self.render_with_data("monument", model, **kwargs))
+
+    async def render_contingency_contract_with_data(
+        self, model: Any, **kwargs: Any
+    ) -> RenderedCard[Any, ContractInfo]:
+        return cast(
+            RenderedCard[Any, ContractInfo],
+            await self.render_with_data("contingency_contract", model, **kwargs),
+        )
 
     async def render_profile(self, model: Any, **kwargs: Any) -> list[CardResult]:
         return await self.render("profile", model, **kwargs)

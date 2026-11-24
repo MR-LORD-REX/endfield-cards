@@ -1,15 +1,17 @@
 """Observed Live resources, event art and source-clock component rendering."""
 
 from collections.abc import Iterator
+from dataclasses import replace
 from importlib import import_module
 from typing import Any
 
-from PIL import Image, ImageDraw
+from PIL import Image
 
 from endfield_cards.adapters.skport import image_url, validate_owner
 from endfield_cards.utils.activity import event_status, event_summaries
 from endfield_cards.utils.drawing import PageCanvas
 from endfield_cards.utils.images import composite_fitted, fitted, masked, shape_mask
+from endfield_cards.utils.meters import bar, ring
 from endfield_cards.utils.records import (
     Record,
     append_model_text,
@@ -100,26 +102,6 @@ def draw_header(c: PageCanvas, model: Any, profile: Any = None) -> None:
         text(c, 40, 161, " · ".join(items), 1520, size=13, muted=True)
 
 
-def bar(c: PageCanvas, box: Box, ratio: float) -> None:
-    x, y, right, bottom = box
-    height = bottom - y
-    c.draw.rounded_rectangle(box, radius=height // 2, fill=c.line)
-    length = int((right - x) * min(1.0, max(0.0, ratio)))
-    if length:
-        c.draw.rounded_rectangle((x, y, x + max(height, length), bottom), radius=height // 2, fill=c.accent)
-
-
-def ring(c: PageCanvas, x: int, y: int, size: int, ratio: float) -> None:
-    scale, stroke = 3, max(14, size // 12)
-    layer = Image.new("RGBA", (size * scale, size * scale))
-    d = ImageDraw.Draw(layer)
-    box = (2, 2, size * scale - 3, size * scale - 3)
-    d.arc(box, 0, 360, fill=c.line, width=stroke * scale)
-    if ratio > 0:
-        d.arc(box, -90, -90 + 360 * min(1.0, ratio), fill=c.accent, width=stroke * scale)
-    c.image.alpha_composite(layer.resize((size, size), Image.Resampling.LANCZOS), (x, y))
-
-
 def draw_sanity(c: PageCanvas, model: Any, box: Box, *, wide: bool = False) -> None:
     x, y, right, bottom = box
     c.panel(box)
@@ -129,23 +111,20 @@ def draw_sanity(c: PageCanvas, model: Any, box: Box, *, wide: bool = False) -> N
     size = 233 if wide else 286
     gx, gy = x + 17 if wide else x + (right - x - size) // 2, y + 71 if wide else y + 126
     ring(c, gx, gy, size, meter.ratio if meter is not None else 0)
-    center(
-        c,
-        gx + 29,
-        gy + size // 2 - 43,
-        number(meter.current) if meter is not None else "—",
-        size - 58,
-        size=65 if wide else 85,
-        bold=True,
+    value = number(meter.current) if meter is not None else "—"
+    maximum = f"/ {number(meter.maximum)}" if meter is not None else "Unavailable"
+    value_size = 65 if wide else 85
+    value_bounds = c.fonts.get(value_size, weight="semibold", locale=c.context.locale, text=value).getbbox(
+        value
     )
-    center(
-        c,
-        gx + 28,
-        gy + size // 2 + (36 if wide else 63),
-        f"/ {number(meter.maximum)}" if meter is not None else "Unavailable",
-        size - 56,
-        size=23,
-        muted=True,
+    maximum_bounds = c.fonts.get(23, locale=c.context.locale, text=maximum).getbbox(maximum)
+    value_height = value_bounds[3] - value_bounds[1]
+    maximum_height = maximum_bounds[3] - maximum_bounds[1]
+    block_height = value_height + maximum_height + 13
+    top = gy + (size - block_height) / 2
+    c.centered_text((gx + 28, top, gx + size - 28, top + value_height), value, size=value_size, bold=True)
+    c.centered_text(
+        (gx + 28, top + value_height + 13, gx + size - 28, top + block_height), maximum, size=23, fill=c.muted
     )
     state = (
         "Unavailable"
@@ -384,6 +363,7 @@ def iter_render(
     details: bool = False,
     **options: Any,
 ) -> Iterator[Image.Image]:
+    context = replace(context, display_timezone="UTC")
     if profile is not None:
         validate_owner(profile, context)
     module = import_module(f"endfield_cards.rendering.templates.activity.{variant}")

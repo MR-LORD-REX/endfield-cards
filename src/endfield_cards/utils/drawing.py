@@ -1,8 +1,6 @@
 """Shared Endfield typography, semantic icons, artwork and identity panels."""
 
-from datetime import UTC
 from typing import Any
-from zoneinfo import ZoneInfo
 
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont, ImageOps
 
@@ -147,6 +145,40 @@ class PageCanvas:
             self.draw.text((x, y + index * line_height), line, font=font, fill=fill or self.fg)
         return len(lines) * line_height
 
+    def centered_text(
+        self,
+        box: tuple[float, float, float, float],
+        value: object,
+        *,
+        size: int = 24,
+        fill: Any = None,
+        bold: bool = False,
+    ) -> None:
+        """Center the actual glyph bounds horizontally and vertically in a box."""
+        left, top, right, bottom = box
+        value = str(value)
+        while True:
+            font = self.fonts.get(
+                size, weight="semibold" if bold else "regular", locale=self.context.locale, text=value
+            )
+            bounds = font.getbbox(value)
+            width, height = bounds[2] - bounds[0], bounds[3] - bounds[1]
+            if size <= 10 or (width <= right - left and height <= bottom - top):
+                break
+            size -= 1
+        x = left + (right - left - width) / 2 - bounds[0]
+        y = top + (bottom - top - height) / 2 - bounds[1]
+        self.text(
+            round(x),
+            round(y),
+            value,
+            size=size,
+            fill=fill,
+            bold=bold,
+            width=max(1, round(font.getlength(value)) + 2),
+            max_lines=1,
+        )
+
     def panel(self, box: tuple[int, int, int, int]) -> None:
         self.draw.rounded_rectangle(box, radius=12, fill=self.panel_color, outline=self.line, width=1)
 
@@ -229,13 +261,7 @@ class PageCanvas:
                 x, y + 32, f"UID {owner.game_uid}", size=16, fill="#CDD2DA", width=cell - 24, max_lines=1
             )
         self.text(self.width - 446, y + 9, "akef-cards · endfield-cards", size=20, fill="#FFC800")
-        stamp = self.context.snapshot_at
         meta = f"{page:02d} / {pages:02d}"
-        if stamp is not None:
-            if stamp.tzinfo is None:
-                stamp = stamp.replace(tzinfo=UTC)
-            stamp = stamp.astimezone(ZoneInfo(self.context.display_timezone))
-            meta += "   ·   " + stamp.strftime("%Y-%m-%d %H:%M %Z")
         self.text(self.width - 446, y + 38, meta, size=13, fill="#A0A5AF", width=400, max_lines=1)
         return self.image
 

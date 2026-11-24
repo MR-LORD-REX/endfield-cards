@@ -207,7 +207,9 @@ def test_colored_reception_badge_retains_its_palette_when_explicitly_preserved()
 
 
 @pytest.mark.parametrize("timezone,clock", [("Asia/Kolkata", "17:30 IST"), ("America/New_York", "07:00 EST")])
-def test_live_source_stamp_and_deadlines_use_context_timezone(timezone, clock, text_log):
+def test_live_source_stamp_uses_utc_while_shared_formatter_supports_context_timezone(
+    timezone, clock, text_log
+):
     from endfield_cards.utils.time import display_time
 
     model = live()
@@ -220,7 +222,9 @@ def test_live_source_stamp_and_deadlines_use_context_timezone(timezone, clock, t
     assert display_time(NOW, context) == f"24 Nov 2026 · {clock}"
     pages = activity.render(model, context)
     body = "\n".join(value for value, _, y, _, _, height in text_log if y < height - 66)
-    assert clock in body and "1h 30m" in body and "3h 01m" in body
+    assert "24 Nov 2026 · 12:00 UTC" in body
+    assert "IST" not in body and "EST" not in body
+    assert "1h 30m" in body and "3h 01m" in body
     assert "29 Nov 2026" not in body
     close(pages)
 
