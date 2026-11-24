@@ -95,7 +95,7 @@ def test_six_stage_board_retains_times_names_and_source_art_without_mutation(var
     original = model.model_dump()
     pixels = {url: image.tobytes() for url, image in assets.items()}
     pages = monument_detail.render(model, context_for(model), variant=variant, assets=assets)
-    assert len(pages) == 1 and pages[0].width == 1600 and pages[0].height < 1800
+    assert len(pages) == 1 and pages[0].width == 1600 and pages[0].height < 2000
     text = "\n".join(value for value, *_ in drawn)
     assert all(stage.name in text for stage in model.events[0].stages)
     assert all(member.name in text for member in model.events[0].stages[0].normal.team)
@@ -132,6 +132,38 @@ def test_zero_is_an_observed_duration_and_partial_run_is_not_a_clear(drawn):
     assert "00:00.00" in text and "NORMAL RECORDED TEAM" in text and "Unknown" in text
     assert parts.cleared(model.events[0].stages[0], "normal") is None
     pages[0].close()
+
+
+def test_difficulty_labels_have_no_leading_icons(monkeypatch, drawn):
+    model = state(1)
+    c = PageCanvas("Stage", context_for(model), header=False)
+    calls = []
+    monkeypatch.setattr(c, "icon", lambda *args, **kwargs: calls.append(args))
+    parts.draw_record(c, model.events[0].stages[0], "normal", 30, 50, 650)
+    parts.draw_record(c, model.events[0].stages[0], "hard", 30, 90, 650)
+    assert calls == []
+    assert [(value, x) for value, x, *_ in drawn if value in {"NORMAL", "HARD"}] == [
+        ("NORMAL", 30),
+        ("HARD", 30),
+    ]
+    c.image.close()
+
+
+def test_medal_is_centered_without_level_caption_and_source_pixels_are_unchanged(drawn):
+    model = state(1)
+    event = model.events[0]
+    event.medal.plated = False
+    source = Image.new("RGBA", (20, 40), "#0000FF")
+    original = source.tobytes()
+    c = PageCanvas("Medal", context_for(model), assets={event.medal.icon.url: source}, header=False)
+    parts.draw_medal(c, event, (200, 100, 300, 202))
+    blue = c.image.crop((200, 100, 300, 202)).getchannel("B").point(lambda value: 255 if value > 200 else 0)
+    left, top, right, bottom = blue.getbbox()
+    assert abs((left + right) / 2 - 50) <= 1 and abs((top + bottom) / 2 - 51) <= 1
+    assert not any(value.startswith("Lv ") for value, *_ in drawn)
+    assert source.tobytes() == original
+    c.image.close()
+    source.close()
 
 
 def test_matching_source_teams_use_clear_dates_instead_of_duplicate_names(drawn):

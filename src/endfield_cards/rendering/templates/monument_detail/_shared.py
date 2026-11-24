@@ -10,7 +10,7 @@ from PIL import Image
 
 from endfield_cards.adapters.skport import image_url, validate_owner
 from endfield_cards.errors import DataValidationError
-from endfield_cards.rendering.templates.monument._shared import draw_art, draw_medal
+from endfield_cards.rendering.templates.monument._shared import draw_art
 from endfield_cards.utils.drawing import ELEMENT_COLORS, PageCanvas, element_key
 from endfield_cards.utils.images import composite_fitted
 from endfield_cards.utils.records import duration
@@ -20,7 +20,10 @@ from endfield_cards.utils.time import display_time
 WIDTH = 1600
 PAD = 36
 GAP = 20
-STAGE_HEIGHT = 346
+STAGE_HEIGHT = 432
+PORTRAIT_TOP = 188
+PORTRAIT_BOTTOM = 388
+RECORD_DATE_Y = 401
 PER_PAGE = 6
 HARD = "#DA786A"
 
@@ -109,6 +112,25 @@ def draw_header(c: PageCanvas, profile: Any = None) -> None:
     if profile is not None and "authority_level" in profile.model_fields_set:
         identity += f" · Authority {profile.authority_level}"
     text(c, PAD + 77, 101, identity, 1000, size=16, fill=c.muted)
+
+
+def draw_medal(c: PageCanvas, event: Any, box: tuple[int, int, int, int]) -> None:
+    """Center the supplied medal artwork without a level caption."""
+    c.draw.rounded_rectangle(
+        box,
+        radius=10,
+        fill=c.panel_color,
+        outline=c.accent if event.medal is not None and event.medal.plated else c.line,
+        width=2,
+    )
+    medal = event.medal
+    source = image_url(medal.icon) if medal is not None else None
+    pixels = c.assets.get(source) if source else None
+    if pixels is not None:
+        x, y, right, bottom = box
+        composite_fitted(c.image, pixels, (x + 8, y + 8, right - 8, bottom - 8), contain=True)
+    else:
+        c.centered_text(box, "—", size=20, fill=c.muted)
 
 
 def draw_banner(c: PageCanvas, event: Any, *, dark: bool) -> None:
@@ -240,15 +262,7 @@ def draw_record(c: PageCanvas, stage: Any, difficulty: str, x: int, y: int, widt
     state, run = cleared(stage, difficulty), getattr(stage, difficulty)
     color = HARD if difficulty == "hard" else c.fg
     label = "Hard" if difficulty == "hard" else "Normal"
-    c.icon(
-        "player.monument-detailed" if difficulty == "hard" else "player.monument",
-        x,
-        y,
-        22,
-        tint=None if difficulty == "hard" else color,
-        preserve_color=difficulty == "hard",
-    )
-    text(c, x + 30, y, label.upper(), 100, size=14, fill=color, bold=True)
+    text(c, x, y, label.upper(), 100, size=14, fill=color, bold=True)
     status = "Cleared" if state is True else "Not cleared" if state is False else "Unknown"
     text(c, x + 138, y - 1, status, 130, size=15, fill=color if state else c.muted)
     timing = duration(run.duration_seconds) if run is not None and run.duration_seconds is not None else "—"
@@ -321,7 +335,9 @@ def draw_stage(c: PageCanvas, stage: Any, index: int, box: tuple[int, int, int, 
     for position in range(4):
         tx = x + 20 + position * (team_width + 10)
         draw_member(
-            c, team[position] if position < len(team) else None, (tx, y + 188, tx + team_width, y + 302)
+            c,
+            team[position] if position < len(team) else None,
+            (tx, y + PORTRAIT_TOP, tx + team_width, y + PORTRAIT_BOTTOM),
         )
     alternate = getattr(stage, "normal" if difficulty == "hard" else "hard")
     if (
@@ -331,14 +347,22 @@ def draw_stage(c: PageCanvas, stage: Any, index: int, box: tuple[int, int, int, 
     ):
         alt_label = "NORMAL" if difficulty == "hard" else "HARD"
         names = " · ".join(member.name or member.character_id for member in alternate.team)
-        text(c, x + 20, y + 315, f"{alt_label} TEAM  {names}", width - 40, size=13, fill=c.muted)
+        text(c, x + 20, y + RECORD_DATE_Y, f"{alt_label} TEAM  {names}", width - 40, size=13, fill=c.muted)
     elif run is not None and run.completed_at is not None:
         date = display_time(run.completed_at, c.context)
         if alternate is not None and alternate.completed_at is not None:
             date = f"{difficulty.title()} {date} · {'Normal' if difficulty == 'hard' else 'Hard'} {display_time(alternate.completed_at, c.context)}"
-        text(c, x + 20, y + 315, date, width - 40, size=13, fill=c.muted)
+        text(c, x + 20, y + RECORD_DATE_Y, date, width - 40, size=13, fill=c.muted)
     elif len(team) > 4:
-        text(c, x + 20, y + 315, f"+{len(team) - 4} other participants", width - 40, size=13, fill=c.muted)
+        text(
+            c,
+            x + 20,
+            y + RECORD_DATE_Y,
+            f"+{len(team) - 4} other participants",
+            width - 40,
+            size=13,
+            fill=c.muted,
+        )
 
 
 def page_height(event: Any, count: int) -> int:

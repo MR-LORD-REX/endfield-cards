@@ -134,6 +134,19 @@ def _role_tag(c: PageCanvas, x: int, y: int, role: str) -> None:
     _text(c, x + 5, y, c.t(role), 38, size=12, bold=True, color="#171C24" if role == "Main" else "#F3F4F7")
 
 
+def _attribute_label(
+    c: PageCanvas, x: int, y: int, name: str, width: int, role: str, *, size: int, color: str
+) -> None:
+    """Keep an attribute's role badge beside its measured label."""
+    label_width = width
+    if role:
+        font = c.fonts.get(size, locale=c.context.locale, text=name)
+        badge_x = min(x + math.ceil(c.draw.textlength(name, font=font)) + 9, x + width - 46)
+        label_width = max(1, badge_x - x - 6)
+        _role_tag(c, badge_x, y, role)
+    _text(c, x, y, name, label_width, size=size, color=color)
+
+
 def _stat_icon(c: PageCanvas, stat: Any, x: int, y: int, size: int, color: str | None = None) -> int:
     url = image_url(stat.icon)
     key = url or f"stat.{stat.id}"
@@ -165,6 +178,48 @@ def _pips(
             radius=2,
             fill=(color or c.accent) if index < filled else c.line,
         )
+
+
+def _level_capsules(c: PageCanvas, x: int, y: int, base: int, bonus: int, width: int) -> None:
+    """Draw one tilted mark per observed level, using white base and yellow bonus."""
+    total = base + bonus
+    if total <= 0 or width <= 0:
+        return
+    # Normal weapon/essence levels fit on one compact row; unusually large
+    # future values keep their exact numeric label rather than pooled marks.
+    step = min(14, width // total)
+    if step < 6:
+        return
+    capsule_width, capsule_height, scale = min(12, step - 2), 13, 4
+    alpha = Image.new("L", (capsule_width * scale, capsule_height * scale), 0)
+    draw = ImageDraw.Draw(alpha)
+    radius = max(1.4, capsule_width * 0.21) * scale
+    a = (radius + scale / 2, capsule_height * scale - radius - scale / 2)
+    b = (capsule_width * scale - radius - scale / 2, radius + scale / 2)
+    draw.line((a, b), fill=255, width=max(1, round(radius * 2)))
+    for cx, cy in (a, b):
+        draw.ellipse((cx - radius, cy - radius, cx + radius, cy + radius), fill=255)
+    alpha = alpha.resize((capsule_width, capsule_height), Image.Resampling.LANCZOS)
+    for count, start, color in ((base, 0, "#F4F3EE"), (bonus, base, c.accent)):
+        if count:
+            glyph = Image.new("RGBA", alpha.size, color)
+            glyph.putalpha(alpha)
+            for index in range(start, start + count):
+                c.image.alpha_composite(glyph, (x + index * step, y))
+            glyph.close()
+    alpha.close()
+
+
+def _weapon_level_split(skill: Any, gem: Any) -> tuple[int, int] | None:
+    """Use SDK-confirmed applied levels; old snapshots never guess by display name."""
+    base, bonus = getattr(skill, "base_level", None), getattr(skill, "bonus_level", None)
+    if base is not None or bonus is not None:
+        if type(base) is int and type(bonus) is int and base >= 0 and bonus >= 0 and base + bonus == skill.level:
+            return base, bonus
+        return None
+    if gem is None:
+        return skill.level, 0
+    return None
 
 
 def _stars(c: PageCanvas, rarity: int, x: int, y: int, size: int = 14) -> None:
@@ -238,7 +293,9 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
                 (c.accent if c.dark else "#916900") if role == "Main" else c.fg if role == "Sub" else c.muted
             )
             offset = _stat_icon(c, stat, px, attribute_y + 9, min(30, cell // 3), color)
-            _text(c, px + offset, attribute_y, STAT_NAMES[key], cell - offset, size=15, color=color)
+            _attribute_label(
+                c, px + offset, attribute_y, STAT_NAMES[key], cell - offset, role, size=15, color=color
+            )
             _text(
                 c,
                 px + offset,
@@ -248,8 +305,6 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
                 size=min(35, attr_h - 47),
                 bold=True,
             )
-            if role:
-                _role_tag(c, px + cell - 46, attribute_y - 1, role)
             bar_y = attribute_y + attr_h - 5
             c.draw.rectangle((px, bar_y, px + cell, bar_y + 3), fill=c.line)
             c.draw.rectangle(
@@ -298,10 +353,8 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
         role = _role(model, stat)
         color = (c.accent if c.dark else "#916900") if role == "Main" else c.fg if role == "Sub" else c.muted
         offset = _stat_icon(c, stat, px, py + 6, 24, color)
-        _text(c, px + offset, py + 1, STAT_NAMES[key], cell - offset, size=14, color=color)
+        _attribute_label(c, px + offset, py + 1, STAT_NAMES[key], cell - offset, role, size=14, color=color)
         _text(c, px + offset, py + 22, display_value(stat), cell - offset, size=26, bold=True)
-        if role:
-            _role_tag(c, px + cell - 47, py, role)
     extras_top = attribute_top + 2 * attr_h + 7
     step = max(23, (bottom - extras_top - 12) // max(1, len(bonuses)))
     for index, stat in enumerate(bonuses):
@@ -592,7 +645,8 @@ def _draw_weapon(c: PageCanvas, model: Any, box: Box) -> None:
                 lines=1,
             )
             _text(c, sx, skill_top + 49, f"{skill.level}/{skill.max_level}", cell - 12, size=12, muted=True)
-            _pips(c, sx, skill_top + 73, skill.level, skill.max_level, cell - 14)
+            if (levels := _weapon_level_split(skill, gem)) is not None:
+                _level_capsules(c, sx, skill_top + 73, *levels, cell - 14)
     elif weapon.effects:
         values = [value for effect in weapon.effects if (value := _effect_text(model, effect))]
         _text(c, px, skill_top, " · ".join(values[:3]), weapon_width, size=17, lines=2)
@@ -608,7 +662,7 @@ def _draw_weapon(c: PageCanvas, model: Any, box: Box) -> None:
         for term in gem.terms[:3]:
             _text(c, gx, ty, term.name or term.id, room - 66, size=16, muted=True)
             _text(c, gx + room - 49, ty - 1, f"+{term.points}", 49, size=18, bold=True)
-            _pips(c, gx, ty + 25, term.points, max(1, term.points), room - 61, height=4)
+            _level_capsules(c, gx, ty + 25, 0, term.points, room - 61)
             ty += 40
     else:
         gy = max(skill_top + 86, bottom - 85)
@@ -622,7 +676,8 @@ def _draw_weapon(c: PageCanvas, model: Any, box: Box) -> None:
         for index, term in enumerate(terms):
             tx = px + 44 + index * cell
             _text(c, tx, term_top, term.name or term.id, cell - 8, size=13, muted=True)
-            _text(c, tx, term_top + 21, f"+{term.points}", cell - 8, size=16, bold=True)
+            _level_capsules(c, tx, term_top + 24, 0, term.points, cell - 49)
+            _text(c, tx + cell - 43, term_top + 21, f"+{term.points}", 38, size=16, bold=True)
 
 
 def _affix_icon(c: PageCanvas, line: Any, x: int, y: int) -> int:
