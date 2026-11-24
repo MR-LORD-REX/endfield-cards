@@ -121,7 +121,7 @@ def draw_heading(c: PageCanvas, model: Any, *, dark: bool) -> None:
     )
     parts._stars(c, model.rarity, glyph_x + 95, 260, 17)
     c.draw.line((918, 315, 1242, 315), fill=c.accent, width=3)
-    _center(c, 750, 334, "A vs B   /   " + c.t("Statistics"), 660, size=18, fill=c.muted)
+    _center(c, 750, 334, "A vs B   /   " + c.t("Stats"), 660, size=18, fill=c.muted)
     if dark:
         c.draw.line((731, 89, 731, 1345), fill=c.line)
         c.draw.line((1429, 89, 1429, 1345), fill=c.line)
@@ -159,7 +159,7 @@ def draw_stat_comparison(c: PageCanvas, first: Any, second: Any) -> None:
     c.panel(box)
     x, y, right, bottom = box
     c.draw.rectangle((x + 15, y + 15, x + 19, y + 33), fill=c.accent)
-    _text(c, x + 29, y + 9, c.t("Statistics"), 320, size=23, bold=True)
+    _text(c, x + 29, y + 9, c.t("Stats"), 320, size=23, bold=True)
     _text(c, x + 396, y + 15, "Δ B − A", 245, size=16, fill=c.muted)
     columns = ((x + 18, 196, "PROPERTY"), (x + 215, 129, "A"), (x + 355, 126, "B"), (x + 491, 148, "Δ"))
     for px, width, label in columns:

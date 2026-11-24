@@ -177,7 +177,16 @@ class PageCanvas:
         self.draw.line((x, y + height - 5, x + width, y + height - 5), fill=self.line, width=1)
         return height
 
-    def icon(self, key: str, x: int, y: int, size: int = 32, *, tint: str | None = None) -> bool:
+    def icon(
+        self,
+        key: str,
+        x: int,
+        y: int,
+        size: int = 32,
+        *,
+        tint: str | None = None,
+        preserve_color: bool = False,
+    ) -> bool:
         source = self.assets.get(key)
         if source is None:
             try:
@@ -186,14 +195,17 @@ class PageCanvas:
             except (AssetError, OSError, KeyError):
                 return False
         glyph = ImageOps.contain(source.convert("RGBA"), (size, size), Image.Resampling.LANCZOS)
-        if tint is not None or (
-            key.startswith(("stat.", "profession.", "weapon.", "player.", "rarity."))
-            and key
-            not in {
-                "player.monument-event",
-                "player.monument-detailed",
-                "player.monument_detail",
-            }
+        if not preserve_color and (
+            tint is not None
+            or (
+                key.startswith(("stat.", "profession.", "weapon.", "player.", "rarity."))
+                and key
+                not in {
+                    "player.monument-event",
+                    "player.monument-detailed",
+                    "player.monument_detail",
+                }
+            )
         ):
             alpha = glyph.getchannel("A")
             if alpha.getextrema() != (255, 255):

@@ -49,6 +49,23 @@ def _next_page(iterator: Any, output: OutputConfig) -> tuple[bytes, int, int] | 
         image.close()
 
 
+def _source_issues(model: Any) -> list[RenderIssue]:
+    """Retain SDK issues for returned collections as well as their containers."""
+    result: list[RenderIssue] = []
+    for item in model if isinstance(model, (list, tuple)) else [model]:
+        result.extend(RenderIssue(issue.code, str(issue.message)) for issue in getattr(item, "issues", []))
+        result.extend(_source_issues(getattr(item, "characters", ())))
+    return result
+
+
+def _validated_options(family: str, context: RenderContext, options: dict[str, Any]) -> dict[str, Any]:
+    if family == "activity" and options.get("profile") is not None:
+        options = dict(options)
+        options["profile"] = _snapshot(options["profile"])
+        validate_owner(options["profile"], context)
+    return options
+
+
 class Cards:
     """Render supplied models for arbitrary owners with reusable bounded resources.
 
@@ -156,6 +173,7 @@ class Cards:
         snapshot = _snapshot(model)
         context = context or context_for(snapshot, owner, locale=self.config.locale)
         validate_owner(snapshot, context)
+        options = _validated_options(family, context, options)
         artwork = art if isinstance(art, Artwork) else Artwork(art) if art is not None else None
         output = output or OutputConfig()
         cacheable = self.config.cache.enabled and artwork is None
@@ -240,6 +258,7 @@ class Cards:
         snapshot = _snapshot(model)
         context = context or context_for(snapshot, owner, locale=self.config.locale)
         validate_owner(snapshot, context)
+        options = _validated_options(family, context, options)
         artwork = art if isinstance(art, Artwork) else Artwork(art) if art is not None else None
         iterator = self._iterate(
             family, snapshot, context, variant, artwork, output or OutputConfig(), options
@@ -271,9 +290,12 @@ class Cards:
                 overrides = {}
                 if artwork is not None:
                     overrides["custom_art"] = await self.assets.load(artwork)
-                issues = [
-                    RenderIssue(issue.code, str(issue.message)) for issue in getattr(model, "issues", [])
-                ]
+                issues = _source_issues(model)
+                if family == "activity" and (profile := options.get("profile")) is not None:
+                    issues.extend(
+                        RenderIssue(issue.code, str(issue.message))
+                        for issue in getattr(profile, "issues", [])
+                    )
                 assets = LazyAssets(
                     self.assets, asyncio.get_running_loop(), issues=issues, overrides=overrides
                 )

@@ -48,7 +48,7 @@ def text_spy(monkeypatch):
     return drawn
 
 
-def test_roster_partial_last_page_and_owner_footer(owner, text_spy):
+def test_roster_small_full_collection_stays_on_one_image_with_owner_footer(owner, text_spy):
     roster = import_module("endfield_cards.rendering.templates.roster")
     builds = [
         CharacterBuild(identity=CharacterIdentity(skport_id=f"id-{i}"), name=f"Operator {i}", owner=owner)
@@ -56,12 +56,12 @@ def test_roster_partial_last_page_and_owner_footer(owner, text_spy):
     ]
     model = PlayerCard(player=owner, characters=builds, source_scope="owner", roster_complete=True)
     pages = roster.render(model, context_for(model))
-    assert len(pages) == 2
-    assert {page.size for page in pages} == {(1600, 1100)}
+    assert len(pages) == 1
+    assert {page.size for page in pages} == {(2400, 1345)}
     names = [value for value, *_ in text_spy if value.startswith("Operator ")]
     assert names == [f"Operator {i}" for i in range(13)]
     footers = [value for value, *_ in text_spy if "UID 1234567890" in value]
-    assert len(footers) == 2
+    assert len(footers) == 2  # Header and reserved footer both retain the owner UID.
     for page in pages:
         page.close()
 
@@ -193,7 +193,7 @@ def test_very_long_roster_name_has_complete_appendix(owner, text_spy):
     roster = import_module("endfield_cards.rendering.templates.roster")
     name = "非常に長い名前" * 14 + "TAIL"
     build = CharacterBuild(identity=CharacterIdentity(skport_id="long-name"), name=name, owner=owner)
-    pages = roster.render([build], context_for(owner))
+    pages = roster.render([build], context_for(owner), details=True)
     assert len(pages) == 2
     assert any("TAIL" in value for value, *_ in text_spy)
     for page in pages:

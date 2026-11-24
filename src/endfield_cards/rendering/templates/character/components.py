@@ -206,7 +206,7 @@ def draw_stats(c: PageCanvas, model: Any, box: Box, *, layout: str = "rows", den
     """Draw observed headline values, attributes and a bounded bonus summary."""
     x, y, right, bottom = box
     c.panel(box)
-    top = _title(c, box, "Statistics")
+    top = _title(c, box, "Stats")
     rows = stats_rows(model)
     if not rows:
         _text(c, x + 18, top + 18, c.t("Unavailable"), right - x - 36, muted=True)

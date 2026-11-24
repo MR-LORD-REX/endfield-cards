@@ -46,11 +46,9 @@ def records(model: Any) -> list[Record]:
         for stat in model.stats.values.values():
             role = " · Main" if stat.is_main else " · Sub" if stat.is_sub else ""
             lines.append(f"{stat.name or 'Property ' + str(stat.id)}: {stat.display}{role}")
-        result.append(Record("Statistics", lines))
+        result.append(Record("Stats", lines))
     else:
-        result.append(
-            Record("Statistics", [f"Calculation: {model.calculation_state} · Statistics unavailable"])
-        )
+        result.append(Record("Stats", [f"Calculation: {model.calculation_state} · Stats unavailable"]))
     for skill in model.skills:
         lines = [
             f"Level {skill.level}/{skill.max_level}",
