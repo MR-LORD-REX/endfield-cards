@@ -15,6 +15,7 @@ VARIANTS = MappingProxyType(
                 "roster",
                 "activity",
                 "factory",
+                "exploration",
                 "monument",
                 "monument_detail",
                 "contingency_contract",
@@ -38,7 +39,7 @@ ALIASES = MappingProxyType(
 )
 
 # Generic text exporters are retained internally, but are not finished card layouts.
-UNIMPLEMENTED = frozenset({"factory", "wiki"})
+UNIMPLEMENTED = frozenset({"wiki"})
 
 
 def ensure_implemented(family: str, variant: str) -> None:

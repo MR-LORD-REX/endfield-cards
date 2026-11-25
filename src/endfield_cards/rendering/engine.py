@@ -71,7 +71,15 @@ def _source_issues(model: Any) -> list[RenderIssue]:
 def _validated_options(family: str, context: RenderContext, options: dict[str, Any]) -> dict[str, Any]:
     if (
         family
-        in {"activity", "monument", "monument_detail", "contingency_contract", "contingency_contract_detail"}
+        in {
+            "factory",
+            "exploration",
+            "activity",
+            "monument",
+            "monument_detail",
+            "contingency_contract",
+            "contingency_contract_detail",
+        }
         and options.get("profile") is not None
     ):
         options = dict(options)
@@ -308,6 +316,8 @@ class RenderEngine:
                 if (
                     family
                     in {
+                        "factory",
+                        "exploration",
                         "activity",
                         "monument",
                         "monument_detail",
@@ -400,6 +410,7 @@ class RenderEngine:
             "roster": "characters",
             "activity": "activity",
             "factory": "factory",
+            "exploration": "factory",
             "monument": "monument",
             "monument_detail": "monument",
             "contingency_contract": "contract",
@@ -580,6 +591,9 @@ class RenderEngine:
 
     async def render_factory(self, model: Any, **kwargs: Any) -> list[CardResult]:
         return await self.render("factory", model, **kwargs)
+
+    async def render_exploration(self, model: Any, **kwargs: Any) -> list[CardResult]:
+        return await self.render("exploration", model, **kwargs)
 
     async def render_monument(self, model: Any, **kwargs: Any) -> list[CardResult]:
         return await self.render("monument", model, **kwargs)

@@ -187,6 +187,7 @@ async def test_sdk_snapshot_with_mixed_owners_is_rejected_before_rendering(sdk, 
         ("all_characters_card", ("owner-token",), {}, "roster", ("light", "dark"), CharacterListInfo),
         ("live_card", ("first",), {}, "activity", ("light", "dark"), LiveInfo),
         ("factory_card", ("first",), {}, "factory", ("light", "dark"), type(None)),
+        ("exploration_card", ("first",), {}, "exploration", ("light", "dark"), type(None)),
         ("monument_card", ("first",), {}, "monument", ("light", "dark"), MonumentInfo),
         (
             "monument_detailed_card",
@@ -229,7 +230,7 @@ async def test_numeric_templates_map_to_named_engine_styles(
 ):
     async with Cards(skport=sdk) as cards:
         for template, variant in enumerate(variants, 1):
-            if family in {"factory", "wiki"}:
+            if family == "wiki":
                 with pytest.raises(CardNotImplementedError):
                     await getattr(cards, method)(*args, template=template, **options)
                 assert draws == []
@@ -248,6 +249,7 @@ async def test_numeric_templates_map_to_named_engine_styles(
         ("all_characters_card", ("owner-token",), {}),
         ("live_card", ("first",), {}),
         ("factory_card", ("first",), {}),
+        ("exploration_card", ("first",), {}),
         ("monument_card", ("first",), {}),
         ("monument_detailed_card", ("first",), {}),
         ("contingency_contract_card", ("first",), {}),

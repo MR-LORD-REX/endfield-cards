@@ -11,6 +11,28 @@ from pathlib import Path
 from typing import Any
 
 
+def _field_presence(value: Any) -> Any:
+    """Retain nested SDK field presence where an absent value differs from supplied zero."""
+    if hasattr(value, "model_fields_set"):
+        children = {
+            name: presence
+            for name in type(value).model_fields
+            if (presence := _field_presence(getattr(value, name))) is not None
+        }
+        return {"supplied": sorted(value.model_fields_set), "children": children}
+    if isinstance(value, dict):
+        children = {
+            str(key): presence
+            for key, item in value.items()
+            if (presence := _field_presence(item)) is not None
+        }
+        return children or None
+    if isinstance(value, list | tuple):
+        sequence = [_field_presence(item) for item in value]
+        return sequence if any(item is not None for item in sequence) else None
+    return None
+
+
 def _normalize(value: Any) -> Any:
     if isinstance(value, bytes | bytearray | memoryview):
         return {"bytes_sha256": hashlib.sha256(value).hexdigest()}
@@ -23,7 +45,7 @@ def _normalize(value: Any) -> Any:
     if dataclasses.is_dataclass(value) and not isinstance(value, type):
         return {f.name: _normalize(getattr(value, f.name)) for f in dataclasses.fields(value)}
     if hasattr(value, "model_dump"):
-        return _normalize(value.model_dump(mode="json"))
+        return {"model": _normalize(value.model_dump(mode="json")), "presence": _field_presence(value)}
     if isinstance(value, dict):
         return {str(k): _normalize(v) for k, v in value.items()}
     if isinstance(value, list | tuple):

@@ -59,6 +59,7 @@ _STYLES = {
             "all_characters",
             "live",
             "factory",
+            "exploration",
             "monument",
             "monument_detailed",
             "contingency_contract",
@@ -383,10 +384,28 @@ class Cards:
         role_id: str | int | None = None,
         server_id: str | int | None = None,
     ) -> RenderedCard[FactoryState, None]:
-        """Create a factory card from a public player's region and crew data."""
+        """Create a factory/Dijiang card with regional funds, settlements and cabin crew."""
         variant = _style("factory", template)
-        model = await self._fetch("factory", **self._target(skport_id, role_id, server_id))
-        return await self._create("factory", model, variant, template)
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("factory", **ids)
+        profile = await self._fetch("card", **ids)
+        return await self._create("factory", model, variant, template, profile=profile)
+
+    @_request
+    async def exploration_card(
+        self,
+        skport_id: str | int,
+        *,
+        template: Literal[1, 2] = 1,
+        role_id: str | int | None = None,
+        server_id: str | int | None = None,
+    ) -> RenderedCard[FactoryState, None]:
+        """Create an exploration card covering all supplied regions, areas and counters."""
+        variant = _style("exploration", template)
+        ids = self._target(skport_id, role_id, server_id)
+        model = await self._fetch("factory", **ids)
+        profile = await self._fetch("card", **ids)
+        return await self._create("exploration", model, variant, template, profile=profile)
 
     @_request
     async def monument_card(

@@ -17,6 +17,28 @@ def test_full_url_identity_and_canonical_models() -> None:
     assert cache_key({"a": 1, "b": 2}) == cache_key({"b": 2, "a": 1})
 
 
+@pytest.mark.asyncio
+async def test_nested_missing_meter_and_supplied_zero_do_not_share_render_cache():
+    from skport.games.endfield.models import FactoryState, PlayerIdentity, ResourceMeter
+    from skport.games.endfield.models.world import RegionProgress
+
+    from endfield_cards.rendering import RenderEngine
+
+    owner = PlayerIdentity(name="Owner", game_uid="game", skport_id="social")
+    missing = FactoryState(player=owner, regions=[RegionProgress(name="Region", funds=ResourceMeter())])
+    observed = missing.model_copy(deep=True)
+    observed.regions[0].funds = ResourceMeter(current=0, maximum=0)
+    assert missing.model_dump(mode="json") == observed.model_dump(mode="json")
+    assert cache_key(missing) != cache_key(observed)
+    assert cache_key(observed) == cache_key(observed.model_copy(deep=True))
+    async with RenderEngine() as renderer:
+        unknown_page = (await renderer.render_factory(missing))[0]
+        zero_page = (await renderer.render_factory(observed))[0]
+        assert unknown_page.data != zero_page.data
+        assert (await renderer.render_factory(observed))[0].data == zero_page.data
+        assert renderer.cache_stats["renders"]["hits"] >= 1
+
+
 def test_memory_budget_lru_and_mutation_isolation() -> None:
     memory: ByteLRU[Image.Image] = ByteLRU(32)
     image = Image.new("RGBA", (2, 2), "red")

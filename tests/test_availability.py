@@ -58,6 +58,7 @@ async def test_planned_card_raises_before_any_sdk_or_renderer_work(
 
 @pytest.mark.asyncio
 async def test_advanced_engine_rejects_unfinished_card_before_import_or_owner_validation(monkeypatch):
+    monkeypatch.setattr(registry, "UNIMPLEMENTED", frozenset({"factory", "wiki"}))
     importer = AsyncMock()
     monkeypatch.setattr(registry, "import_module", importer)
     async with RenderEngine() as engine:

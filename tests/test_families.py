@@ -126,7 +126,7 @@ def test_long_wiki_text_paginates_with_final_content(owner, text_spy):
         page.close()
 
 
-def test_factory_retains_all_areas_settlements_crews(owner, text_spy):
+def test_factory_retains_settlements_crews_and_excludes_exploration(owner, text_spy):
     factory = import_module("endfield_cards.rendering.templates.factory")
     state = FactoryState(
         player=owner,
@@ -158,9 +158,9 @@ def test_factory_retains_all_areas_settlements_crews(owner, text_spy):
     )
     pages = factory.render(state, context_for(state))
     text = "\n".join(value for value, *_ in text_spy)
-    assert all(
-        term in text for term in ("300 / 100", "Chests: 7 / 10", "Crew A", "Stamina 63", "Favorability 44")
-    )
+    assert all(term in text for term in ("300 / 100", "Crew A", "63", "44"))
+    assert "STAMINA" in text or "Stamina" in text
+    assert "Chests" not in text and "Area A" not in text and "EXPLORATION" not in text
     for page in pages:
         page.close()
 
