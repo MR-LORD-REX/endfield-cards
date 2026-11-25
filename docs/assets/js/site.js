@@ -117,9 +117,11 @@ function enhanceHeadings(page) {
 }
 
 function contentURL(href, sourceURL) {
-  // Repository Markdown points outside docs; Pages includes previews at its root.
+  // Keep repository previews available when Pages omits examples/output.
   const preview = href.match(/^(?:\.{1,2}\/)*examples\/output\/(.+)$/);
-  return preview ? new URL(`examples/output/${preview[1]}`, baseURL) : new URL(href, sourceURL);
+  return preview
+    ? new URL(preview[1], "https://raw.githubusercontent.com/MR-LORD-REX/endfield-cards/main/examples/output/")
+    : new URL(href, sourceURL);
 }
 
 function rewriteLinks(page) {
