@@ -1,7 +1,7 @@
 """Endfield cards 2: no network calls, directories or handlers at import time."""
 
 from endfield_cards._version import __version__
-from endfield_cards.client import TEMPLATES, Cards, EFCard
+from endfield_cards.client import TEMPLATES, Cards, EF_Cards, EFCard
 from endfield_cards.config import CacheConfig, CardsConfig, DownloadConfig, Locale, OutputConfig, OutputFormat
 from endfield_cards.errors import CardError, CardNotImplementedError
 from endfield_cards.models import (
@@ -47,6 +47,7 @@ __all__ = [
     "CardsConfig",
     "DownloadConfig",
     "EFCard",
+    "EF_Cards",
     "OutputConfig",
     "OutputFormat",
     "OwnerIdentity",

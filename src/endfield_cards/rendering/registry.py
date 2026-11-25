@@ -39,7 +39,7 @@ ALIASES = MappingProxyType(
 )
 
 # Generic text exporters are retained internally, but are not finished card layouts.
-UNIMPLEMENTED = frozenset({"wiki"})
+UNIMPLEMENTED = frozenset({"pulls", "wiki"})
 
 
 def ensure_implemented(family: str, variant: str) -> None:

@@ -25,7 +25,7 @@ from skport.games.endfield.models import (
     WikiSummary,
 )
 
-from endfield_cards import CardResult, Cards, CardsConfig, EFCard, OutputConfig
+from endfield_cards import CardResult, Cards, CardsConfig, EF_Cards, EFCard, OutputConfig
 from endfield_cards.errors import (
     CardNotImplementedError,
     DataValidationError,
@@ -122,7 +122,8 @@ def draws(monkeypatch: pytest.MonkeyPatch) -> list[tuple[str, object, dict]]:
 def test_public_facade_requires_sdk_and_does_not_expose_rendering_methods():
     with pytest.raises((TypeError, ValueError)):
         Cards()
-    assert EFCard is Cards
+    assert EF_Cards.__name__ == "EF_Cards"
+    assert EFCard is Cards is EF_Cards
     assert not any(name.startswith("render") for name in dir(Cards))
     constructor = inspect.signature(Cards)
     assert "token" not in constructor.parameters and "tokens" not in constructor.parameters
@@ -230,7 +231,7 @@ async def test_numeric_templates_map_to_named_engine_styles(
 ):
     async with Cards(skport=sdk) as cards:
         for template, variant in enumerate(variants, 1):
-            if family == "wiki":
+            if family in {"pulls", "wiki"}:
                 with pytest.raises(CardNotImplementedError):
                     await getattr(cards, method)(*args, template=template, **options)
                 assert draws == []

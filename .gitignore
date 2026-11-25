@@ -15,12 +15,9 @@ __pycache__/
 
 .sk_assets/
 
-assets/
-design-data/
-docs/
-previews/
-
-!README.md
-*.md
+/assets/
+/previews/
+/plan.md
+/analysis.md
 
 main.py

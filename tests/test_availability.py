@@ -16,7 +16,7 @@ from skport.games.endfield.models import (
     StageRun,
 )
 
-from endfield_cards import CardError, CardNotImplementedError, Cards
+from endfield_cards import CardError, CardNotImplementedError, Cards, EF_Cards
 from endfield_cards.adapters.skport import context_for
 from endfield_cards.errors import UnsupportedVariantError
 from endfield_cards.rendering import RenderEngine, registry
@@ -68,6 +68,44 @@ async def test_advanced_engine_rejects_unfinished_card_before_import_or_owner_va
             await anext(engine.iter_pages("wiki", None))
         with pytest.raises(UnsupportedVariantError):
             await engine.render("factory", None, variant="missing")
+    importer.assert_not_called()
+
+
+@pytest.mark.parametrize("family", ["pulls", "wiki"])
+@pytest.mark.parametrize("template", [1, 2])
+@pytest.mark.asyncio
+async def test_pulls_and_wiki_are_disabled_before_any_client_or_engine_work(monkeypatch, family, template):
+    game = SimpleNamespace(card=AsyncMock())
+    sdk = SimpleNamespace(config=ClientConfig(), endfield=game)
+    draw = AsyncMock()
+    importer = AsyncMock()
+    monkeypatch.setattr(RenderEngine, "render", draw)
+    monkeypatch.setattr(registry, "import_module", importer)
+    async with EF_Cards(sdk) as cards:
+        with pytest.raises(CardNotImplementedError) as caught:
+            await getattr(cards, f"{family}_card")(template=template)
+    assert caught.value.code == "not_implemented"
+    assert f"{family}_card(template={template})" in str(caught.value)
+    assert isinstance(caught.value, NotImplementedError)
+    game.card.assert_not_awaited()
+    draw.assert_not_awaited()
+    importer.assert_not_called()
+
+
+
+@pytest.mark.parametrize("family", ["pulls", "wiki"])
+@pytest.mark.parametrize("template", [1, 2])
+@pytest.mark.asyncio
+async def test_pulls_and_wiki_engine_entry_points_are_disabled_before_template_import(
+    monkeypatch, family, template
+):
+    importer = AsyncMock()
+    monkeypatch.setattr(registry, "import_module", importer)
+    async with RenderEngine() as engine:
+        with pytest.raises(CardNotImplementedError):
+            await engine.render(family, None, variant="light" if template == 1 else "dark")
+        with pytest.raises(CardNotImplementedError):
+            await anext(engine.iter_pages(family, None, variant="light" if template == 1 else "dark"))
     importer.assert_not_called()
 
 

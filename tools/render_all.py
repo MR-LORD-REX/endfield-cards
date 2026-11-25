@@ -5,36 +5,24 @@ from __future__ import annotations
 import argparse
 import asyncio
 import io
-import json
 import logging
 import sys
 from datetime import UTC, datetime
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from time import perf_counter
 from typing import Any
 
-from PIL import Image, ImageDraw
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT.parent / "skport-py/src")]
 
 from render_live_roster import load_account_token, verify_owner_roster  # noqa: E402
 from skport import ClientConfig, ImageSource, SkportClient  # noqa: E402
-from skport.assets.images import enka_item_image  # noqa: E402
-from skport.games.endfield.clean.common import image_links, timestamp  # noqa: E402
-from skport.games.endfield.models import (  # noqa: E402
-    ImageLinks,
-    ItemSummary,
-    PlayerIdentity,
-    PullHistory,
-    PullRecord,
-    PullTotals,
-)
 
-from endfield_cards import CacheConfig, CardsConfig, OutputConfig  # noqa: E402
+from endfield_cards import TEMPLATES, CacheConfig, CardsConfig, OutputConfig  # noqa: E402
 from endfield_cards.adapters.skport import context_for  # noqa: E402
-from endfield_cards.assets.fonts import FontManager  # noqa: E402
-from endfield_cards.client import TEMPLATES, _style  # noqa: E402
+from endfield_cards.client import _style  # noqa: E402
 from endfield_cards.models import CardResult  # noqa: E402
 from endfield_cards.rendering import RenderEngine  # noqa: E402
 
@@ -44,9 +32,7 @@ FAMILIES = {
     "monument_detailed": "monument_detail",
     "contingency_contract_detailed": "contingency_contract_detail",
 }
-IMPLEMENTED = tuple(name for name in TEMPLATES if name != "wiki")
-FIXTURE = ROOT.parent / "akef-cards/tests/data/pulls.json"
-FIXTURE_LABEL = "REFERENCE FIXTURE / AKEF PULLS SAMPLE"
+IMPLEMENTED = tuple(name for name in TEMPLATES if name not in {"pulls", "wiki"})
 
 
 def parser() -> argparse.ArgumentParser:
@@ -58,91 +44,25 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--token-file", type=Path)
     result.add_argument("--role", help="Explicit authenticated owner role for the complete roster")
     result.add_argument("--assets-dir", type=Path, default=ROOT / ".sk_assets")
-    result.add_argument("--output-dir", type=Path, default=ROOT / "local")
+    result.add_argument("--output-dir", type=Path, default=ROOT / "examples/output")
     result.add_argument("--family", choices=("all", *IMPLEMENTED), default="all")
     return result
 
 
-def fixture_history(path: Path, weapon_icons: dict[str, ImageLinks]) -> PullHistory:
-    """Normalize six genuine character draws and three weapon draws from the reference."""
-    raw = json.loads(path.read_text(encoding="utf-8"))
-    chars = [
-        record
-        for group in raw["chars"].values()
-        for record in group
-        if record.get("kind") == "draw" and record.get("charId")
-    ]
-    weapons = [record for record in raw["weapons"] if record.get("kind") == "draw" and record.get("weaponId")]
-
-    def newest(row: dict[str, Any]) -> int:
-        return int(row.get("gachaTs") or 0)
-
-    sample = sorted(chars, key=newest, reverse=True)[:6]
-    sample.extend(sorted(weapons, key=newest, reverse=True)[:3])
-    records = []
-    for row in sorted(sample, key=newest, reverse=True):
-        item_id = row.get("charId") or row["weaponId"]
-        icon = (
-            image_links(enka=f"charremoteicon/icon_{item_id}.png", preferred=ImageSource.ENKA)
-            if row.get("charId")
-            else weapon_icons.get(item_id, ImageLinks())
-        )
-        records.append(
-            PullRecord(
-                id=f"{row['poolId']}:{row['seqId']}",
-                sequence_id=str(row["seqId"]),
-                kind=str(row.get("kind") or ""),
-                item=ItemSummary(id=item_id, name=row["nameText"], rarity=row["rarity"], icon=icon),
-                banner_id=row["poolId"],
-                banner_name=row["poolName"],
-                rarity=row["rarity"],
-                pulled_at=timestamp(row["gachaTs"], milliseconds=True),
-                is_free=bool(row.get("isFree", False)),
-            )
-        )
-    observed = [record.pulled_at for record in records if record.pulled_at is not None]
-    return PullHistory(
-        player=PlayerIdentity(
-            skport_id="reference-fixture", game_uid="REFERENCE FIXTURE", name="AKEF sample"
-        ),
-        records=records,
-        totals=PullTotals(
-            character_draws=sum(bool(row.get("charId")) for row in sample),
-            weapon_draws=sum(bool(row.get("weaponId")) for row in sample),
-            free_draws=sum(record.is_free for record in records),
-            six_star_draws=sum(record.rarity == 6 for record in records),
-        ),
-        from_time=min(observed) if observed else None,
-        to_time=max(observed) if observed else None,
-        complete_history=False,
-    )
-
-
-def save_preview(pages: list[CardResult], destination: Path, *, fixture: bool = False) -> tuple[int, int]:
+def save_preview(pages: list[CardResult], destination: Path) -> tuple[int, int]:
     """Preserve every returned page in a single numbered image, stacking when needed."""
     if not pages:
         raise ValueError("A card template returned no pages")
     destination.parent.mkdir(parents=True, exist_ok=True)
-    if len(pages) == 1 and not fixture:
+    if len(pages) == 1:
         pages[0].save(destination)
         return pages[0].width, pages[0].height
     width = max(page.width for page in pages)
-    label_height = 100 if fixture else 0
     gap = 20
-    height = label_height + sum(page.height for page in pages) + gap * (len(pages) - 1)
+    height = sum(page.height for page in pages) + gap * (len(pages) - 1)
     combined = Image.new("RGB", (width, height), (20, 24, 29))
     try:
-        if fixture:
-            draw = ImageDraw.Draw(combined)
-            fonts = FontManager()
-            draw.text((32, 18), FIXTURE_LABEL, font=fonts.get(30, weight="semibold"), fill="#f2d168")
-            draw.text(
-                (32, 58),
-                "akef-cards/tests/data/pulls.json / 9 supplied records / sample totals only",
-                font=fonts.get(20, weight="medium"),
-                fill="#eeeeef",
-            )
-        y = label_height
+        y = 0
         for page in pages:
             with Image.open(io.BytesIO(page.data)) as decoded:
                 combined.paste(decoded.convert("RGB"), ((width - decoded.width) // 2, y))
@@ -212,25 +132,8 @@ async def main(argv: list[str] | None = None) -> None:
         models["exploration"] = models["factory"]
         models["monument_detail"] = models["monument"]
         models["contingency_contract_detail"] = models["contingency_contract"]
-        snapshot = sdk.assets.current
-        weapon_icons = (
-            {
-                PurePosixPath(entry["Icon"]).stem: ImageLinks(
-                    enka=enka_item_image(entry["Icon"]), preferred=ImageSource.ENKA
-                )
-                for entry in snapshot["weapons"].values()
-                if entry.get("Icon")
-            }
-            if snapshot is not None
-            else {}
-        )
-        models["pulls"] = fixture_history(FIXTURE, weapon_icons)
         print(
             f"Target live data: {profile.player.skport_id}; all_characters authenticated owner: {owner.player.skport_id}",
-            flush=True,
-        )
-        print(
-            f"Pulls: reference fixture {FIXTURE}; {len(models['pulls'].records)} observed sample records",
             flush=True,
         )
         print(
@@ -272,16 +175,14 @@ async def main(argv: list[str] | None = None) -> None:
                         )
                     pages = await asyncio.wait_for(request, timeout=180)
                     path = output / public_family / f"{template}.png"
-                    width, height = await asyncio.to_thread(
-                        save_preview, pages, path, fixture=family == "pulls"
-                    )
+                    width, height = await asyncio.to_thread(save_preview, pages, path)
                     issues = sorted({issue.code for page in pages for issue in page.issues})
                     print(
                         f"Saved {public_family}/{template}.png: {width}x{height}, {len(pages)} page(s), {perf_counter() - started:.1f}s, issues={issues}",
                         flush=True,
                     )
                     count += 1
-        print(f"Finished: {count} numbered PNGs; wiki templates remain unimplemented", flush=True)
+        print(f"Finished: {count} numbered PNGs; pulls and wiki templates remain unimplemented", flush=True)
 
 
 if __name__ == "__main__":

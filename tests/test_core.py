@@ -183,6 +183,7 @@ os.mkdir = forbidden
 os.makedirs = forbidden
 import endfield_cards
 assert hasattr(endfield_cards, "Cards")
+assert hasattr(endfield_cards, "EF_Cards")
 assert (root.level, tuple(root.handlers)) == original
 """
     checked = subprocess.run(

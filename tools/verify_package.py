@@ -122,6 +122,8 @@ import json, pathlib, sys
 target = pathlib.Path(sys.argv[1]).resolve()
 sys.path.insert(0, str(target))
 import endfield_cards
+assert endfield_cards.EF_Cards.__name__ == "EF_Cards"
+assert endfield_cards.Cards is endfield_cards.EF_Cards
 from endfield_cards.assets.manifest import Manifest
 from endfield_cards.assets.fonts import FontManager
 from PIL import Image
