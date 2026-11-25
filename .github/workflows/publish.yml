@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing release tag matching the package version (for example v2.0.0a1)'
+        description: 'Existing release tag matching the package version (for example v2.0.0)'
         required: true
         type: string
 
@@ -34,11 +34,9 @@ jobs:
         run: |
           python - <<'PY'
           import os
-          from pathlib import Path
-          import tomllib
+          from runpy import run_path
 
-          project = tomllib.loads(Path('pyproject.toml').read_text(encoding='utf-8'))
-          version = project['project']['version']
+          version = run_path('src/endfield_cards/_version.py')['__version__']
           tag = os.environ['RELEASE_TAG']
           expected_tag = f'v{version}'
           if tag != expected_tag:
