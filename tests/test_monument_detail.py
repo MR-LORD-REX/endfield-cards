@@ -21,6 +21,7 @@ from skport.games.endfield.models import (
 from endfield_cards.adapters.skport import context_for
 from endfield_cards.errors import DataValidationError
 from endfield_cards.rendering.templates import monument_detail
+from endfield_cards.rendering.templates.monument import _shared as overview_parts
 from endfield_cards.rendering.templates.monument_detail import _shared as parts
 from endfield_cards.utils.drawing import PageCanvas
 
@@ -149,14 +150,15 @@ def test_difficulty_labels_have_no_leading_icons(monkeypatch, drawn):
     c.image.close()
 
 
-def test_medal_is_centered_without_level_caption_and_source_pixels_are_unchanged(drawn):
+@pytest.mark.parametrize("draw_medal", [overview_parts.draw_medal, parts.draw_medal], ids=["overview", "detail"])
+def test_medal_is_centered_without_level_caption_and_source_pixels_are_unchanged(draw_medal, drawn):
     model = state(1)
     event = model.events[0]
     event.medal.plated = False
     source = Image.new("RGBA", (20, 40), "#0000FF")
     original = source.tobytes()
     c = PageCanvas("Medal", context_for(model), assets={event.medal.icon.url: source}, header=False)
-    parts.draw_medal(c, event, (200, 100, 300, 202))
+    draw_medal(c, event, (200, 100, 300, 202))
     blue = c.image.crop((200, 100, 300, 202)).getchannel("B").point(lambda value: 255 if value > 200 else 0)
     left, top, right, bottom = blue.getbbox()
     assert abs((left + right) / 2 - 50) <= 1 and abs((top + bottom) / 2 - 51) <= 1

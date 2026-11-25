@@ -29,6 +29,7 @@ HARD = "#DA786A"
 
 
 def text(c: PageCanvas, x: int, y: int, value: object, width: int, **options: Any) -> None:
+    options.setdefault("bold", True)
     c.text(x, y, value, width=width, max_lines=options.pop("max_lines", 1), **options)
 
 
@@ -130,7 +131,7 @@ def draw_medal(c: PageCanvas, event: Any, box: tuple[int, int, int, int]) -> Non
         x, y, right, bottom = box
         composite_fitted(c.image, pixels, (x + 8, y + 8, right - 8, bottom - 8), contain=True)
     else:
-        c.centered_text(box, "—", size=20, fill=c.muted)
+        c.centered_text(box, "—", size=20, bold=True, fill=c.muted)
 
 
 def draw_banner(c: PageCanvas, event: Any, *, dark: bool) -> None:

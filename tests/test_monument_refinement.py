@@ -100,7 +100,8 @@ def test_full_monument_is_one_image_with_all_stage_names_and_source_icons(varian
     assert all(event.name in text for event in model.events)
     assert all(stage.name in text for event in model.events for stage in event.stages)
     assert "Normal 3/6" in text and "Hard 1/6" in text and "24/48" in text and "8/48" in text
-    assert "Fastest clear 01:02.25" in text and "Lv 8 · P" in text and "ACTIVE" in text
+    assert "Fastest clear 01:02.25" in text and "ACTIVE" in text
+    assert "Lv 8" not in text
     assert "Monument Owner" in text and "UID 4572346170" in text
     assert "akef-cards" in text and "endfield-cards" in text
     assert all(image_url in images.requested for image_url in parts.urls(model))

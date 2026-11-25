@@ -12,7 +12,7 @@ from PIL import Image
 from endfield_cards.adapters.skport import image_url, validate_owner
 from endfield_cards.errors import DataValidationError
 from endfield_cards.utils.drawing import PageCanvas
-from endfield_cards.utils.images import composite_fitted, fitted
+from endfield_cards.utils.images import composite_fitted
 from endfield_cards.utils.records import Record, duration, iter_records, record_page_count
 
 WIDTH = 1600
@@ -27,6 +27,7 @@ Box = tuple[int, int, int, int]
 
 
 def text(c: PageCanvas, x: int, y: int, value: object, width: int, *, size: int = 20, **options: Any) -> None:
+    options.setdefault("bold", True)
     c.text(x, y, value, width=width, size=size, max_lines=options.pop("max_lines", 1), **options)
 
 
@@ -120,8 +121,8 @@ def draw_art(c: PageCanvas, event: Any, box: Box, *, clipped: bool = False) -> N
 
 
 def draw_medal(c: PageCanvas, event: Any, box: Box) -> None:
+    """Center the supplied medal artwork without a level caption."""
     x, y, right, bottom = box
-    width, height = right - x, bottom - y
     c.draw.rounded_rectangle(
         box,
         radius=10,
@@ -130,23 +131,12 @@ def draw_medal(c: PageCanvas, event: Any, box: Box) -> None:
         width=2,
     )
     medal = event.medal
-    if medal is None:
-        text(c, x + 5, y + height // 2 - 10, "—", width - 10, size=18, fill=c.muted)
-        return
-    source = image_url(medal.icon)
+    source = image_url(medal.icon) if medal is not None else None
     pixels = c.assets.get(source) if source else None
     if pixels is not None:
-        glyph = fitted(pixels, (width - 8, height - 23), contain=True)
-        c.image.alpha_composite(glyph, (x + 4, y + 3))
-    text(
-        c,
-        x + 6,
-        bottom - 21,
-        f"Lv {medal.level}" + (" · P" if medal.plated else ""),
-        width - 12,
-        size=11,
-        fill=c.accent if c.dark and medal.plated else c.muted,
-    )
+        composite_fitted(c.image, pixels, (x + 8, y + 8, right - 8, bottom - 8), contain=True)
+    else:
+        c.centered_text(box, "—", size=20, bold=True, fill=c.muted)
 
 
 def fastest(event: Any) -> float | None:

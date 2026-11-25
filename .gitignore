@@ -11,6 +11,8 @@ __pycache__/
 
 .env
 
+.cache/
+
 .sk_assets/
 
 assets/

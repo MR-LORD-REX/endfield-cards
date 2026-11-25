@@ -32,8 +32,10 @@ def _directory_state(directory: Path) -> _DirectoryState:
 
 def default_cache_directory() -> Path:
     """Resolve a user cache path without creating directories on import."""
-    root = os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_CACHE_HOME")
-    return (Path(root) if root else Path.home() / ".cache") / "endfield-cards" / "images"
+    cwd=Path.cwd()
+    cache_path= cwd / ".cache" / "endfield-cards" / "images"
+    os.makedirs(cache_path,exist_ok=True)
+    return cache_path
 
 
 class DiskCache:

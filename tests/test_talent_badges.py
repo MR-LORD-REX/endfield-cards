@@ -17,6 +17,7 @@ from skport.games.endfield.models import (
 )
 
 from endfield_cards.adapters.skport import context_for
+from endfield_cards.rendering.templates.character import components as parts
 from endfield_cards.rendering.templates.character.components import draw_talents
 from endfield_cards.utils.drawing import PageCanvas
 from endfield_cards.utils.talents import compact_talents
@@ -168,7 +169,68 @@ def test_consolidated_badges_fit_each_showcase_and_preserve_source_art(box, monk
     c = PageCanvas("Character", context_for(source), header=False, size=(1920, 1950), assets=images)
     draw_talents(c, source, box)
     text = "\n".join(entry[0] for entry in entries)
-    assert "+60" in text and "2/2" in text and "γ" in text and "12/12" in text
+    assert "+60" in text and "γ" in text and "12/12" in text
+    assert "2/2" not in text
     assert all(box[0] <= x < box[2] and box[1] <= y and y + height <= box[3] for _, x, y, height in entries)
     assert pixels_before == {url: pixels.tobytes() for url, pixels in images.items()}
+    c.image.close()
+
+
+@pytest.mark.parametrize("level", [0, 1, 2])
+@pytest.mark.parametrize("size", [14, 28, 42])
+def test_combat_badge_draws_one_capsule_per_observed_level_without_numeric_overlay(level, size, monkeypatch):
+    node = TalentNode(
+        id="combat_99", kind="combat", name="Force", level=level, max_level=2, unlocked=level > 0
+    )
+    source = model([node])
+    badge = compact_talents(source)[0]
+    c = PageCanvas("Character", context_for(source), header=False, dark=True, size=(100, 100))
+    text = []
+    original = c.text
+
+    def capture(x, y, value, **options):
+        text.append(str(value))
+        return original(x, y, value, **options)
+
+    monkeypatch.setattr(c, "text", capture)
+    before = c.image.copy()
+    parts._talent_badge(c, source, badge, 20, 20, size)
+    # Count separated white marks in the actual pixels, including compact badges.
+    columns = [
+        any(c.image.getpixel((x, y))[:3] == (244, 243, 238) for y in range(20, 20 + size))
+        for x in range(20, 20 + size)
+    ]
+    count = sum(visible and (index == 0 or not columns[index - 1]) for index, visible in enumerate(columns))
+    assert count == level
+    assert text == []
+    for box in (
+        (0, 0, 100, 20),
+        (0, 20 + size, 100, 100),
+        (0, 20, 20, 20 + size),
+        (20 + size, 20, 100, 20 + size),
+    ):
+        assert c.image.crop(box).tobytes() == before.crop(box).tobytes()
+    assert source.talents.nodes[0].level == level
+    before.close()
+    c.image.close()
+
+
+@pytest.mark.parametrize("level", [1, 2])
+def test_tall_talent_layout_uses_observed_capsules_in_badges_and_named_rows(level, monkeypatch):
+    source = model(
+        [TalentNode(id="combat_99", kind="combat", name="Force", level=level, max_level=2, unlocked=True)]
+    )
+    c = PageCanvas("Character", context_for(source), header=False, size=(600, 350))
+    calls = []
+    original = parts._level_capsules
+
+    def capture(canvas, x, y, base, bonus, width):
+        calls.append((base, bonus, x, y))
+        return original(canvas, x, y, base, bonus, width)
+
+    monkeypatch.setattr(parts, "_level_capsules", capture)
+    box = (40, 20, 478, 228)
+    draw_talents(c, source, box)
+    assert [(base, bonus) for base, bonus, *_ in calls] == [(level, 0), (level, 0)]
+    assert all(box[0] <= x < box[2] and box[1] <= y and y + 13 <= box[3] for _, _, x, y in calls)
     c.image.close()

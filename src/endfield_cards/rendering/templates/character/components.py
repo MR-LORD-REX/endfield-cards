@@ -485,8 +485,11 @@ def draw_talents(c: PageCanvas, model: Any, box: Box) -> None:
         row, column = divmod(index, 2)
         nx, ny = x + 15 + column * (cell + 12), text_top + row * 28
         _text(c, nx, ny, badge.name, cell - 50, size=14, muted=True)
-        label = badge.stage or f"{badge.level}/{badge.max_level}"
-        _text(c, nx + cell - 43, ny, label, 43, size=12, muted=True)
+        if badge.kind == "combat":
+            _level_capsules(c, nx + cell - 43, ny + 2, badge.level, 0, 43)
+        else:
+            label = badge.stage or f"{badge.level}/{badge.max_level}"
+            _text(c, nx + cell - 43, ny, label, 43, size=12, muted=True)
 
 
 def _talent_badge(c: PageCanvas, model: Any, badge: TalentBadge, x: int, y: int, size: int) -> None:
@@ -530,7 +533,12 @@ def _talent_badge(c: PageCanvas, model: Any, badge: TalentBadge, x: int, y: int,
                 size - inset * 2,
                 tint="#FCFCFE" if badge.unlocked else c.muted,
             )
-    label = badge.stage if base else f"{badge.level}/{badge.max_level}" if badge.kind == "combat" else ""
+    if badge.kind == "combat" and badge.level > 0:
+        marker_width = min(size, badge.level * 14 + 2)
+        marker_x, marker_y = x + size - marker_width, y + size - 14
+        c.draw.rounded_rectangle((marker_x, marker_y, x + size - 1, y + size - 1), radius=3, fill="#202630")
+        _level_capsules(c, marker_x + 1, marker_y + 1, badge.level, 0, marker_width - 2)
+    label = badge.stage if base else ""
     if label:
         font = c.fonts.get(11, weight="semibold", text=label)
         marker_width = int(c.draw.textlength(label, font=font)) + 6
